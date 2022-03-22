@@ -1,3 +1,9 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* controls the appearance of the urlbar results popup .urlbarView and #urlbar-results, etc. */
 
 .urlbarView-row {
@@ -68,6 +74,12 @@
     position: relative;
 }
 
+.urlbarView-tags,
+.urlbarView-url,
+.urlbarView-title:not(:empty) ~ .urlbarView-action {
+    font-size: 0.85em;
+}
+
 .urlbarView-row {
     padding: 6px 6.5px !important;
 }
@@ -81,7 +93,8 @@
     margin: 0 !important;
     border-color: var(--panel-separator-color) !important;
     padding: 2px 7px !important;
-    max-height: 20px !important;
+    line-height: 14px !important;
+    height: 20px !important;
     box-sizing: border-box !important;
     border-radius: 10px !important;
     background-color: var(--arrowpanel-faint) !important;
@@ -101,6 +114,7 @@
 .urlbarView-type-icon {
     margin-inline: 0px !important;
     position: relative !important;
+    align-self: center !important;
     min-width: 16px !important;
     width: 16px !important;
     height: 16px !important;
@@ -111,12 +125,12 @@
 .urlbarView-row:is([type="switchtab"], [type="bookmark"], [type="remotetab"], [type="dynamic"], [pinned])
     .urlbarView-type-icon {
     fill-opacity: inherit !important;
-    margin-bottom: 1px !important;
+    margin-block: 0 !important;
     display: -moz-box !important;
 }
 
 .urlbarView-row[pinned] .urlbarView-type-icon {
-    background: url(chrome://userchrome/content/material/pin.svg) no-repeat !important;
+    background: url(chrome://userchrome/content/material/pin-45.svg) no-repeat !important;
 }
 
 .urlbarView-row[type="bookmark"] .urlbarView-type-icon {
@@ -168,7 +182,7 @@
     background: url(chrome://userchrome/content/material/function.svg) no-repeat !important;
     width: 16px !important;
     height: 16px !important;
-    padding-left: 16px;
+    padding-inline-start: 16px;
 }
 
 .urlbarView-row[type="dynamic"][dynamicType="unitConversion"]
@@ -184,6 +198,52 @@
     .urlbarView-row-inner[selected]
     .urlbarView-dynamic-calculator-action {
     color: inherit;
+}
+
+.urlbarView-row[dynamicType="onboardTabToSearch"]
+    > .urlbarView-row-inner
+    > .urlbarView-no-wrap
+    > .urlbarView-favicon {
+    min-width: 16px !important;
+    height: 16px !important;
+    fill: currentColor !important;
+    fill-opacity: 1 !important;
+    color: var(--attention-color) !important;
+}
+
+.urlbarView-row[dynamicType="onboardTabToSearch"] > .urlbarView-row-inner {
+    min-height: 0 !important;
+    padding-block: 6px !important;
+}
+
+.urlbarView-dynamic-onboardTabToSearch-first-row-container {
+    align-items: center !important;
+}
+
+.urlbarView-row[dynamicType="onboardTabToSearch"] .urlbarView-title {
+    line-height: normal !important;
+}
+
+.urlbarView-dynamic-onboardTabToSearch-description {
+    margin-block: 0 !important;
+    font-size: 0.85em !important;
+}
+
+.urlbarView-row[dynamicType="onboardTabToSearch"]
+    > .urlbarView-row-inner:not([selected])
+    .urlbarView-dynamic-onboardTabToSearch-description {
+    opacity: 1 !important;
+    color: var(--panel-shortcut-color) !important;
+}
+
+.urlbarView-row[dynamicType="onboardTabToSearch"]
+    .urlbarView-action.urlbarView-dynamic-onboardTabToSearch-action {
+    margin-inline-start: 10px !important;
+}
+
+.urlbarView-row[dynamicType="onboardTabToSearch"]:not([selected], [show-action-text], :hover)
+    .urlbarView-action {
+    display: none !important;
 }
 
 .urlbarView[actionoverride] .urlbarView-row[type="switchtab"] .urlbarView-type-icon {
@@ -202,16 +262,21 @@
     > .urlbarView-row-inner
     > .urlbarView-no-wrap
     > .urlbarView-action {
-    background-color: transparent !important;
-    border-radius: unset !important;
+    /* background-color: transparent !important;
+    border-radius: unset !important; */
+    margin: 0 !important;
+    border: 1px solid var(--panel-separator-color) !important;
+    padding: 2px 7px !important;
+    height: 20px !important;
+    line-height: 14px !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    background-color: var(--arrowpanel-faint) !important;
+    color: var(--uc-arrowpanel-color) !important;
 }
 
 .urlbarView-row:not([selected]) .urlbarView-action {
     color: var(--urlbar-popup-action-color) !important;
-}
-
-.urlbarView-row[type="switchtab"]:not([selected], :hover) .urlbarView-action {
-    display: none;
 }
 
 .urlbarView[actionoverride]
@@ -221,11 +286,21 @@
     flex-shrink: 1 !important;
 }
 
+.urlbarView-url,
 .urlbarView[actionoverride]
     .urlbarView-row[type="switchtab"]
     > .urlbarView-row-inner
     > .urlbarView-url {
     flex-shrink: 3 !important;
+}
+
+.urlbarView[actionoverride] .urlbarView-row[has-url] > .urlbarView-row-inner > .urlbarView-no-wrap,
+.urlbarView-row[has-url]:not([type$="tab"]) > .urlbarView-row-inner > .urlbarView-no-wrap,
+.urlbarView-row[has-url]:is([type="remotetab"], [sponsored]):is(:hover, [selected])
+    > .urlbarView-row-inner
+    > .urlbarView-no-wrap {
+    flex-shrink: 3 !important;
+    max-width: revert !important;
 }
 
 .urlbarView-row:is([type="switchtab"], [type="remotetab"])
@@ -247,7 +322,11 @@
 .urlbarView-url,
 .urlbarView-tags,
 .urlbarView-dynamic-calculator-action,
-.urlbarView-dynamic-unitConversion-action {
+.urlbarView-dynamic-unitConversion-action,
+.urlbarView-row:is([type="switchtab"], [type="remotetab"])
+    > .urlbarView-row-inner
+    > .urlbarView-no-wrap
+    > .urlbarView-action {
     margin-inline: 8px 0 !important;
 }
 
@@ -291,7 +370,6 @@
     min-height: unset !important;
     max-height: -moz-fit-content !important;
     height: unset !important;
-    text-transform: lowercase !important;
 }
 
 .urlbarView-tip-button,
@@ -300,20 +378,17 @@
     height: unset !important;
     min-height: 16px !important;
     max-height: -moz-fit-content !important;
+    outline-offset: 0 !important;
 }
 
 .urlbarView-tip-button-spacer {
-    display: none !important;
+    flex-grow: 0 !important;
+    flex-basis: 8px !important;
 }
 
 .urlbarView-tip-button {
     padding-inline: 6px !important;
     padding-block: 3px !important;
-    margin: unset !important;
-    background: none !important;
-    margin-inline: unset !important;
-    color: var(--urlbar-popup-action-color) !important;
-    fill: var(--urlbar-popup-action-color) !important;
 }
 
 .urlbarView-tip-help {
@@ -333,24 +408,8 @@
     fill: var(--urlbar-popup-action-color) !important;
 }
 
-:is(.urlbarView-tip-help, .urlbarView-tip-button):hover {
-    background-color: var(--arrowpanel-dimmed) !important;
-    color: currentColor !important;
-    fill: currentColor !important;
-}
-
-:is(.urlbarView-tip-help, .urlbarView-tip-button):is(:hover, [aria-selected]) {
+:is(.urlbarView-tip-help, .urlbarView-tip-button):is(:hover, [selected]) {
     box-shadow: none !important;
-}
-
-:is(.urlbarView-tip-help, .urlbarView-tip-button)[aria-selected]:not(:hover) {
-    background-color: transparent !important;
-}
-
-:is(.urlbarView-tip-help, .urlbarView-tip-button):hover:active {
-    background-color: var(--arrowpanel-dimmed-further) !important;
-    color: currentColor !important;
-    fill: currentColor !important;
 }
 
 .urlbarView-row[type="tip"] > .urlbarView-row-inner > .urlbarView-favicon {
@@ -416,13 +475,14 @@
     color: hsla(0, 0%, 100%, 0.6);
 }
 
-.urlbarView-row[type="tabtosearch"] .urlbarView-title,
 .urlbarView-row[has-action] .urlbarView-title strong,
 .urlbarView-row[has-action] .urlbarView-title[isurl],
 .urlbarView-row[has-url] .urlbarView-title,
 .urlbarView-row .urlbarView-tag,
+.urlbarView-row:where([type="tabtosearch"], [type="tokenaliasengine"]) .urlbarView-title,
 .urlbarView-row:not([has-url])
-    .urlbarView-title[data-l10n-id="urlbar-result-action-search-w-engine"] {
+    .urlbarView-title[data-l10n-id="urlbar-result-action-search-w-engine"],
+.urlbarView-tail-prefix {
     font-weight: var(--urlbar-result-strong-font-weight, 500) !important;
     font-style: normal !important;
     color: var(--panel-shortcut-color);
@@ -433,13 +493,14 @@
     color: var(--panel-shortcut-color);
 }
 
-.urlbarView-row[type="tabtosearch"][selected] .urlbarView-title,
+.urlbarView-row:where([type="tabtosearch"], [type="tokenaliasengine"])[selected] .urlbarView-title,
 .urlbarView-row[has-action][selected] .urlbarView-title strong,
 .urlbarView-row[has-action][selected] .urlbarView-title[isurl],
 .urlbarView-row[has-url][selected] .urlbarView-title,
 .urlbarView-row[selected] .urlbarView-tag,
 .urlbarView-row[selected]:not([has-url])
     .urlbarView-title[data-l10n-id="urlbar-result-action-search-w-engine"],
+.urlbarView-row[selected] .urlbarView-tail-prefix,
 .urlbarView-row-inner[selected] .urlbarView-dynamic-calculator-input,
 .urlbarView-row-inner[selected] .urlbarView-dynamic-unitConversion-output {
     color: var(--panel-shortcut-focus);
@@ -484,24 +545,31 @@
     display: none;
 }
 
-.urlbarView-action[slide-in] {
-    animation: none !important;
+/* tail suggestions */
+.urlbarView-tail-prefix {
+    margin-inline-end: calc(0px - var(--urlbar-icon-padding) - 2px) !important;
 }
 
+/* get rid of the ... and show the original string */
 .urlbarView-tail-prefix > .urlbarView-tail-prefix-string {
     visibility: visible !important;
 }
 
 .urlbarView-tail-prefix > .urlbarView-tail-prefix-char {
-    display: none !important;
+    visibility: collapse !important;
 }
 
-.urlbarView-tail-prefix {
-    margin-top: -1px !important;
-    margin-bottom: -0.3px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-    align-self: center !important;
+/* instead, replace the favicon with a ... icon */
+.urlbarView-row[tail-suggestion]
+    > .urlbarView-row-inner
+    > .urlbarView-no-wrap
+    > .urlbarView-favicon {
+    visibility: visible !important;
+    box-sizing: border-box !important;
+    background: url(chrome://global/skin/icons/more.svg) no-repeat !important;
+    width: 16px !important;
+    height: 16px !important;
+    padding-inline-start: 16px;
 }
 
 .urlbarView-url > strong {
@@ -519,67 +587,68 @@
     background: url(chrome://userchrome/content/engines/google-color.svg) no-repeat !important;
     width: 16px !important;
     height: 16px !important;
-    padding-left: 16px;
+    padding-inline-start: 16px;
 }
 
-.urlbarView-favicon[src="moz-extension://cd4aad93-9726-49dd-a5cd-9e5f5c4d76f4/favicon.ico"]
-{
+.urlbarView-row[engine="Google"]:is([type="tabtosearch"], [type="tokenaliasengine"])
+    .urlbarView-favicon {
     box-sizing: border-box !important;
     background: url(chrome://userchrome/content/engines/google.svg) no-repeat !important;
     width: 16px !important;
     height: 16px !important;
-    padding-left: 16px;
+    padding-inline-start: 16px;
 }
 
 .urlbarView-row:not([type="search"])
-    .urlbarView-favicon:is([src^="page-icon:https://en.wikipedia.org/"], [src^="page-icon:http://en.wikipedia.org/"])
+    .urlbarView-favicon[src^="page-icon:http"][src*="://en.wikipedia.org/"]
 {
     box-sizing: border-box !important;
-    background: url(chrome://userchrome/content/engines/wiki.svg) no-repeat center/contain !important;
+    background: url(chrome://userchrome/content/engines/wikipedia.svg) no-repeat center/contain !important;
     width: 16px !important;
     height: 16px !important;
-    padding-left: 16px;
-    fill-opacity: 1 !important;
+    padding-inline-start: 16px;
 }
 
 .urlbarView-row:not([type="search"])
-    .urlbarView-favicon:is([src^="page-icon:https://www.amazon.com/"], [src^="page-icon:http://www.amazon.com/"])
+    .urlbarView-favicon[src^="page-icon:http"][src*="://en.wiktionary.org/"]
 {
     box-sizing: border-box !important;
-    background: url(chrome://userchrome/content/engines/amazon.svg) no-repeat center/contain !important;
+    background: url(chrome://userchrome/content/engines/wiktionary.svg) no-repeat center/contain !important;
     width: 16px !important;
     height: 16px !important;
-    padding-left: 16px;
-    fill-opacity: 1 !important;
+    padding-inline-start: 16px;
 }
 
 .urlbarView-row:not([type="search"])
-    .urlbarView-favicon:is([src^="page-icon:https://gatherer.wizards.com/"], [src^="page-icon:http://gatherer.wizards.com/"])
+    .urlbarView-favicon[src^="page-icon:http"][src*="://gatherer.wizards.com/"]
 {
     box-sizing: border-box !important;
     background: url(chrome://userchrome/content/engines/gatherer.svg) no-repeat center/contain !important;
     width: 16px !important;
     height: 16px !important;
-    padding-left: 16px;
-    fill-opacity: 1 !important;
+    padding-inline-start: 16px;
 }
 
 .urlbarView-row:not([type="search"])
-    .urlbarView-favicon:is([src^="page-icon:https://reelgood.com/"], [src^="page-icon:http://reelgood.com/"])
+    .urlbarView-favicon[src^="page-icon:http"][src*="://reelgood.com/"]
 {
     box-sizing: border-box !important;
     background: url(chrome://userchrome/content/engines/reelgood.svg) no-repeat center/contain !important;
     width: 16px !important;
     height: 16px !important;
-    padding-left: 16px;
-    fill-opacity: 1 !important;
+    padding-inline-start: 16px;
 }
 
-.urlbarView-row[type="tabtosearch"]:not([selected], [show-action-text], :hover)
+.urlbarView-row:where([type="tabtosearch"], [type="tokenaliasengine"]):not([selected], [show-action-text], :hover)
     > .urlbarView-row-inner
     > .urlbarView-no-wrap
     > .urlbarView-action {
     display: none;
+}
+
+/* I think the slide-in animation looks pretty corny honestly */
+.urlbarView-action[slide-in] {
+    animation: none !important;
 }
 
 #urlbar[breakout][breakout-extend] > #urlbar-input-container,
@@ -592,7 +661,8 @@
 #urlbar[breakout][breakout-extend],
 #urlbar[breakout][breakout-extend-disabled][open] {
     top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
-    left: 0px !important;
+    left: 0 !important;
+    right: 0 !important;
     width: -moz-available !important;
     overflow: visible;
     box-shadow: none !important;
@@ -602,9 +672,13 @@
 
 .urlbarView {
     margin: 0 !important;
+    border: 1px solid transparent !important;
+    border-top-width: 0 !important;
     padding: 2px !important;
-    width: calc(100% + 8px) !important;
-    left: -4px !important;
+    padding-top: 1px !important;
+    width: calc(100% + 10px) !important;
+    left: -5px !important;
+    right: -5px !important;
     position: relative !important;
     overflow: visible !important;
     top: calc((var(--urlbar-container-height) - var(--urlbar-height)) / 2) !important;
@@ -618,42 +692,21 @@
     padding-block: 0 !important;
 }
 
-@keyframes urlbar-grow-bg {
-    0% {
-        transform: scaleX(0.95) scaleY(0.5);
-    }
-    100% {
-        transform: none;
-    }
-}
-
-@keyframes urlbar-grow-results {
-    0% {
-        transform: scaleY(0.95);
-        opacity: 0;
-    }
-    100% {
-        transform: none;
-        opacity: 1;
-    }
-}
-
 #urlbar-background {
-    width: calc(100% + 8px) !important;
+    width: calc(100% + 10px) !important;
     top: var(--urlbar-container-height) !important;
     border: var(--searchbar-popup-border) !important;
+    border-top-width: 0 !important;
     background: var(--urlbar-results-bgcolor) !important;
     border-radius: var(--searchbar-popup-border-radius) !important;
 }
 
-#urlbar[breakout][breakout-extend][breakout-extend-animate] #urlbar-background {
-    animation-duration: 100ms !important;
+#urlbar[breakout][breakout-extend] #urlbar-background {
     animation-name: urlbar-grow-bg !important;
     animation-timing-function: var(--animation-easing-function) !important;
+    animation-duration: 0.1s !important;
     transform-origin: top !important;
-    transform-style: flat !important;
-    backface-visibility: hidden !important;
-    margin: -3px -4px !important;
+    margin: calc(0px - (var(--urlbar-container-height) - var(--urlbar-height)) / 2) -5px !important;
     box-shadow: var(--searchbar-popup-box-shadow) !important;
     clip-path: inset(
         0 -100% -100% -100%
@@ -664,27 +717,46 @@
     so in order to create the illusion that it's under the nav-bar we cut the shadow off at the boundary of the nav-bar. */
 }
 
-#urlbar[breakout][breakout-extend][breakout-extend-animate] .urlbarView {
-    animation-duration: 300ms !important;
+#urlbar[breakout][breakout-extend] .urlbarView {
     animation-name: urlbar-grow-results !important;
-    animation-timing-function: var(--animation-easing-function) !important;
-    transform-origin: top !important;
-    transform-style: preserve-3d !important;
-    backface-visibility: hidden !important;
+    animation-timing-function: ease-out !important;
+    animation-duration: 0.1s !important;
+}
+
+@keyframes urlbar-grow-bg {
+    0% {
+        transform: scaleX(0.95) scaleY(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+@keyframes urlbar-grow-results {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 /* the animation's framerate can stall when loading really heavy pages.
 so you might wanna turn the animation off. I might even make it off by default. */
 @supports -moz-bool-pref("userChrome.urlbar-results.disable_animation") {
-    #urlbar[breakout][breakout-extend][breakout-extend-animate] .urlbarView,
-    #urlbar[breakout][breakout-extend][breakout-extend-animate] #urlbar-background {
+    #urlbar[breakout][breakout-extend] .urlbarView,
+    #urlbar[breakout][breakout-extend] #urlbar-background {
         animation: none !important;
+        transform-style: flat !important;
+        backface-visibility: hidden !important;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    #urlbar[breakout][breakout-extend][breakout-extend-animate] .urlbarView,
-    #urlbar[breakout][breakout-extend][breakout-extend-animate] #urlbar-background {
+    #urlbar[breakout][breakout-extend] .urlbarView,
+    #urlbar[breakout][breakout-extend] #urlbar-background {
         animation: none !important;
     }
 }
@@ -720,7 +792,7 @@ so you might wanna turn the animation off. I might even make it off by default. 
     min-height: 34px !important;
     border-radius: var(--arrowpanel-menuitem-border-radius) !important;
     align-items: center !important;
-    fill-opacity: 0.6;
+    fill-opacity: 0.8;
     fill: var(--panel-description-color);
 }
 
@@ -790,7 +862,6 @@ so you might wanna turn the animation off. I might even make it off by default. 
     display: flex;
     flex-flow: column nowrap;
     align-items: stretch;
-    gap: 0px;
     background: none !important;
     border-bottom-left-radius: 4px !important;
     border-bottom-right-radius: 4px !important;

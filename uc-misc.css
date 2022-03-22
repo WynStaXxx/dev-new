@@ -1,3 +1,9 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* this stylesheet contains general/miscellaneous changes
 that are too small to have their own stylesheet.
 includes status bars, tooltips, confirmation hints and warnings,
@@ -15,11 +21,16 @@ tooltip {
     background-color: transparent !important;
     color: var(--tooltip-color) !important;
     border: none !important;
+    max-width: max(30vw, 40em);
     padding: 5px !important;
     margin-inline-start: -5px !important;
     margin-block-start: 16px !important;
     pointer-events: none !important;
-    --uc-tooltip-inner-padding: 2px 6px 4px 6px;
+}
+
+tooltip,
+#statuspanel {
+    --uc-tooltip-inner-padding: 4px 7px 6px 7px;
 }
 
 tooltip > description,
@@ -30,7 +41,7 @@ tooltip .uc-tooltip-box {
     border: 1px solid var(--tooltip-border-color) !important;
     border-radius: var(--tooltip-border-radius) !important;
     box-shadow: var(--tooltip-box-shadow) !important;
-    padding: var(--uc-tooltip-inner-padding, 2px 6px 4px 6px) !important;
+    padding: var(--uc-tooltip-inner-padding, 4px 7px 6px 7px) !important;
     margin: 0 !important;
 }
 
@@ -47,7 +58,7 @@ tooltip .uc-tooltip-box {
 
 .places-tooltip-box,
 tooltip .uc-tooltip-box {
-    --uc-tooltip-inner-padding: 4px 6px 5px 6px !important;
+    --uc-tooltip-inner-padding: 5px 7px 6px 7px !important;
 }
 
 .places-tooltip description:not([value], [id]):empty,
@@ -58,7 +69,6 @@ tooltip .uc-tooltip-box {
 .places-tooltip-box > hbox {
     display: flex !important;
     align-items: center !important;
-    max-width: 500px !important;
     color: var(--panel-shortcut-color) !important;
 }
 
@@ -127,7 +137,7 @@ mixed active content still shows the normal lock with red strikethrough. */
 /* extension pages, namely moz-extension:// */
 #places-tooltip-insecure-icon[type="extension-page"],
 #tab-nav-tooltip-insecure-icon[type="extension-page"] {
-    list-style-image: url(chrome://browser/content/extension.svg) !important;
+    list-style-image: url(chrome://mozapps/skin/extensions/extension.svg) !important;
 }
 
 /* new tab or home page */
@@ -148,10 +158,15 @@ mixed active content still shows the normal lock with red strikethrough. */
     -moz-context-properties: fill, stroke !important; */
 }
 
-/* show nothing on unloaded tabs, since determining which icon to show requires accessing the browser in session storage,
-which lazy loads the browser and thereby wastes memory and computation */
-#places-tooltip-insecure-icon[pending],
-#tab-nav-tooltip-insecure-icon[pending] {
+/* blocked pages e.g., about:blocked */
+#places-tooltip-insecure-icon[type="blocked-page"],
+#tab-nav-tooltip-insecure-icon[type="blocked-page"] {
+    list-style-image: url(chrome://userchrome/content/blocked.svg) !important;
+}
+
+/* don't show secure badges on pending tabs */
+#places-tooltip-insecure-icon[type="pending"],
+#tab-nav-tooltip-insecure-icon[type="pending"] {
     display: none !important;
 }
 
@@ -179,10 +194,6 @@ as the mouse would then be on top of the tooltip popup not the main window. */
     display: none !important;
 }
 
-:is(#back-button-tooltip, #forward-button-tooltip):not([shadow-support]) description {
-    border: none !important;
-}
-
 :is(#back-button-tooltip, #forward-button-tooltip) .tooltip-label[id]:not(:last-of-type) {
     font-weight: var(--uc-font-weight-bold, 600);
 }
@@ -191,18 +202,19 @@ as the mouse would then be on top of the tooltip popup not the main window. */
     color: var(--panel-shortcut-color) !important;
     box-shadow: none !important;
     background: none !important;
+    border: none !important;
     font-size: 0.9em;
 }
 
 :is(#back-button-tooltip, #forward-button-tooltip):not([shadow-support])
     .tooltip-label[id]:not(:last-of-type) {
-    padding: 4px 6px 21px 6px !important;
+    padding: 5.5px 8px 20px 8px !important;
 }
 
 :is(#back-button-tooltip, #forward-button-tooltip):not([shadow-support])
     .tooltip-label:last-of-type:not([id]) {
-    padding-block: 0 6px !important;
-    margin-block-start: -20px !important;
+    padding: 0 8px 8px 8px !important;
+    margin-block-start: -19.5px !important;
 }
 
 #tracking-protection-container tooltip {
@@ -213,6 +225,29 @@ as the mouse would then be on top of the tooltip popup not the main window. */
     box-shadow: var(--tooltip-box-shadow) !important;
     padding: var(--uc-tooltip-inner-padding) !important;
     margin-block-start: 26px !important;
+}
+
+#eom-theme-preview-tooltip {
+    padding: 5px !important;
+    max-width: revert !important;
+	border: none !important;
+	background: none !important;
+    border-radius: 0 !important;
+}
+
+#eom-theme-preview-box {
+	border-radius: var(--arrowpanel-border-radius, 8px) !important;
+    overflow: hidden !important;
+    box-shadow: var(--tooltip-box-shadow) !important;
+}
+
+#eom-theme-preview-tooltip description {
+    display: none !important;
+}
+
+/* eliminate --default-focusring */
+treechildren::-moz-tree-row(selected, current, focus) {
+    outline: none !important;
 }
 
 progress {
@@ -246,25 +281,37 @@ progress[paused]::-moz-progress-bar {
 
 progress:indeterminate::-moz-progress-bar {
     border-radius: 0;
-	background-image: linear-gradient(90deg, transparent 0%, var(--download-progress-flare-color) 25%, transparent 50%, var(--download-progress-flare-color) 75%, transparent 100%);
+    background-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--download-progress-flare-color) 25%,
+        transparent 50%,
+        var(--download-progress-flare-color) 75%,
+        transparent 100%
+    );
 }
 
 progress[paused]:indeterminate::-moz-progress-bar {
-	background-color: transparent;
-	background-image: none;
+    background-color: transparent;
+    background-image: none;
     animation: none;
     animation-play-state: paused;
 }
 
 #statuspanel {
-    margin-top: calc(0px - var(--menuitem-height)) !important;
+    /* temporarily disabled due to backdrop-filter being disabled. see https://bugzilla.mozilla.org/show_bug.cgi?id=1741779 */
+    /* color: var(--ui-text-80) !important;
     background-color: var(--acrylic-blue) !important;
     background-image: var(--acrylic-texture) !important;
-    backdrop-filter: var(--acrylic-blur) !important;
+    backdrop-filter: var(--acrylic-blur) !important; */
+
     border: 1px none var(--tooltip-border-color) !important;
     border-top-style: solid !important;
     box-shadow: var(--tooltip-box-shadow) !important;
-    color: var(--ui-text-80) !important;
+    margin-top: calc(0px - var(--menuitem-height)) !important;
+
+    background-color: var(--tooltip-bgcolor) !important;
+    color: var(--tooltip-color) !important;
 }
 
 :root[inDOMFullscreen] #statuspanel {
@@ -285,27 +332,27 @@ progress[paused]:indeterminate::-moz-progress-bar {
     color: inherit !important;
     box-shadow: none !important;
     opacity: revert !important;
-    padding: 0 8px !important;
-    margin: 0 0 1px !important;
+    padding: var(--uc-tooltip-inner-padding, 4px 7px 6px 7px) !important;
+    margin: 0 !important;
     border: none !important;
 }
 
 #statuspanel:not([mirror]):-moz-locale-dir(ltr),
 #statuspanel[mirror]:-moz-locale-dir(rtl) {
     border-top-left-radius: 0 !important;
-    border-top-right-radius: var(--general-button-border-radius) !important;
+    border-top-right-radius: var(--tooltip-border-radius) !important;
     border-right-style: solid !important;
 }
 
 #statuspanel:not([mirror]):-moz-locale-dir(rtl),
 #statuspanel[mirror]:-moz-locale-dir(ltr) {
-    border-top-left-radius: var(--general-button-border-radius) !important;
+    border-top-left-radius: var(--tooltip-border-radius) !important;
     border-top-right-radius: 0 !important;
     border-left-style: solid !important;
 }
 
 #statuspanel-inner {
-    height: var(--menuitem-height) !important;
+    height: revert !important;
     width: auto !important;
     min-width: unset !important;
     max-width: unset !important;
@@ -313,12 +360,14 @@ progress[paused]:indeterminate::-moz-progress-bar {
 }
 
 /* selection */
-link[href="chrome://global/skin/search-textbox.css"] ~ ::selection {
+link[href="chrome://global/skin/search-textbox.css"] ~ ::selection
+{
     background-color: var(--ui-selection-bgcolor);
     color: var(--ui-selection-color);
 }
 
-link[href="chrome://global/skin/search-textbox.css"] ~ :-moz-window-inactive::selection {
+link[href="chrome://global/skin/search-textbox.css"] ~ :-moz-window-inactive::selection
+{
     background-color: var(--ui-selection-bgcolor-disabled, text-select-disabled-background);
 }
 
@@ -386,6 +435,7 @@ notification[value="keyword-uri-fixup"] {
     :is(.tab-icon-image, .toolbarbutton-icon) {
     padding-right: 16px !important;
     background: url(chrome://userchrome/content/notifications/persistent-storage.svg) center/contain !important;
+    box-sizing: border-box !important;
 }
 
 :is(#mainPopupSet, #browser, #navigator-toolbox) textbox {
@@ -406,21 +456,23 @@ checkbox .checkbox-check {
     outline: unset !important;
 }
 
-:-moz-focusring,
-:focus,
-button::-moz-focus-inner,
-:-moz-focusring *,
-:focus *,
-:-moz-focusring:focus:not(:focus-visible),
-:-moz-focusring:focus:not(:focus-visible) > * {
+:focus:not(:focus-visible),
+:focus:not(:focus-visible) > *,
+radiogroup:focus-visible radio[focused="true"] > .radio-label-box,
+checkbox[native]:-moz-focusring > .checkbox-label-box {
     outline: unset !important;
     outline-offset: unset !important;
     -moz-outline-radius: unset !important;
 }
 
+checkbox[native]:focus-visible > .checkbox-check,
+radiogroup:focus-visible radio[focused="true"] > .radio-check,
+radiogroup deck menulist:focus-visible {
+    outline: var(--default-focusring);
+}
+
 toolbarbutton:focus-visible,
-.keyboard-focused-tab > .tab-stack > .tab-background,
-.tabbrowser-tab:focus:not([aria-activedescendant]) > .tab-stack > .tab-background,
+.popup-notification-button:focus-visible,
 .identity-box-button:not(:active):focus-visible,
 #tracking-protection-icon-container:not(:active):focus-visible,
 #PersonalToolbar .toolbarbutton-1:focus-visible,
@@ -428,7 +480,11 @@ findbar toolbarbutton.tabbable:focus-visible,
 toolbarbutton.bookmark-item:not(.subviewbutton):focus-visible,
 toolbar:not(#PersonalToolbar) .toolbarbutton-1:focus-visible > .toolbarbutton-icon,
 toolbar:not(#PersonalToolbar) .toolbarbutton-1:focus-visible > .toolbarbutton-text,
-toolbar:not(#PersonalToolbar) .toolbarbutton-1:focus-visible > .toolbarbutton-badge-stack {
+toolbar:not(#PersonalToolbar) .toolbarbutton-1:focus-visible > .toolbarbutton-badge-stack,
+.urlbar-page-action:focus-visible,
+#appMenu-zoomReduce-button2:focus-visible > .toolbarbutton-icon,
+#appMenu-zoomEnlarge-button2:focus-visible > .toolbarbutton-icon,
+#downloadsFooterButtons button:focus-visible {
     color: inherit;
     outline: unset !important;
     -moz-outline-radius: unset !important;
@@ -448,39 +504,52 @@ toolbar:not(#PersonalToolbar) .toolbarbutton-1:focus-visible > .toolbarbutton-ba
         treechildren,
         panelview,
         #BMB_bookmarksPopup,
-        #main-menubar,
         .sidebar-search-container,
-        .pointerlockfswarning {
-            font-family: SF Pro Text, Segoe UI, sans-serif !important;
+        .pointerlockfswarning,
+        :is(#ContentSelectDropdown, menupopup.in-menulist, .contentSelectDropdown-ingroup)
+            :is(menu, menuitem, menucaption),
+        panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem {
+            font-family: SF Pro Text, SF Arabic, Segoe UI, sans-serif !important;
             font-kerning: normal !important;
         }
 
         /* for stuff that should be thin */
         #urlbar,
         #searchbar,
-        #PopupSearchAutoComplete {
-            font-family: SF Pro, Segoe UI, sans-serif !important;
+        #PopupSearchAutoComplete,
+        #alertSourceLabel {
+            font-family: SF Pro, SF Arabic, Segoe UI, sans-serif !important;
+            font-kerning: normal !important;
         }
 
         /* for displaying larger font sizes */
         .panel-header,
+        .popup-notification-description,
         #sidebar-header,
-        .identity-popup-security-connection,
         #PanelUI-whatsNew,
         #protections-popup-message,
-        #protections-popup-no-trackers-found-description {
-            font-family: SF Pro Display, Segoe UI, sans-serif !important;
+        #PanelUI-profiler-info,
+        .PanelUI-profiler-button-link,
+        #protections-popup-no-trackers-found-description,
+        #PopupAutoComplete > richlistbox > richlistitem > .ac-title {
+            font-family: SF Pro Display, SF Arabic, Segoe UI, sans-serif !important;
             font-kerning: normal !important;
         }
 
-        :is(#back-button-tooltip, #forward-button-tooltip):not([shadow-support])
-            .tooltip-label[id]:not(:last-of-type) {
-            padding: 3.5px 6px 18px 6px !important;
+        #main-menubar {
+            font-family: SF Pro Display, SF Arabic, Segoe UI, sans-serif !important;
+            font-kerning: normal !important;
         }
 
-        :is(#back-button-tooltip, #forward-button-tooltip):not([shadow-support])
-            .tooltip-label:last-of-type:not([id]) {
-            margin-block-start: -17.5px !important;
+        #toolbar-menubar #main-menubar > menu > label {
+            padding: 5px 8px 6px 8px !important;
+        }
+
+        #main-menubar > menu > menupopup {
+            margin-block: calc(
+                0px - var(--menupopup-inner-box-margin) -
+                    ((var(--tab-min-height) - 14px - 5px - 6px) / 2)
+            ) !important;
         }
 
         #fxa-menu-header-description {
@@ -492,26 +561,24 @@ toolbar:not(#PersonalToolbar) .toolbarbutton-1:focus-visible > .toolbarbutton-ba
             font-weight: var(--uc-font-weight-bold, 500) !important;
         }
 
-        tooltip {
-            --uc-tooltip-inner-padding: 3px 6px 4px 6px;
+        strong {
+            font-weight: var(--uc-font-weight-extrabold, 600);
         }
 
+        tooltip,
+        #statuspanel {
+            --uc-tooltip-inner-padding: 5px 8px 6px 8px;
+        }
+
+        .places-tooltip-title,
         :is(#back-button-tooltip, #forward-button-tooltip) .tooltip-label[id] {
-            font-weight: var(--uc-font-weight-semibold, 400) !important;
+            font-family: SF Pro Display, SF Arabic, Segoe UI, sans-serif !important;
+            font-kerning: normal !important;
+            font-weight: var(--uc-font-weight-semibold, 500) !important;
         }
 
+        .places-tooltip-uri,
         :is(#back-button-tooltip, #forward-button-tooltip) .tooltip-label:not([id]) {
-            font-weight: var(--uc-font-weight-thin, 300) !important;
-        }
-
-        .places-tooltip-title {
-            font-size: 12px !important;
-            font-weight: var(--uc-font-weight-semibold, 400) !important;
-            line-height: 13.5px !important;
-            max-height: 27px !important;
-        }
-
-        .places-tooltip-uri {
             font-weight: var(--uc-font-weight-thin, 300) !important;
         }
 
@@ -533,14 +600,43 @@ toolbar:not(#PersonalToolbar) .toolbarbutton-1:focus-visible > .toolbarbutton-ba
             font-size: 11.5px !important;
         }
 
+        .urlbarView-row .urlbarView-tag,
+        .urlbarView-row:is([type="switchtab"], [type="remotetab"])
+            > .urlbarView-row-inner
+            > .urlbarView-no-wrap
+            > .urlbarView-action {
+            line-height: 15px !important;
+            font-weight: var(--uc-font-weight-thin, 400) !important;
+        }
+
+        .urlbarView-row .urlbarView-tag strong {
+            font-weight: inherit !important;
+        }
+
+        .urlbarView-row[dynamicType="onboardTabToSearch"]
+            .urlbarView-title
+            strong.urlbarView-dynamic-onboardTabToSearch-titleStrong {
+            font-family: SF Pro Text, SF Arabic, Segoe UI, sans-serif !important;
+        }
+
+        .urlbarView-tip-button {
+            font-family: SF Pro Text, SF Arabic, Segoe UI, sans-serif !important;
+            font-weight: var(--uc-font-weight-bold, 600) !important;
+        }
+
         .popup-notification-body input[type="password"] {
-            font-family: SF Pro !important;
+            font-family: SF Pro, SF Arabic, Segoe UI, sans-serif !important;
+        }
+
+        .popup-notification-description b {
+            font-family: SF Pro Display, SF Arabic, Segoe UI, sans-serif !important;
+            font-kerning: auto !important;
         }
 
         :is(#ContentSelectDropdown, menupopup.in-menulist, .contentSelectDropdown-ingroup)
             :where(menu, menuitem, menucaption),
         panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem {
-            font-family: SF Pro Text, Segoe UI, sans-serif !important;
+            font-family: SF Pro Text, SF Arabic, Segoe UI, sans-serif !important;
             font-kerning: normal !important;
         }
 
@@ -553,18 +649,32 @@ toolbar:not(#PersonalToolbar) .toolbarbutton-1:focus-visible > .toolbarbutton-ba
             font-weight: var(--uc-font-weight-bold, 400) !important;
         }
 
-        .dialog-button-box button {
-            font-family: SF Pro Text, Segoe UI, sans-serif !important;
+        .dialog-button-box button,
+        :root[dialogroot] button {
+            font-family: SF Pro Text, SF Arabic, Segoe UI, sans-serif !important;
+            font-weight: var(--uc-font-weight-bold, 600) !important;
+        }
+
+        #protections-popup-milestones-text {
+            font-weight: var(--uc-font-weight-bold, 600) !important;
+            font-family: SF Pro Display, SF Arabic, Segoe UI, sans-serif !important;
+            font-size: 1.1em !important;
         }
 
         @-moz-document url-prefix("chrome://browser/content/syncedtabs/sidebar.xhtml")
         {
             body {
-                font-family: SF Pro, Segoe UI, sans-serif !important;
+                font-family: SF Pro, SF Arabic, Segoe UI, sans-serif !important;
                 font-kerning: normal !important;
             }
         }
     }
+}
+
+/* replace certain favicons */
+/* google */
+.tab-icon-image[src="data:image/x-icon;base64,AAABAAIAEBAAAAEAIABoBAAAJgAAACAgAAABACAAqBAAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///zD9/f2W/f392P39/fn9/f35/f391/39/ZT+/v4uAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/v7+Cf39/Zn///////////////////////////////////////////39/ZX///8IAAAAAAAAAAAAAAAA/v7+Cf39/cH/////+v35/7TZp/92ul3/WKs6/1iqOv9yuFn/rNWd//j79v///////f39v////wgAAAAAAAAAAP39/Zn/////7PXp/3G3WP9TqDT/U6g0/1OoNP9TqDT/U6g0/1OoNP+Or1j//vDo///////9/f2VAAAAAP///zD/////+vz5/3G3V/9TqDT/WKo6/6LQkf/U6cz/1urO/6rUm/+Zo0r/8IZB//adZ////v7///////7+/i79/f2Y/////4nWzf9Lqkj/Vqo4/9Xqzv///////////////////////ebY//SHRv/0hUL//NjD///////9/f2U/f392v////8sxPH/Ebzt/43RsP/////////////////////////////////4roL/9IVC//i1jf///////f391/39/fr/////Cr37/wW8+/+16/7/////////////////9IVC//SFQv/0hUL/9IVC//SFQv/3pnX///////39/fn9/f36/////wu++/8FvPv/tuz+//////////////////SFQv/0hUL/9IVC//SFQv/0hUL/96p7///////9/f35/f392/////81yfz/CrL5/2uk9v///////////////////////////////////////////////////////f392P39/Zn/////ks/7/zdS7P84Rur/0NT6///////////////////////9/f////////////////////////39/Zb+/v4y//////n5/v9WYu3/NUPq/ztJ6/+VnPT/z9L6/9HU+v+WnfT/Ul7t/+Hj/P////////////////////8wAAAAAP39/Z3/////6Or9/1hj7v81Q+r/NUPq/zVD6v81Q+r/NUPq/zVD6v9sdvD////////////9/f2YAAAAAAAAAAD///8K/f39w//////5+f7/paz2/11p7v88Suv/Okfq/1pm7v+iqfX/+fn+///////9/f3B/v7+CQAAAAAAAAAAAAAAAP///wr9/f2d///////////////////////////////////////////9/f2Z/v7+CQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7+/jL9/f2Z/f392/39/fr9/f36/f392v39/Zj///8wAAAAAAAAAAAAAAAAAAAAAPAPAADAAwAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAACAAQAAwAMAAPAPAAAoAAAAIAAAAEAAAAABACAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7+/g3+/v5X/f39mf39/cj9/f3q/f39+f39/fn9/f3q/f39yP39/Zn+/v5W////DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7+/iT9/f2c/f399f/////////////////////////////////////////////////////9/f31/f39mv7+/iMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7+/gn9/f2K/f39+////////////////////////////////////////////////////////////////////////////f39+v39/Yf///8IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+/v4k/f390v////////////////////////////////////////////////////////////////////////////////////////////////39/dD///8iAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////MP39/er//////////////////////////+r05v+v16H/gsBs/2WxSf9Wqjj/Vqk3/2OwRv99vWX/pdKV/97u2P////////////////////////////39/ej+/v4vAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7+/iT9/f3q/////////////////////+v15/+Pxnv/VKk2/1OoNP9TqDT/U6g0/1OoNP9TqDT/U6g0/1OoNP9TqDT/U6g0/36+Z//d7tf///////////////////////39/ej///8iAAAAAAAAAAAAAAAAAAAAAAAAAAD///8K/f390//////////////////////E4bn/XKw+/1OoNP9TqDT/U6g0/1OoNP9TqDT/U6g0/1OoNP9TqDT/U6g0/1OoNP9TqDT/U6g0/1apN/+x0pv///////////////////////39/dD///8IAAAAAAAAAAAAAAAAAAAAAP39/Yv/////////////////////sdij/1OoNP9TqDT/U6g0/1OoNP9TqDT/U6g0/1OoNP9TqDT/U6g0/1OoNP9TqDT/U6g0/1OoNP9TqDT/YKU1/8qOPv/5wZ////////////////////////39/YcAAAAAAAAAAAAAAAD+/v4l/f39+////////////////8Lgt/9TqDT/U6g0/1OoNP9TqDT/U6g0/1OoNP9utlT/n86N/7faqv+426v/pdKV/3u8ZP9UqDX/U6g0/3egN//jiUH/9IVC//SFQv/82MP//////////////////f39+v7+/iMAAAAAAAAAAP39/Z3////////////////q9Ob/W6w+/1OoNP9TqDT/U6g0/1OoNP9nskz/zOXC/////////////////////////////////+Dv2v+osWP/8YVC//SFQv/0hUL/9IVC//WQVP/++fb//////////////////f39mgAAAAD+/v4O/f399v///////////////4LHj/9TqDT/U6g0/1OoNP9TqDT/dblc//L58P/////////////////////////////////////////////8+v/3p3f/9IVC//SFQv/0hUL/9IVC//rIqf/////////////////9/f31////DP7+/ln////////////////f9v7/Cbz2/zOwhv9TqDT/U6g0/2KwRv/v9+z///////////////////////////////////////////////////////738//1kFT/9IVC//SFQv/0hUL/9plg///////////////////////+/v5W/f39nP///////////////4jf/f8FvPv/Bbz7/yG1s/9QqDz/vN2w//////////////////////////////////////////////////////////////////rHqP/0hUL/9IVC//SFQv/0hUL//vDn//////////////////39/Zn9/f3L////////////////R878/wW8+/8FvPv/Bbz7/y7C5P/7/fr//////////////////////////////////////////////////////////////////ere//SFQv/0hUL/9IVC//SFQv/718H//////////////////f39yP39/ez///////////////8cwvv/Bbz7/wW8+/8FvPv/WNL8///////////////////////////////////////0hUL/9IVC//SFQv/0hUL/9IVC//SFQv/0hUL/9IVC//SFQv/0hUL/9IVC//rIqv/////////////////9/f3q/f39+v///////////////we9+/8FvPv/Bbz7/wW8+/993P3///////////////////////////////////////SFQv/0hUL/9IVC//SFQv/0hUL/9IVC//SFQv/0hUL/9IVC//SFQv/0hUL/+cGf//////////////////39/fn9/f36////////////////B737/wW8+/8FvPv/Bbz7/33c/f//////////////////////////////////////9IVC//SFQv/0hUL/9IVC//SFQv/0hUL/9IVC//SFQv/0hUL/9IVC//SFQv/6xaX//////////////////f39+f39/e3///////////////8cwvv/Bbz7/wW8+/8FvPv/WdP8///////////////////////////////////////0hUL/9IVC//SFQv/0hUL/9IVC//SFQv/0hUL/9IVC//SFQv/0hUL/9IVC//vVv//////////////////9/f3q/f39y////////////////0bN/P8FvPv/Bbz7/wW8+/8hrvn/+/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////39/cj9/f2c////////////////ht/9/wW8+/8FvPv/FZP1/zRJ6/+zuPf//////////////////////////////////////////////////////////////////////////////////////////////////////////////////f39mf7+/lr////////////////d9v7/B7n7/yB38f81Q+r/NUPq/0hV7P/u8P3////////////////////////////////////////////////////////////////////////////////////////////////////////////+/v5X////D/39/ff///////////////9tkPT/NUPq/zVD6v81Q+r/NUPq/2Fs7//y8v7////////////////////////////////////////////09f7//////////////////////////////////////////////////f399f7+/g0AAAAA/f39n////////////////+Tm/P89Suv/NUPq/zVD6v81Q+r/NUPq/1Bc7f/IzPn/////////////////////////////////x8v5/0xY7P+MlPP////////////////////////////////////////////9/f2cAAAAAAAAAAD+/v4n/f39/P///////////////7W69/81Q+r/NUPq/zVD6v81Q+r/NUPq/zVD6v9ZZe7/k5v0/6609/+vtff/lJv0/1pm7v81Q+r/NUPq/zVD6v+GjvL//v7//////////////////////////////f39+/7+/iQAAAAAAAAAAAAAAAD9/f2N/////////////////////6Cn9f81Q+r/NUPq/zVD6v81Q+r/NUPq/zVD6v81Q+r/NUPq/zVD6v81Q+r/NUPq/zVD6v81Q+r/NUPq/zVD6v+BivL////////////////////////////9/f2KAAAAAAAAAAAAAAAAAAAAAP7+/gv9/f3V/////////////////////7W69/8+S+v/NUPq/zVD6v81Q+r/NUPq/zVD6v81Q+r/NUPq/zVD6v81Q+r/NUPq/zVD6v81Q+r/P0zr/7q/+P///////////////////////f390v7+/gkAAAAAAAAAAAAAAAAAAAAAAAAAAP7+/ib9/f3r/////////////////////+Xn/P94gfH/NkTq/zVD6v81Q+r/NUPq/zVD6v81Q+r/NUPq/zVD6v81Q+r/NkTq/3Z/8f/l5/z///////////////////////39/er+/v4kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7+/jL9/f3r///////////////////////////k5vz/nqX1/2p08P9IVez/OEbq/zdF6v9GU+z/aHLv/5qh9f/i5Pz////////////////////////////9/f3q////MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7+/ib9/f3V/////////////////////////////////////////////////////////////////////////////////////////////////f390v7+/iQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wr9/f2N/f39/P///////////////////////////////////////////////////////////////////////////f39+/39/Yv+/v4JAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+/v4n/f39n/39/ff//////////////////////////////////////////////////////f399v39/Z3+/v4lAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/v7+Dv7+/lr9/f2c/f39y/39/e39/f36/f39+v39/ez9/f3L/f39nP7+/ln+/v4OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AA///AAD//AAAP/gAAB/wAAAP4AAAB8AAAAPAAAADgAAAAYAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAABgAAAAcAAAAPAAAAD4AAAB/AAAA/4AAAf/AAAP/8AAP//wAP/"] {
+    content: url(chrome://userchrome/content/engines/google-color.svg) !important;
 }
 
 /* allow scrollbuttons to flow onto the menupopup border */
@@ -618,4 +728,10 @@ menupopup[bmb-command-disabled="true"]
         var(--identity-tab-color, transparent) 3px,
         transparent 3px
     ) !important;
+}
+
+/* this is for miscMods.uc.js' setting "Anchor permissions popup to granted permission icon"
+adjust the popup and icon dimensions commensurately */
+#permission-popup[anchor-to-icon] {
+    margin-inline: calc(-20px + var(--uc-panel-left-offset, 0px)) !important;
 }

@@ -1,10 +1,16 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* this adjusts popup dialogs and modal popups */
 
 /* OS-styled javascript modal prompts */
 tabmodalprompt {
     background: none !important;
     --in-content-page-background: transparent !important;
-    --in-content-page-color: var(--in-parent-page-color) !important;
+    --in-content-page-color: var(--uc-parent-page-color) !important;
     --in-content-box-background: var(--dialog-box-bgcolor) !important;
     --in-content-box-background-dim: var(--dialog-box-bgcolor-dim) !important;
     --in-content-box-border-color: var(--dialog-box-border-color) !important;
@@ -12,19 +18,14 @@ tabmodalprompt {
     --in-content-button-background-hover: var(--arrowpanel-dimmed-further) !important;
     --in-content-button-background-active: var(--arrowpanel-dimmed-even-further) !important;
     --in-content-item-selected: var(--purple-40) !important;
-    --in-content-border-highlight: var(--purple-40) !important;
     --in-content-border-hover: var(--dialog-box-border-hover) !important;
-    --in-content-border-focus: var(--purple-40) !important;
-    --in-content-border-active: var(--purple-40) !important;
-    --in-content-border-active-shadow: var(--purple-40-a30) !important;
-    --in-content-category-outline-focus: 1px solid transparent !important;
     --in-content-link-color: var(--purple-35) !important;
     --in-content-link-color-hover: var(--purple-30) !important;
     --in-content-link-color-active: var(--purple-30) !important;
     --in-content-primary-button-background: var(--purple-40) !important;
     --in-content-primary-button-background-hover: var(--purple-35) !important;
     --in-content-primary-button-background-active: var(--purple-30) !important;
-    --in-content-primary-button-text-color: var(--in-content-page-color) !important;
+    --in-content-primary-button-text-color: var(--light-on-dark-button-text-color) !important;
     --checkbox-border-color: var(--in-content-box-border-color) !important;
     --checkbox-checked-border-color: transparent !important;
     --checkbox-unchecked-bgcolor: var(--in-content-button-background) !important;
@@ -39,7 +40,7 @@ tabmodalprompt {
     --dropdown-bgcolor: var(--arrowpanel-background) !important;
     --in-content-button-border-radius: var(--general-button-border-radius) !important;
     --in-content-button-vertical-padding: 5px !important;
-    --in-content-focus-outline-color: var(--in-content-primary-button-background);
+    --in-content-focus-outline-color: var(--in-content-primary-button-background-hover) !important;
     --tabmodalprompt-padding: var(--arrowpanel-padding) !important;
 }
 
@@ -61,11 +62,17 @@ tabmodalprompt {
 }
 
 .tabmodalprompt-mainContainer {
-    background-color: var(--dialog-bgcolor) !important;
+    /* temporarily disabled due to backdrop-filter being disabled. see https://bugzilla.mozilla.org/show_bug.cgi?id=1741779 */
+
+    /* background-color: var(--dialog-bgcolor) !important;
     background-image: var(--acrylic-texture) !important;
     backdrop-filter: var(--acrylic-blur) !important;
-    border-color: var(--blurred-dialog-border-color) !important;
-    color: var(--in-parent-page-color) !important;
+    border-color: var(--blurred-dialog-border-color) !important; */
+
+    background-color: var(--ui-quaternary-bg) !important;
+    border-color: var(--uc-menu-border-color) !important;
+
+    color: var(--uc-parent-page-color) !important;
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25), 0px 0px 5px -1px rgba(0, 0, 0, 0.125) !important;
 }
 
@@ -90,7 +97,7 @@ tabmodalprompt input {
     user-select: text !important;
     -moz-user-select: text !important;
     background: var(--in-content-box-background) !important;
-    color: var(--in-parent-page-color) !important;
+    color: var(--uc-parent-page-color) !important;
     border-radius: var(--general-button-border-radius) !important;
 }
 
@@ -169,7 +176,7 @@ tabmodalprompt #titleText {
     border-radius: 3px !important;
     background-color: var(--in-content-button-background) !important;
     margin: revert !important;
-    color: var(--in-parent-page-color) !important;
+    color: var(--uc-parent-page-color) !important;
     padding: 2px !important;
     flex-grow: 0.15 !important;
     flex-wrap: nowrap !important;
@@ -178,7 +185,7 @@ tabmodalprompt #titleText {
 
 .tabmodalprompt-buttonContainer button:is(:hover, :focus-visible) {
     background-color: var(--in-content-button-background-hover) !important;
-    color: var(--in-parent-page-color) !important;
+    color: var(--uc-parent-page-color) !important;
 }
 
 .tabmodalprompt-buttonContainer button:hover:active {
@@ -220,7 +227,7 @@ panel[type="autocomplete-richlistbox"] > richlistbox {
 panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem {
     appearance: none !important;
     color: var(--menu-color) !important;
-    padding: 0 8px !important;
+    padding: 4px 8px !important;
     border: none !important;
     min-height: var(--menuitem-height) !important;
     border-radius: var(--context-menuitem-border-radius) !important;
@@ -228,7 +235,7 @@ panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem {
 
 panel[type="autocomplete-richlistbox"]
     > richlistbox
-    > richlistitem:is([selected], :hover):not([disabled]) {
+    > richlistitem:is([selected], :hover):not([disabled="true"]) {
     background-color: var(--arrowpanel-dimmed) !important;
     color: var(--menu-color) !important;
 }
@@ -260,6 +267,15 @@ panel[type="autocomplete-richlistbox"]
     > .line2-label {
     opacity: 1 !important;
     color: var(--panel-shortcut-color) !important;
+}
+
+#PopupAutoComplete
+    > richlistbox
+    > richlistitem[originaltype="insecureWarning"]
+    > .ac-title
+    > description
+    > .ac-title-text {
+    padding-inline: 0 8px !important;
 }
 
 panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem[originaltype="loginsFooter"] {
@@ -322,9 +338,9 @@ panel[type="autocomplete-richlistbox"]
 @-moz-document url("chrome://global/content/alerts/alert.xhtml")
 {
     #alertBox {
-        box-shadow: 0 0 9px 3px rgba(0, 0, 0, 0.2) !important;
+        box-shadow: var(--tooltip-box-shadow) !important;
         color: var(--ui-text-100) !important;
-        fill: var(--ui-text-50) !important;
+        fill: currentColor !important;
         border: none !important;
         border-radius: calc(var(--toolbarbutton-border-radius) + 1px) !important;
         background-color: var(--alertbox-bgcolor) !important;
@@ -332,17 +348,26 @@ panel[type="autocomplete-richlistbox"]
     }
 
     #alertBox #alertTitleBox {
-        margin-bottom: 10px !important;
+        margin-bottom: 5px !important;
         font-weight: normal !important;
     }
 
-    #alertTitleBox * {
+    #alertTitleLabel {
         font-weight: normal !important;
-        font-size: 14px !important;
+        font-size: 1.1em !important;
     }
 
     #alertTitleLabel {
         margin-left: 5px !important;
+    }
+
+    #alertFooter {
+        -moz-box-align: center !important;
+    }
+
+    #alertSourceLabel {
+        color: var(--ui-text-50) !important;
+        font-size: 0.9em !important;
     }
 
     button,
@@ -352,20 +377,36 @@ panel[type="autocomplete-richlistbox"]
 
     #alertSettings {
         border-radius: var(--toolbarbutton-border-radius) !important;
-        width: 20px !important;
-        height: 20px !important;
-        margin-right: 3px !important;
+        margin-inline-end: 0 !important;
+        padding: 0 !important;
+        width: calc(2 * var(--toolbarbutton-inner-padding) + 16px) !important;
+        height: calc(2 * var(--toolbarbutton-inner-padding) + 16px) !important;
+        fill: currentColor !important;
     }
 
-    #alertTitleBox > vbox {
-        width: 20px !important;
-        height: 20px !important;
+    #alertSettings .button-box {
+        padding: var(--toolbarbutton-inner-padding) !important;
+        margin: 0 !important;
+        box-sizing: content-box !important;
+    }
+
+    #alertSettings .button-icon {
+        width: 16px !important;
+        height: 16px !important;
+        padding: 1px !important;
     }
 
     #alertTitleBox .close-icon {
         border-radius: var(--toolbarbutton-border-radius) !important;
-        margin: 2px 2px 0 0 !important;
-        padding: 3px !important;
+        margin: 2px 0 0 !important;
+        padding: 0 !important;
+        fill: currentColor !important;
+    }
+
+    #alertTitleBox .close-icon .toolbarbutton-icon {
+        padding: var(--toolbarbutton-inner-padding) !important;
+        width: calc(2 * var(--toolbarbutton-inner-padding) + 16px) !important;
+        height: calc(2 * var(--toolbarbutton-inner-padding) + 16px) !important;
     }
 
     #alertTitleLabel {
@@ -375,131 +416,72 @@ panel[type="autocomplete-richlistbox"]
 
     #alertImage {
         border-radius: var(--toolbarbutton-border-radius);
+        margin: 0 12px 7px 7px !important;
     }
 
     #alertSettings:is(:hover, [open], :hover:active),
     #alertBox .close-icon:is(:hover, :hover:active) {
-        fill: var(--ui-text-80) !important;
-        background: var(--content-principal-button-background) !important;
-    }
-
-    #alertSettings .button-icon {
-        width: 12px !important;
-    }
-
-    #alertSettings menupopup {
-        appearance: none !important;
-        background: var(--in-content-bg-dark) !important;
-        border: none !important;
-        border-radius: 3px !important;
-        margin: 0px 0 0 0 !important;
-        overflow: hidden !important;
-    }
-
-    #alertSettings menupopup menuseparator {
-        visibility: hidden !important;
-        display: none !important;
-    }
-
-    #alertSettings menupopup :is(menuitem, menu) {
-        appearance: none !important;
-        color: var(--ui-text-80) !important;
-        padding: 0 0 0 0 !important;
-        min-height: 25px !important;
-    }
-
-    #alertSettings menupopup :is(menuitem, menu)[disabled="true"] {
-        appearance: none !important;
-        color: var(--ui-text-50) !important;
-        background-color: initial !important;
-    }
-
-    #alertSettings menupopup menuseparator:not([hidden="true"]) + :is(menu, menuitem) {
-        border-image: linear-gradient(
-            to right,
-            transparent 1%,
-            hsl(233, 0%, 23%) 50%,
-            transparent 99%
-        ) !important;
-        border-image-slice: 1 !important;
-        border-top-width: 1px !important;
-        border-top-style: solid !important;
-    }
-
-    #alertSettings menupopup :is(menuitem, menu) image {
-        margin-left: 3px;
-        margin-right: -3px;
-    }
-
-    #alertSettings menupopup {
-        padding: 0 !important;
-    }
-
-    #alertSettings menupopup .menu-right {
-        appearance: none !important;
-        padding: 0px !important;
-        margin-right: 2px !important;
-        width: 12px !important;
-        height: 12px !important;
-        fill: currentColor !important;
-        -moz-context-properties: fill, fill-opacity, stroke, stroke-opacity !important;
-        background-size: 10px 10px !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
-        background-image: url(chrome://userchrome/content/menu-arrow-thick.svg) !important;
-    }
-
-    #alertSettings menupopup :is(menu, menuitem)[_moz-menuactive="true"]:not([disabled="true"]) {
-        appearance: none !important;
-        background-color: var(--content-principal-button-background) !important;
+        background: var(--uc-content-button-background) !important;
     }
 }
 
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml")
 {
     .control-item {
-        backdrop-filter: blur(8px) !important;
+        /* backdrop-filter has been temporarily disabled by mozilla */
+        /* backdrop-filter: blur(8px) !important;
         background-color: var(--btn-bg-color) !important;
-        background-image: var(--acrylic-texture), var(--pip-icon) !important;
+        background-image: var(--acrylic-texture), var(--pip-icon) !important; */
+        background-image: var(--pip-icon) !important;
+        background-color: var(--in-content-button-highlight-dark) !important;
         fill: currentColor !important;
-        -moz-context-properties: fill !important;
+        stroke: currentColor !important;
+        -moz-context-properties: fill, stroke !important;
         color: var(--player-control-icon-fill) !important;
+        border-radius: 3px !important;
     }
 
     body:not(:fullscreen) #controls:hover .control-item {
         opacity: 1 !important;
     }
 
+    #controls[keying] button:focus-visible {
+        outline-style: auto !important;
+        box-shadow: 1px 2px 5px #000;
+    }
+
     #close {
-        background-size: 80% !important;
-        --pip-icon: url(chrome://global/skin/icons/close.svg);
+        background-size: 22px !important;
+        --pip-icon: url(chrome://userchrome/content/close.svg);
     }
 
     #controls.playing #playpause {
-        --pip-icon: url(chrome://global/skin/media/pause-fill.svg);
+        background-size: 19px !important;
+        --pip-icon: url(chrome://userchrome/content/material/pause.svg);
     }
 
     #controls:not(.playing) #playpause {
-        --pip-icon: url(chrome://global/skin/media/play-fill.svg);
+        background-size: 15px !important;
+        --pip-icon: url(chrome://userchrome/content/glyph-play-12.svg);
     }
 
     #controls.muted #audio {
-        --pip-icon: url(chrome://global/skin/media/audio-muted.svg);
+        --pip-icon: url(chrome://userchrome/content/audioMutedButton.svg);
     }
 
     #controls:not(.muted) #audio {
-        --pip-icon: url(chrome://global/skin/media/audio.svg);
+        --pip-icon: url(chrome://userchrome/content/audioUnmutedButton.svg);
     }
 
     #unpip {
-        --pip-icon: url(chrome://global/skin/media/picture-in-picture-closed.svg);
+        --pip-icon: url(chrome://userchrome/content/pictureinpicture-closed.svg);
     }
 }
 
 #DateTimePickerPanel {
     --arrowpanel-background: var(--in-content-box-background) !important;
     --arrowpanel-color: var(--lwt-text-color) !important;
-    --arrowpanel-border-color: var(--menu-border-color) !important;
+    --arrowpanel-border-color: var(--uc-menu-border-color) !important;
 }
 
 @-moz-document url-prefix("chrome://global/content/timepicker.xhtml"),
@@ -512,7 +494,7 @@ panel[type="autocomplete-richlistbox"]
 
     :root {
         --in-content-page-background: var(--toolbar-bgcolor) !important;
-        --font-color: var(--content-principal-page-color) !important;
+        --font-color: var(--uc-content-page-color) !important;
         --fill-color: var(--arrowpanel-dimmed) !important;
         --border: none !important;
         --border-active-color: var(--in-content-link-color-hover) !important;
@@ -597,10 +579,17 @@ panel[type="autocomplete-richlistbox"]
     color: #fafafa;
     padding: 24px 16px;
     font: message-box;
-    background-color: var(--dialog-bgcolor) !important;
+
+    /* temporarily disabled due to backdrop-filter being disabled. see https://bugzilla.mozilla.org/show_bug.cgi?id=1741779 */
+
+    /* background-color: var(--dialog-bgcolor) !important;
     background-image: var(--acrylic-texture) !important;
     backdrop-filter: var(--acrylic-blur) !important;
-    border: 1px solid var(--blurred-dialog-border-color) !important;
+    border: 1px solid var(--blurred-dialog-border-color) !important; */
+
+    background-color: var(--ui-tertiary-bg) !important;
+    border: 1px solid var(--uc-menu-border-color) !important;
+
     color: var(--arrowpanel-color) !important;
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25), 0px 0px 5px -1px rgba(0, 0, 0, 0.125) !important;
     transition-property: transform, opacity !important;
@@ -616,13 +605,13 @@ panel[type="autocomplete-richlistbox"]
 }
 
 .pointerlockfswarning button {
-    --content-principal-box-border-color: hsla(270, 7%, 98%, 0.1);
-    --content-principal-button-background: hsla(0, 20%, 90%, 0.08);
-    --content-principal-button-background-hover: hsla(0, 20%, 90%, 0.15);
-    --content-principal-button-background-active: hsla(0, 20%, 90%, 0.19);
+    --uc-content-box-border-color: hsla(270, 7%, 98%, 0.1);
+    --uc-content-button-background: hsla(0, 20%, 90%, 0.08);
+    --uc-content-button-background-hover: hsla(0, 20%, 90%, 0.15);
+    --uc-content-button-background-active: hsla(0, 20%, 90%, 0.19);
     appearance: none !important;
-    background-color: var(--content-principal-button-background) !important;
-    border: 1px solid var(--content-principal-box-border-color) !important;
+    background-color: var(--uc-content-button-background) !important;
+    border: 1px solid var(--uc-content-box-border-color) !important;
     border-radius: var(--general-button-border-radius);
     padding: 4px 8px !important;
     min-height: var(--menuitem-height) !important;
@@ -640,11 +629,12 @@ panel[type="autocomplete-richlistbox"]
 :is(.tab-prompt-dialog, #window-modal-dialog) .dialogBox {
     margin-top: 0px !important; /* tab-prompt-dialogs are anchored to the top of the browser content area.
     this makes them look like they emerge from under the navbar. */
+    border: 1px solid var(--arrowpanel-border-color);
 }
 
 :is(.tab-prompt-dialog, #window-modal-dialog) :is(.dialogBox, .dialogFrame) {
     border-radius: 0 0 5px 5px !important;
-    border-top-style: none !important;
+    border-top-width: 0 !important;
 }
 
 .content-prompt-dialog :is(.dialogBox, .dialogFrame) {
@@ -676,10 +666,15 @@ panel[type="autocomplete-richlistbox"]
 
 /* blur backdrop filter */
 .content-prompt-dialog > .dialogOverlay[style] .dialogFrame {
-    background-color: var(--dialog-bgcolor) !important;
+    /* temporarily disabled due to backdrop-filter being disabled. see https://bugzilla.mozilla.org/show_bug.cgi?id=1741779 */
+
+    /* background-color: var(--dialog-bgcolor) !important;
     background-image: var(--acrylic-texture) !important;
     backdrop-filter: var(--acrylic-blur) !important;
-    border: 1px solid var(--blurred-dialog-border-color);
+    border: 1px solid var(--blurred-dialog-border-color); */
+
+    background-color: var(--ui-quaternary-bg) !important;
+    border: 1px solid var(--arrowpanel-border-color);
 }
 
 /* hide the background overlay */
@@ -702,8 +697,7 @@ panel[type="autocomplete-richlistbox"]
 }
 
 :is(#window-modal-dialog, .tab-prompt-dialog) > .dialogOverlay[style] .dialogFrame {
-    background-color: var(--ui-tertiary-bg) !important;
-    border: 1px solid var(--arrowpanel-border-color);
+    background-color: var(--ui-quaternary-bg) !important;
 }
 
 /* center text in any dialog box */
@@ -731,7 +725,7 @@ panel[type="autocomplete-richlistbox"]
     #commonDialogWindow[dialogroot] *,
     .dialog-button-box {
         --in-content-page-background: transparent !important;
-        --in-content-page-color: var(--in-parent-page-color) !important;
+        --in-content-page-color: var(--uc-parent-page-color) !important;
         --in-content-box-background: var(--dialog-box-bgcolor) !important;
         --in-content-box-background-dim: var(--dialog-box-bgcolor-dim) !important;
         --in-content-box-border-color: var(--dialog-box-border-color) !important;
@@ -739,20 +733,16 @@ panel[type="autocomplete-richlistbox"]
         --in-content-button-background-hover: var(--arrowpanel-dimmed-further) !important;
         --in-content-button-background-active: var(--arrowpanel-dimmed-even-further) !important;
         --in-content-item-selected: var(--purple-40) !important;
-        --in-content-border-highlight: var(--purple-40) !important;
         --in-content-border-hover: var(--dialog-box-border-hover) !important;
-        --in-content-border-focus: var(--purple-40) !important;
-        --in-content-border-active: var(--purple-40) !important;
-        --in-content-border-active-shadow: var(--purple-40-a30) !important;
-        --in-content-category-outline-focus: 1px solid transparent !important;
         --in-content-link-color: var(--purple-35) !important;
         --in-content-link-color-hover: var(--purple-30) !important;
         --in-content-link-color-active: var(--purple-30) !important;
         --in-content-primary-button-background: var(--purple-40) !important;
         --in-content-primary-button-background-hover: var(--purple-35) !important;
         --in-content-primary-button-background-active: var(--purple-30) !important;
-        --in-content-primary-button-text-color: var(--in-content-page-color) !important;
+        --in-content-primary-button-text-color: var(--light-on-dark-button-text-color) !important;
         --in-content-primary-button-text-color-hover: white !important;
+        --in-content-focus-outline-color: var(--in-content-primary-button-background-hover) !important;
         --checkbox-border-color: var(--in-content-box-border-color) !important;
         --checkbox-checked-border-color: transparent !important;
         --checkbox-unchecked-bgcolor: var(--in-content-button-background) !important;
@@ -798,7 +788,7 @@ panel[type="autocomplete-richlistbox"]
         min-height: var(--menuitem-height) !important;
         color: var(--in-content-button-text-color) !important;
         border: 1px solid var(--in-content-button-border-color) !important;
-        border-radius: 4px !important;
+        border-radius: var(--in-content-button-border-radius) !important;
         background-color: var(--in-content-button-background) !important;
         font-weight: 400 !important;
         padding: 5px 7px !important;
@@ -807,10 +797,14 @@ panel[type="autocomplete-richlistbox"]
         font-size: 1em !important;
     }
 
-    .dialog-button-box > button:not([disabled="true"]):hover {
+    .dialog-button-box > button:not([disabled="true"]):is(:hover, :focus-visible) {
         background-color: var(--in-content-button-background-hover) !important;
         color: var(--in-content-button-text-color-hover) !important;
         border-color: var(--in-content-button-border-color-hover) !important;
+    }
+
+    .dialog-button-box > button:not([disabled="true"]):focus-visible {
+        outline-style: auto !important;
     }
 
     .dialog-button-box > button:not([disabled="true"]):hover:active,
@@ -825,28 +819,21 @@ panel[type="autocomplete-richlistbox"]
         opacity: 0.4 !important;
     }
 
-    .dialog-button-box > button[autofocus],
-    .dialog-button-box > button[type="submit"],
-    .dialog-button-box > button[default],
-    .dialog-button-box > button.primary {
+    .dialog-button-box > button:is([autofocus], [type="submit"], [default], .primary) {
         background-color: var(--in-content-primary-button-background) !important;
         color: var(--in-content-primary-button-text-color) !important;
         border-color: var(--in-content-primary-button-border-color) !important;
     }
 
-    .dialog-button-box > button[autofocus]:not([disabled="true"]):hover,
-    .dialog-button-box > button[type="submit"]:not([disabled="true"]):hover,
-    .dialog-button-box > button[default]:not([disabled="true"]):hover,
-    .dialog-button-box > button.primary:not([disabled="true"]):hover {
+    .dialog-button-box
+        > button:is([autofocus], [type="submit"], [default], .primary):not([disabled="true"]):is(:hover, :focus-visible) {
         background-color: var(--in-content-primary-button-background-hover) !important;
         color: var(--in-content-primary-button-text-color-hover) !important;
         border-color: var(--in-content-primary-button-border-hover) !important;
     }
 
-    .dialog-button-box > button[autofocus]:not([disabled="true"]):hover:active,
-    .dialog-button-box > button[type="submit"]:not([disabled="true"]):hover:active,
-    .dialog-button-box > button[default]:not([disabled="true"]):hover:active,
-    .dialog-button-box > button.primary:not([disabled="true"]):hover:active {
+    .dialog-button-box
+        > button:is([autofocus], [type="submit"], [default], .primary):not([disabled="true"]):hover:active {
         background-color: var(--in-content-primary-button-background-active) !important;
     }
 
@@ -862,6 +849,7 @@ panel[type="autocomplete-richlistbox"]
 
     richlistbox[id] {
         background-color: var(--in-content-box-background-dim) !important;
+        border-color: var(--in-content-box-border-color) !important;
     }
 
     richlistbox[id] richlistitem {
@@ -884,7 +872,7 @@ panel[type="autocomplete-richlistbox"]
 
     richlistbox[id]
         richlistitem:not([disabled="true"])
-        > button[label]:is(:enabled, :not([disabled="true"])):hover {
+        > button[label]:is(:enabled, :not([disabled="true"])):is(:hover, :focus-visible) {
         background-color: var(--in-content-primary-button-background-hover) !important;
     }
 
@@ -993,9 +981,19 @@ panel[type="autocomplete-richlistbox"]
         padding-inline-start: 32px !important;
     }
 
+    #chooser richlistitem {
+        padding-block: 3px !important;
+    }
+
+    #chooser richlistitem image[width] {
+        max-width: 16px !important;
+        max-height: 16px !important;
+        margin-inline: 8px !important;
+    }
+
     @supports -moz-bool-pref("userChrome.css.mac-ui-fonts") {
         #commonDialogWindow[dialogroot] {
-            font-family: SF Pro Text, Segoe UI, sans-serif !important;
+            font-family: SF Pro Text, SF Arabic, Segoe UI, sans-serif !important;
             font-kerning: normal !important;
             padding-block: 2px !important;
         }
@@ -1007,7 +1005,11 @@ panel[type="autocomplete-richlistbox"]
         #titleText {
             font-weight: var(--uc-font-weight-semibold, 400) !important;
             font-size: 14px !important;
-            font-family: SF Pro Display, Segoe UI, sans-serif !important;
+            font-family: SF Pro Display, SF Arabic, Segoe UI, sans-serif !important;
+        }
+
+        #chooser .name {
+            font-weight: var(--uc-font-weight-bold, 500) !important;
         }
     }
 }
@@ -1017,27 +1019,20 @@ panel[type="autocomplete-richlistbox"]
 {
     :root,
     :root dialog {
-        --in-content-page-background: var(--content-principal-page-background) !important;
-        --in-content-page-color: var(--content-principal-page-color) !important;
-        --in-content-box-background: var(--content-principal-box-background) !important;
-        --in-content-box-background-odd: var(--content-principal-box-background-odd) !important;
-        --in-content-box-background-dim: var(--content-principal-box-background-dim) !important;
-        --in-content-box-border-color: var(--content-principal-box-border-color) !important;
-        --in-content-button-background: var(--content-principal-button-background) !important;
-        --in-content-button-background-hover: var(
-            --content-principal-button-background-hover
-        ) !important;
+        --in-content-page-background: var(--uc-content-page-background) !important;
+        --in-content-page-color: var(--uc-content-page-color) !important;
+        --in-content-box-background: var(--uc-content-box-background) !important;
+        --in-content-box-background-odd: var(--uc-content-box-background-odd) !important;
+        --in-content-box-background-dim: var(--uc-content-box-background-dim) !important;
+        --in-content-box-border-color: var(--uc-content-box-border-color) !important;
+        --in-content-button-background: var(--uc-content-button-background) !important;
+        --in-content-button-background-hover: var(--uc-content-button-background-hover) !important;
         --in-content-button-background-active: var(
-            --content-principal-button-background-active
+            --uc-content-button-background-active
         ) !important;
-        --in-content-button-background-solid: var(--content-principal-button-background-solid);
+        --in-content-button-background-solid: var(--uc-content-button-background-solid);
         --in-content-item-selected: var(--purple-40) !important;
-        --in-content-border-highlight: var(--purple-40) !important;
-        --in-content-border-hover: var(--content-principal-border-hover) !important;
-        --in-content-border-focus: var(--purple-40) !important;
-        --in-content-border-active: var(--purple-40) !important;
-        --in-content-border-active-shadow: var(--purple-40-a30) !important;
-        --in-content-category-outline-focus: 1px solid transparent !important;
+        --in-content-border-hover: var(--uc-content-border-hover) !important;
         --in-content-link-color: var(--purple-30) !important;
         --in-content-link-color-hover: var(--purple-25) !important;
         --in-content-link-color-active: var(--purple-20) !important;
@@ -1047,11 +1042,12 @@ panel[type="autocomplete-richlistbox"]
         --in-content-primary-button-background: var(--purple-40) !important;
         --in-content-primary-button-background-hover: var(--purple-35) !important;
         --in-content-primary-button-background-active: var(--purple-30) !important;
-        --in-content-primary-button-text-color: var(--in-content-page-color) !important;
+        --in-content-primary-button-text-color: var(--light-on-dark-button-text-color) !important;
+        --in-content-focus-outline-color: var(--in-content-primary-button-background-hover) !important;
         --in-content-button-border-radius: var(--general-button-border-radius) !important;
         --in-content-accent-color: var(--purple-35) !important;
         --in-content-table-background: var(--in-content-box-background) !important;
-        --in-content-table-header-background: var(--purple-40-a30) !important;
+        --in-content-table-header-background: var(--purple-40-a50) !important;
     }
 
     #unknownContentType {
@@ -1100,7 +1096,7 @@ panel[type="autocomplete-richlistbox"]
         .header,
         #location {
             font-weight: var(--uc-font-weight-extrabold, 500) !important;
-            font-family: SF Pro, Segoe UI, sans-serif !important;
+            font-family: SF Pro, SF Arabic, Segoe UI, sans-serif !important;
         }
     }
 }
@@ -1110,12 +1106,13 @@ panel[type="autocomplete-richlistbox"]
     url-prefix("chrome://global/content/print.html"),
     url("chrome://browser/content/places/bookmarkProperties.xhtml"),
     url("chrome://browser/content/places/bookmarkProperties2.xhtml"),
-    url-prefix("chrome://browser/content/sanitize.xhtml")
+    url-prefix("chrome://browser/content/sanitize.xhtml"),
+    url("chrome://browser/content/spotlight.html")
 {
     :root[dialogroot],
     :root[dialogroot] dialog {
         --in-content-page-background: transparent !important;
-        --in-content-page-color: var(--in-parent-page-color) !important;
+        --in-content-page-color: var(--uc-parent-page-color) !important;
         --in-content-box-background: var(--dialog-box-bgcolor) !important;
         --in-content-box-background-dim: var(--dialog-box-bgcolor-dim) !important;
         --in-content-box-border-color: var(--dialog-box-border-color) !important;
@@ -1124,19 +1121,15 @@ panel[type="autocomplete-richlistbox"]
         --in-content-button-background-active: var(--arrowpanel-dimmed-even-further) !important;
         --in-content-item-selected: var(--purple-40) !important;
         --in-content-item-hover: var(--arrowpanel-dimmed) !important;
-        --in-content-border-highlight: var(--purple-40) !important;
         --in-content-border-hover: var(--dialog-box-border-hover) !important;
-        --in-content-border-focus: var(--purple-40) !important;
-        --in-content-border-active: var(--purple-40) !important;
-        --in-content-border-active-shadow: var(--purple-40-a30) !important;
-        --in-content-category-outline-focus: 1px solid transparent !important;
         --in-content-link-color: var(--purple-35) !important;
         --in-content-link-color-hover: var(--purple-30) !important;
         --in-content-link-color-active: var(--purple-30) !important;
         --in-content-primary-button-background: var(--purple-40) !important;
         --in-content-primary-button-background-hover: var(--purple-35) !important;
         --in-content-primary-button-background-active: var(--purple-30) !important;
-        --in-content-primary-button-text-color: var(--in-content-page-color) !important;
+        --in-content-primary-button-text-color: var(--light-on-dark-button-text-color) !important;
+        --in-content-focus-outline-color: var(--in-content-primary-button-background-hover) !important;
         --checkbox-border-color: var(--in-content-box-border-color) !important;
         --checkbox-checked-border-color: transparent !important;
         --checkbox-unchecked-bgcolor: var(--in-content-button-background) !important;
@@ -1202,10 +1195,21 @@ panel[type="autocomplete-richlistbox"]
     }
 
     :root[dialogroot]
-        input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):focus,
-    :root[dialogroot] textarea:focus,
+        input:is([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):where(:focus, :focus-visible),
+    :root[dialogroot] textarea:where(:focus, :focus-visible),
     :root[dialogroot] search-textbox[focused] {
-        border-color: var(--in-content-focus-outline-color) !important;
+        border-color: transparent !important;
+        outline-offset: 0 !important;
+    }
+
+    :where(:root[dialogroot], .dialog-button-box) button:focus-visible,
+    :where(:root[dialogroot], .dialog-button-box) select:focus-visible,
+    :where(:root[dialogroot], .dialog-button-box) input:is([type="checkbox"], [type="color"], [type="radio"]):focus-visible,
+    :where(:root[dialogroot], .dialog-button-box) menulist:focus-visible,
+    :where(:root[dialogroot], .dialog-button-box) checkbox:not([native]):focus-visible > .checkbox-check,
+    :where(:root[dialogroot], .dialog-button-box) radio[focused="true"] > .radio-check,
+    :where(:root[dialogroot], .dialog-button-box) tab:focus-visible > .tab-middle > .tab-text {
+        outline-offset: 0 !important;
     }
 
     :root[dialogroot]
@@ -1224,13 +1228,23 @@ panel[type="autocomplete-richlistbox"]
         ) !important;
     }
 
+    :root[dialogroot] details > summary {
+        border-radius: 0.01px;
+    }
+
+    :root[dialogroot] details > summary:focus-visible {
+        box-shadow: none;
+        outline: 2px solid var(--in-content-focus-outline-color);
+        outline-offset: 5px;
+    }
+
     :root[dialogroot] menulist,
     :root[dialogroot] input[type="text"] {
         margin-inline: 4px !important;
         padding-block: 0 !important;
         padding-inline: 6px !important;
         margin-block: 0 !important;
-        min-height: 25px !important;
+        min-height: var(--menuitem-height) !important;
         box-sizing: border-box !important;
         border-radius: var(--toolbarbutton-border-radius) !important;
     }
@@ -1269,26 +1283,26 @@ panel[type="autocomplete-richlistbox"]
 
     :root[dialogroot] .expander-up,
     :root[dialogroot] .expander-down {
-        min-height: 25px !important;
-        min-width: 25px !important;
+        min-height: var(--menuitem-height) !important;
+        min-width: var(--menuitem-height) !important;
         margin-inline: 4px !important;
     }
 
-    button[dlgtype]:not([default]):is(:hover, :focus-visible):not(:active),
+    button[dlgtype]:is(:hover, :focus-visible):not(:hover:active, [disabled="true"], [default]),
     :root[dialogroot]
-        :is(.expander-up, .expander-down, .panel-button):is(:hover, :focus-visible):not(:active) {
+        :is(.expander-up, .expander-down, .panel-button):is(:hover, :focus-visible):not(:hover:active, [disabled="true"]) {
         background-color: var(--in-content-button-background-hover) !important;
         color: var(--in-content-button-text-color-hover) !important;
         border-color: transparent;
     }
 
-    :root[dialogroot] menulist:not([disabled="true"]):focus-visible:not(:active) {
+    :root[dialogroot] menulist:not([disabled="true"]):focus-visible:not(:hover:active) {
         background-color: var(--in-content-button-background-hover) !important;
         color: var(--in-content-button-text-color-hover) !important;
     }
 
-    button:is([autofocus], [type="submit"], .primary):enabled:is(:hover, :focus-visible):not(:active),
-    button:is([default], .primary):not([disabled="true"]):is(:hover, :focus-visible):not(:active) {
+    button:is([autofocus], [type="submit"], .primary):enabled:is(:hover, :focus-visible):not(:hover:active, [disabled="true"]),
+    button:is([default], .primary):is(:hover, :focus-visible):not(:hover:active, [disabled="true"]) {
         background-color: var(--in-content-primary-button-background-hover) !important;
         color: var(--in-content-primary-button-text-color-hover) !important;
     }
@@ -1315,7 +1329,7 @@ panel[type="autocomplete-richlistbox"]
     }
 
     :root[dialogroot] input[type="number"]:hover:active::-moz-number-spin-box {
-        border-color: var(--in-content-border-active) !important;
+        border-color: var(--purple-40) !important;
     }
 
     :root[dialogroot] input[type="number"]:focus,
@@ -1386,11 +1400,8 @@ panel[type="autocomplete-richlistbox"]
 
     #SanitizeDialog[dialogroot] #sanitizeEverythingWarningBox {
         border-color: transparent !important;
-        background-color: color-mix(
-            in srgb,
-            var(--dialog-bgcolor) 50%,
-            hsla(0, 0%, 0%, 0.2)
-        ) !important;
+        background-color: transparent !important;
+        font-size: 1.1em !important;
     }
 
     #SanitizeDialog[dialogroot] #sanitizeEverythingWarningIcon {
@@ -1400,6 +1411,24 @@ panel[type="autocomplete-richlistbox"]
         -moz-context-properties: fill;
         fill: currentColor;
         color: hsl(44, 95%, 60%);
+    }
+
+    .tree-input[type="text"] {
+        background-color: var(--purple-40) !important;
+        border: none !important;
+        padding: 1px 0px !important;
+        margin-top: -1px !important;
+        margin-inline: -4px 3px !important;
+        width: auto !important;
+        max-width: -moz-available !important;
+        text-decoration: 1px dotted underline !important;
+        text-decoration-skip-ink: none !important;
+    }
+
+    .tree-input[type="text"]::selection {
+        background-color: var(--ui-selection-bgcolor) !important;
+        color: var(--ui-selection-color) !important;
+        text-decoration-color: var(--ui-selection-color) !important;
     }
 
     @-moz-document url("chrome://mozapps/content/handling/permissionDialog.xhtml")
@@ -1422,13 +1451,13 @@ panel[type="autocomplete-richlistbox"]
     @supports -moz-bool-pref("userChrome.css.mac-ui-fonts") {
         :root[dialogroot],
         :root[dialogroot] dialog {
-            font-family: SF Pro Text, Segoe UI, sans-serif !important;
+            font-family: SF Pro Text, SF Arabic, Segoe UI, sans-serif !important;
             font-kerning: normal !important;
         }
 
         :root[dialogroot] :is(h2, h3, #titleText) {
             font-weight: var(--uc-font-weight-semibold, 400) !important;
-            font-family: SF Pro Display, Segoe UI, sans-serif !important;
+            font-family: SF Pro Display, SF Arabic, Segoe UI, sans-serif !important;
         }
     }
 }
@@ -1436,7 +1465,7 @@ panel[type="autocomplete-richlistbox"]
 @-moz-document url-prefix("chrome://global/content/print.html")
 {
     :root {
-        --in-content-page-background: var(--content-principal-page-background) !important;
+        --in-content-page-background: var(--uc-content-page-background) !important;
         --dropdown-bgcolor: var(--in-content-page-background) !important;
     }
 }
@@ -1449,7 +1478,6 @@ link[href="chrome://global/content/printPagination.css"]
 
 link[href="chrome://global/content/printPagination.css"]
     ~ .container {
-    box-shadow: 0 0 15px 0 hsla(0, 0%, 10%, 0.2) !important;
     border-radius: 3px !important;
 }
 
@@ -1457,6 +1485,21 @@ link[href="chrome://global/content/printPagination.css"]
 {
     :root {
         display: none !important;
+    }
+}
+
+@-moz-document url("chrome://browser/content/webrtcLegacyIndicator.xhtml")
+{
+    button {
+        min-width: 28px !important;
+    }
+
+    #firefoxButton {
+        background-size: 20px !important;
+    }
+
+    window[sharingaudio][sharingvideo] > #audioVideoButton {
+        min-width: 46px !important;
     }
 }
 
@@ -1536,13 +1579,18 @@ link[href="chrome://global/content/printPagination.css"]
         background-image: url(chrome://branding/content/about-logo.svg) !important;
     }
 
+    #aboutDialog {
+        width: auto !important;
+        max-width: 1000px !important;
+    }
+
     #aboutDialogContainer {
         border: 0 !important;
         background-color: var(--arrowpanel-background) !important;
         background-image: radial-gradient(
-            circle at 19% 40%,
+            circle at calc((210px / 2) + 30px) calc(20% + 20px + 52px),
             hsla(255, 80%, 90%, 0.3),
-            transparent 50%
+            transparent 35%
         );
         background-blend-mode: overlay !important;
         color: var(--ui-text-100) !important;
@@ -1566,6 +1614,11 @@ link[href="chrome://global/content/printPagination.css"]
 
     button:is(:hover, :focus-visible) {
         background: var(--button-hover-bgcolor);
+    }
+
+    button:focus-visible {
+        outline: var(--global-focus-outline) !important;
+        box-shadow: var(--global-focus-shadow) !important;
     }
 
     button:hover:active {
@@ -1605,7 +1658,7 @@ link[href="chrome://global/content/printPagination.css"]
 
     #update-available-whats-new,
     .text-link {
-        color: var(--in-parent-link-color) !important;
+        color: var(--uc-parent-link-color) !important;
         text-decoration: none !important;
     }
 
@@ -1615,19 +1668,31 @@ link[href="chrome://global/content/printPagination.css"]
 
     #update-available-whats-new:is(:hover, :focus-visible),
     .text-link:is(:hover, :focus-visible) {
-        color: var(--in-parent-link-color-hover) !important;
+        color: var(--uc-parent-link-color-hover) !important;
         text-decoration: underline !important;
     }
 
     #update-available-whats-new:hover:active,
     .text-link:hover:active {
-        color: var(--in-parent-link-color-active) !important;
+        color: var(--uc-parent-link-color-active) !important;
     }
 }
 
 /* page info popup. kinda lame */
 @-moz-document url(chrome://browser/content/pageinfo/pageInfo.xhtml)
 {
+    :root {
+        --focus-outline-color: var(--global-focus-outline-color) !important;
+    }
+
+    input:not([type="file"], [type="image"]):focus-visible,
+    select:focus-visible,
+    button:focus-visible,
+    textarea:focus-visible,
+    button:focus-visible {
+        outline: 2px solid var(--focus-outline-color) !important;
+    }
+
     #main-window {
         background-color: var(--arrowpanel-background) !important;
         color: var(--arrowpanel-color) !important;
@@ -1684,7 +1749,7 @@ link[href="chrome://global/content/printPagination.css"]
     }
 
     #permTab {
-        list-style-image: url(chrome://userchrome/content/skin/permissions.svg) !important;
+        list-style-image: url(chrome://userchrome/content/formfill.svg) !important;
     }
 
     #securityTab {
@@ -1757,7 +1822,8 @@ link[href="chrome://global/content/printPagination.css"]
         color: var(--arrowpanel-color) !important;
     }
 
-    treechildren::-moz-tree-row(selected) {
+    treechildren::-moz-tree-row(selected),
+    treechildren::-moz-tree-row(focus) {
         outline: none !important;
         border: none !important;
     }
@@ -1848,15 +1914,14 @@ link[href="chrome://global/content/printPagination.css"]
     }
 
     radio[disabled="true"] {
-        color: var(--context-menu-disabled-color) !important;
+        color: var(--uc-menu-disabled-color) !important;
     }
 
     #imagecontainerbox {
         background: var(--transparent-img-background-context) !important;
         background-color: var(--arrowpanel-faint) !important;
-        color: var(--arrowpanel-darker);
-        fill: currentColor;
-        fill-opacity: 0.6;
+        fill: var(--arrowpanel-dimmed);
+        fill-opacity: 0.5;
         border: 1px solid var(--button-solid-active-background) !important;
         border-radius: var(--general-button-border-radius);
         -moz-context-properties: fill, fill-opacity;
@@ -1898,8 +1963,7 @@ link[href="chrome://global/content/printPagination.css"]
 
     #perm-install-row .permissionLabel {
         background-image: url(chrome://userchrome/content/material/extension.svg);
-        background-size: 14px;
-        background-position-x: 1px;
+        background-size: 16px;
     }
 
     #perm-popup-row .permissionLabel {
@@ -1919,7 +1983,7 @@ link[href="chrome://global/content/printPagination.css"]
     }
 
     #perm-cookie-row .permissionLabel {
-        background-image: url(chrome://userchrome/content/skin/3rdpartycookies.svg);
+        background-image: url(chrome://userchrome/content/skin/controlcenter/3rdpartycookies.svg);
         background-size: 14px;
         background-position-x: 1px;
     }

@@ -11,9 +11,9 @@
         // user configuration
         static options = {
             includeBookmarks: true, // if true, show the effect on bookmarks on the toolbar
-            lightColor: "hsla(224, 100%, 80%, 0.15)", // the color of the gradient. default is sort of a faint baby blue. you may prefer just white, e.g. hsla(0, 0%, 100%, 0.05)
+            lightColor: "hsla(240, 93%, 68%, 0.30)", // the color of the gradient. default is sort of a faint baby blue. you may prefer just white, e.g. hsla(0, 0%, 100%, 0.05)
             gradientSize: 50, // how wide the radial gradient is.
-            clickEffect: false, // whether to show an additional light burst when clicking an element. (not recommended)
+            clickEffect: true, // whether to show an additional light burst when clicking an element. (not recommended)
         };
 
         // instantiate the handler for a given window

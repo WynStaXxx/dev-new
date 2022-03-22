@@ -1,43 +1,13 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* handles system pages and injects some important global variables into extension pages */
 
-@import url(library.css);
-
 @-moz-document regexp("view-source:.*") {
-    @font-face {
-        font-family: "Overpass Mono";
-        font-style: normal;
-        font-weight: 100;
-        src: local("Overpass Mono"), local("Overpass Mono Light"), local("OverpassMono-Light");
-    }
-
-    :root {
-        font-family: Overpass Mono, -moz-fixed;
-        font-size: 12;
-    }
-
-    xmp,
-    pre,
-    plaintext {
-        font-family: Overpass Mono, -moz-fixed;
-        font-size: 12;
-    }
-
     @media (prefers-color-scheme: dark) {
-        :root,
-        body {
-            color: var(--plaintext-color);
-            background-color: var(--in-content-bg-dark);
-        }
-
-        span {
-            color: var(--plaintext-color);
-        }
-
-        html:root {
-            color: var(--plaintext-color);
-            background: none !important;
-        }
-
         ::selection {
             color: var(--content-selection-color) !important;
             background-color: var(--content-selection-bgcolor) !important;
@@ -47,55 +17,36 @@
             background-color: var(--content-selection-bgcolor-disabled) !important;
         }
 
-        .attribute-name {
-            color: lightskyblue !important;
+        .highlight :is(.start-tag, .end-tag)::selection {
+            color: #801f1f !important;
         }
 
-        .attribute-name::selection {
-            color: darkcyan !important;
+        .highlight .comment::selection {
+            color: #235c23 !important;
         }
 
-        .attribute-value {
-            color: lightgreen !important;
+        .highlight .cdata::selection {
+            color: #77254e !important;
         }
 
-        .attribute-value::selection {
-            color: darkgreen !important;
+        .highlight :is(.doctype, .markupdeclaration)::selection {
+            color: #555 !important;
         }
 
-        .start-tag {
-            color: tan !important;
+        .highlight .entity::selection {
+            color: #884026 !important;
         }
 
-        .start-tag::selection {
-            color: darkgoldenrod !important;
+        .highlight .attribute-value::selection {
+            color: #233d6d !important;
         }
 
-        .end-tag {
-            color: indianred !important;
+        .highlight .pi::selection {
+            color: #6b228f !important;
         }
 
-        .end-tag::selection {
-            color: sienna !important;
-        }
-
-        .error {
-            color: white !important;
-            background-color: rgba(178, 34, 34, 0.5) !important;
-        }
-
-        .error::selection,
-        .error > *::selection {
-            color: firebrick !important;
-            background-color: var(--content-selection-bgcolor) !important;
-        }
-
-        .entity {
-            color: mediumorchid !important;
-        }
-
-        .entity::selection {
-            color: darkorchid !important;
+        .highlight .error::selection {
+            text-decoration-color: #801f1f !important;
         }
     }
 }
@@ -117,28 +68,25 @@
     html:not([role="dialog"]) *,
     html:not([role="dialog"]) body.activity-stream,
     window:not([chromehidden]),
-    window:not([chromehidden]) > dialog {
-        --in-content-page-background: var(--content-principal-page-background) !important;
-        --in-content-page-color: var(--content-principal-page-color) !important;
-        --in-content-box-background: var(--content-principal-box-background) !important;
-        --in-content-box-background-odd: var(--content-principal-box-background-odd) !important;
-        --in-content-box-background-dim: var(--content-principal-box-background-dim) !important;
-        --in-content-box-border-color: var(--content-principal-box-border-color) !important;
-        --in-content-button-background: var(--content-principal-button-background) !important;
-        --in-content-button-background-hover: var(
-            --content-principal-button-background-hover
-        ) !important;
+    window:not([chromehidden]) > dialog,
+    #downloadsListBox richlistitem,
+    info-item,
+    info-group,
+    certificate-section {
+        --in-content-page-background: var(--uc-content-page-background) !important;
+        --in-content-page-color: var(--uc-content-page-color) !important;
+        --in-content-box-background: var(--uc-content-box-background) !important;
+        --in-content-box-background-odd: var(--uc-content-box-background-odd) !important;
+        --in-content-box-background-dim: var(--uc-content-box-background-dim) !important;
+        --in-content-box-border-color: var(--uc-content-box-border-color) !important;
+        --in-content-button-background: var(--uc-content-button-background) !important;
+        --in-content-button-background-hover: var(--uc-content-button-background-hover) !important;
         --in-content-button-background-active: var(
-            --content-principal-button-background-active
+            --uc-content-button-background-active
         ) !important;
-        --in-content-button-background-solid: var(--content-principal-button-background-solid);
+        --in-content-button-background-solid: var(--uc-content-button-background-solid);
         --in-content-item-selected: var(--purple-40) !important;
-        --in-content-border-highlight: var(--purple-40) !important;
-        --in-content-border-hover: var(--content-principal-border-hover) !important;
-        --in-content-border-focus: var(--purple-40) !important;
-        --in-content-border-active: var(--purple-40) !important;
-        --in-content-border-active-shadow: var(--purple-40-a30) !important;
-        --in-content-category-outline-focus: 1px solid transparent !important;
+        --in-content-border-hover: var(--uc-content-border-hover) !important;
         --in-content-link-color: var(--purple-30) !important;
         --in-content-link-color-hover: var(--purple-25) !important;
         --in-content-link-color-active: var(--purple-20) !important;
@@ -148,32 +96,38 @@
         --in-content-primary-button-background: var(--purple-40) !important;
         --in-content-primary-button-background-hover: var(--purple-35) !important;
         --in-content-primary-button-background-active: var(--purple-30) !important;
-        --in-content-primary-button-text-color: var(--in-content-page-color) !important;
+        --in-content-primary-button-text-color: var(--light-on-dark-button-text-color) !important;
         --in-content-button-border-radius: var(--general-button-border-radius) !important;
         --in-content-accent-color: var(--purple-35) !important;
+        --in-content-item-hover: color-mix(in srgb, var(--purple-30) 45%, transparent) !important;
+        --in-content-item-hover-text: var(--light-on-dark-button-text-color) !important;
         --in-content-table-background: var(--in-content-box-background) !important;
-        --in-content-table-header-background: var(--purple-40-a30) !important;
+        --in-content-table-header-background: var(--purple-40-a50) !important;
+        --in-content-box-info-background: var(--in-content-button-background-solid) !important;
+        --focus-outline-offset: 2px !important;
+        --default-focusring: var(--global-focus-outline-width) solid
+            var(--global-focus-outline-color) !important;
         --newtab-background-color: var(--in-content-page-background) !important;
         --newtab-text-primary-color: var(--in-content-page-color) !important;
         --lwt-sidebar-background-color: var(--in-content-box-background) !important;
         --lwt-sidebar-text-color: var(--in-content-page-color) !important;
         --newtab-search-header-background-color: color-mix(
             in srgb,
-            var(--content-principal-page-background) 70%,
+            var(--uc-content-page-background) 70%,
             transparent
         ) !important;
         --newtab-search-header-background-intermediate: color-mix(
             in srgb,
-            var(--content-principal-page-background) 80%,
+            var(--uc-content-page-background) 80%,
             transparent
         ) !important;
         --newtab-seperator-line-color: var(--in-content-button-background-hover) !important;
         --newtab-modal-color: var(--in-content-box-background) !important;
-        --newtab-focus-outline: var(--in-content-border-active-shadow) !important;
-        --newtab-focus-border: var(--in-content-border-focus) !important;
+        --newtab-focus-outline: var(--purple-40-a50) !important;
+        --newtab-focus-border: var(--purple-40) !important;
         --newtab-focus-border-selected: var(--purple-30) !important;
         --newtab-textbox-background-color: var(--in-content-button-background) !important;
-        --newtab-textbox-focus-color: var(--in-content-border-focus) !important;
+        --newtab-textbox-focus-color: var(--purple-40) !important;
         --newtab-primary-action-background: var(
             --in-content-primary-button-background-hover
         ) !important;
@@ -227,15 +181,58 @@
         --newtab-search-second-shadow: rgba(21, 20, 26, 0.75);
     }
 
+    html:not([role="dialog"]) richlistitem[selected] * {
+        --in-content-button-background: inherit !important;
+        --in-content-button-background-hover: inherit !important;
+        --in-content-button-background-active: inherit !important;
+        --in-content-button-text-color: inherit !important;
+        --in-content-button-text-color-hover: inherit !important;
+        --in-content-button-text-color-active: inherit !important;
+        --in-content-focus-outline-color: inherit !important;
+        --in-content-button-background: var(--purple-50) !important;
+        --in-content-button-background-hover: var(--purple-55) !important;
+        --in-content-button-background-active: var(--purple-60) !important;
+        --in-content-button-text-color: var(--in-content-item-selected-text) !important;
+        --in-content-button-text-color-hover: var(--in-content-item-selected-text) !important;
+        --in-content-button-text-color-active: var(--in-content-button-text-color-hover) !important;
+        --in-content-focus-outline-color: var(--in-content-item-selected-text) !important;
+    }
+
+    richlistitem menulist {
+        border-radius: 0 !important;
+        outline-offset: var(--focus-outline-offset, 2px) !important;
+        outline: none !important;
+    }
+
     body:not(.inline-onboarding) .fixed-search .search-wrapper {
-        background-image: linear-gradient(
+        /* temporarily disabled due to backdrop-filter being disabled. see https://bugzilla.mozilla.org/show_bug.cgi?id=1741779 */
+
+        /* background-image: linear-gradient(
             180deg,
             var(--in-content-page-background) 0%,
             var(--newtab-search-header-background-intermediate) 50%,
             var(--newtab-search-header-background-color) 100%
         ) !important;
         background-color: transparent !important;
-        backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px); */
+
+        background-image: linear-gradient(
+            180deg,
+            var(--in-content-page-background) 0%,
+            color-mix(
+                    in srgb,
+                    var(--uc-content-page-background) 80%,
+                    var(--in-content-page-background)
+                )
+                50%,
+            color-mix(
+                    in srgb,
+                    var(--uc-content-page-background) 70%,
+                    var(--in-content-page-background)
+                )
+                100%
+        ) !important;
+        background-color: transparent !important;
     }
 
     body:not(.inline-onboarding) .fixed-search.newtab-experience .search-handoff-button {
@@ -264,7 +261,7 @@
     }
 
     #category-experimental > .category-icon {
-        list-style-image: url(chrome://userchrome/content/material/potion-large.svg) !important;
+        list-style-image: url(chrome://userchrome/content/material/test-tube-45-large.svg) !important;
     }
 
     .top-site-outer {
@@ -325,6 +322,15 @@
 
     #errorPageContainer .button-container button.primary {
         border-color: var(--uc-checkbox-checked-border-color) !important;
+    }
+
+    .certerror #badCertAdvancedPanel {
+        border-radius: var(--menupopup-border-radius, 5px);
+    }
+
+    .long-hex {
+        border-block: 1px solid transparent;
+        padding-block: 0 !important;
     }
 
     message-bar:not([hidden]) {
@@ -417,8 +423,29 @@
         background-color: var(--newtab-primary-action-background-active) !important;
     }
 
+    .info-box-container > :is(.sync-engines-list, label) {
+        padding-inline: 4px;
+    }
+
+    listheader {
+        padding-bottom: revert !important;
+    }
+
+    treechildren::-moz-tree-row(current, focus) {
+        outline: revert !important;
+        outline-offset: revert !important;
+    }
+
+    :is(listheader, treecols) > treecol {
+        box-shadow: none !important;
+    }
+
     #engineList treechildren::-moz-tree-image {
         fill: currentColor !important;
+    }
+
+    #handlersView {
+        word-wrap: anywhere;
     }
 
     @-moz-document regexp("^about:blocked.*") {
@@ -479,8 +506,8 @@
 @-moz-document url-prefix("about:debugging") {
     @media (prefers-color-scheme: dark) {
         :root {
-            --bg-color: var(--content-principal-page-background) !important;
-            --bg-color-float: var(--content-principal-box-background);
+            --bg-color: var(--uc-content-page-background) !important;
+            --bg-color-float: var(--uc-content-box-background);
             --text-color: var(--ui-text-90) !important;
             --secondary-text-color: var(--ui-text-60) !important;
             --text-color-2nd: var(--ui-text-60) !important;
@@ -490,9 +517,9 @@
             --box-border-color: var(--button-bg-active) !important;
             --shadow-var: 0 0 5px hsla(0, 0%, 0%, 0.08), 0 0 8px hsla(0, 0%, 0%, 0.05);
             --button-color: var(--plaintext-color);
-            --button-bg: var(--content-principal-button-background);
-            --button-bg-hover: var(--content-principal-button-background-hover);
-            --button-bg-active: var(--content-principal-button-background-active);
+            --button-bg: var(--uc-content-button-background);
+            --button-bg-hover: var(--uc-content-button-background-hover);
+            --button-bg-active: var(--uc-content-button-background-active);
             --card-separator-color: var(--button-bg-active) !important;
             --category-background-hover: rgba(12, 12, 13, 0.1);
             --category-text: var(--plaintext-color) !important;
@@ -593,7 +620,7 @@
 
 @-moz-document url-prefix("about:reader") {
     body.dark {
-        --main-background: var(--in-content-bg-dark) !important;
+        --main-background: var(--in-content-page-background) !important;
         --tooltip-background: color-mix(in srgb, black 40%, var(--in-content-bg-dark)) !important;
         --active-color: var(--purple-35) !important;
         --selected-background: var(--attention-color) !important;
@@ -624,9 +651,22 @@
     }
 
     .toolbar {
+        box-shadow: 0 0 12px hsla(0, 0%, 0%, 0.4) !important;
+    }
+
+    body.dark .toolbar {
         border-color: var(--in-content-box-border-color) !important;
         background-color: var(--in-content-box-background-dim) !important;
-        box-shadow: 0 0 12px hsla(0, 0%, 0%, 0.4) !important;
+    }
+
+    body > .container > .header > .domain {
+        border: none !important;
+    }
+
+    body.dark hr,
+    body.dark > .container > .header > .domain {
+        border-color: var(--in-content-button-background-active) !important;
+        border-block-width: 0 1px !important;
     }
 
     .toolbar-container.scrolled .toolbar:not(:hover, :focus-within) {
@@ -674,16 +714,16 @@
 }
 
 /* firefox screenshots addon overlay */
-@-moz-document url("moz-extension://bc8fcf05-0a6f-40d5-a068-b452be394b53/blank.html")
+@-moz-document regexp("^moz-extension://.*/blank.html.*")
 {
-    .all-buttons-container {
-        background-color: var(--content-principal-box-background) !important;
+    :root[uc-extension-id="screenshots@mozilla.org"] .all-buttons-container {
+        background-color: var(--uc-content-box-background) !important;
         height: 88px !important;
         box-shadow: 0 0 0 1px rgba(12, 12, 13, 0.1), 0 0 8px rgba(12, 12, 13, 0.1) !important;
     }
 
-    .all-buttons-container button {
-        color: var(--content-principal-page-color) !important;
+    :root[uc-extension-id="screenshots@mozilla.org"] .all-buttons-container button {
+        color: var(--uc-content-page-color) !important;
         background-color: transparent !important;
         border-radius: var(--general-button-border-radius) !important;
         padding: 54px 5px 5px !important;
@@ -693,17 +733,17 @@
         -moz-context-properties: fill, stroke !important;
     }
 
-    .all-buttons-container button:hover {
-        background-color: var(--content-principal-button-background) !important;
-        border: 1px solid var(--content-principal-button-background) !important;
+    :root[uc-extension-id="screenshots@mozilla.org"] .all-buttons-container button:hover {
+        background-color: var(--uc-content-button-background) !important;
+        border: 1px solid var(--uc-content-button-background) !important;
     }
 
-    .hover-highlight {
+    :root[uc-extension-id="screenshots@mozilla.org"] .hover-highlight {
         background: rgba(255, 255, 255, 0.1) !important;
         z-index: 2147483646 !important;
     }
 
-    .pixel-dimensions {
+    :root[uc-extension-id="screenshots@mozilla.org"] .pixel-dimensions {
         margin-block-start: -5px;
         margin-inline-start: -5px;
         z-index: 2147483647 !important;
@@ -712,11 +752,19 @@
     }
 
     @supports -moz-bool-pref("userChrome.css.mac-ui-fonts") {
-        .pixel-dimensions {
+        :root[uc-extension-id="screenshots@mozilla.org"] .pixel-dimensions {
             font-weight: var(--uc-font-weight-bold) !important;
-            font-family: -apple-system, BlinkMacSystemFont, SF Pro, "segoe ui", "helvetica neue",
-                helvetica, ubuntu, roboto, noto, arial, sans-serif !important;
+            font-family: SF Pro Text, SF Arabic, Segoe UI, sans-serif !important;
             font-size: normal !important;
+        }
+    }
+}
+
+@-moz-document regexp("^(about:|chrome:\/\/).*") {
+    @supports -moz-bool-pref("userChrome.css.hide-promotion") {
+        .promo,
+        .vpn-banner {
+            display: none !important;
         }
     }
 }

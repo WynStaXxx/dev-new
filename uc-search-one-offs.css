@@ -1,3 +1,9 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* this is how we get the scrolling search one-offs in the urlbar.
 it also changes the appearance of the one-offs in the searchbar. */
 
@@ -159,7 +165,7 @@ it also changes the appearance of the one-offs in the searchbar. */
         var(--arrowpanel-menuitem-inline-margin) !important;
 }
 
-.urlbarView :is(.searchbar-engine-one-off-item, .addengine-item)  {
+.urlbarView :is(.searchbar-engine-one-off-item, .addengine-item) {
     min-width: var(--urlbar-one-offs-engine-width) !important;
     height: var(--urlbar-one-offs-engine-width) !important;
     padding: 0 !important;
@@ -168,7 +174,6 @@ it also changes the appearance of the one-offs in the searchbar. */
     border: none !important;
     position: relative !important;
     background-color: transparent !important;
-    pointer-events: none !important;
     -moz-context-properties: fill, fill-opacity;
     fill: currentColor;
     fill-opacity: 1 !important;
@@ -182,10 +187,9 @@ it also changes the appearance of the one-offs in the searchbar. */
     color: var(--panel-description-color) !important;
 }
 
-:root:not([customizing])
-    .urlbarView
-    :is(.searchbar-engine-one-off-item, .addengine-item):not(:hover, [selected]):-moz-window-inactive {
-    opacity: 0.7 !important;
+.search-setting-button > .button-box > .button-icon {
+    fill: currentColor !important;
+    fill-opacity: inherit !important;
 }
 
 .urlbarView :is(.searchbar-engine-one-off-item, .addengine-item) > .button-box {
@@ -225,13 +229,14 @@ it also changes the appearance of the one-offs in the searchbar. */
     fill: currentColor !important;
 }
 
-/* replace google search icon since updates keep resetting the custom icon in search.json.mozlz4 */
-.searchbar-engine-one-off-item[image="moz-extension://cd4aad93-9726-49dd-a5cd-9e5f5c4d76f4/favicon.ico"] .button-icon
+/* replace google search icon with CSS since you can't replace
+the built-in google engine without changing the engine's name */
+:is(#urlbar-engine-one-off-item-Google, #searchbar-engine-one-off-item-Google) .button-icon
 {
     display: none;
 }
 
-.searchbar-engine-one-off-item[image="moz-extension://cd4aad93-9726-49dd-a5cd-9e5f5c4d76f4/favicon.ico"] .button-box::before
+:is(#urlbar-engine-one-off-item-Google, #searchbar-engine-one-off-item-Google) .button-box::before
 {
     content: url(chrome://userchrome/content/engines/google.svg);
     display: block;
@@ -240,20 +245,12 @@ it also changes the appearance of the one-offs in the searchbar. */
 }
 
 .urlbarView .search-one-offs {
-    position: absolute !important;
-    z-index: 12;
     min-height: var(--urlbar-height) !important;
-    max-width: var(--urlbar-one-offs-width) !important;
     padding: 2px !important;
-    top: calc(-3px - var(--urlbar-height)) !important;
     scroll-behavior: smooth !important;
     box-sizing: border-box !important;
     border: none !important;
     flex-flow: row nowrap !important;
-}
-
-#urlbar .search-one-offs:not([scrolledtostart], [scrolledtoend]) {
-    mask-image: linear-gradient(to right, transparent 10px, black 30px);
 }
 
 #urlbar .search-panel-one-offs {
@@ -263,7 +260,7 @@ it also changes the appearance of the one-offs in the searchbar. */
 }
 
 #urlbar .search-panel-one-offs-container {
-	min-width: unset !important;
+    min-width: unset !important;
     margin-inline-end: -4px !important;
 }
 
@@ -278,9 +275,9 @@ it also changes the appearance of the one-offs in the searchbar. */
 }
 
 .urlbarView .search-panel-one-offs-header {
-	min-width: -moz-fit-content !important;
-	flex-grow: 0 !important;
-	flex-shrink: 0 !important;
+    min-width: -moz-fit-content !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
     min-height: var(--urlbar-height) !important;
     align-items: center;
 }
@@ -291,54 +288,18 @@ it also changes the appearance of the one-offs in the searchbar. */
 }
 
 .urlbarView .search-panel-one-offs-header::before {
-	content: "Search with:";
-	display: inline-block;
-	margin-block: 2px 3px;
-	margin-inline: 8px 4px;
-	color: var(--panel-shortcut-color);
+    content: "Search with:";
+    display: inline-block;
+    margin-block: 2px 3px;
+    margin-inline: 8px 4px;
+    color: var(--panel-shortcut-color);
 }
 
-#urlbar .search-one-offs {
-    position: static !important;
-    max-width: unset !important;
-    mask-image: none !important;
-}
-
-#urlbar .search-one-offs * {
-    opacity: 1 !important;
-    transition: none !important;
-    pointer-events: auto !important;
-    transform: none !important;
-}
-
-:is(.searchbar-engine-one-off-item, .addengine-item):hover
-    > .button-box {
+:is(.searchbar-engine-one-off-item, .addengine-item):hover > .button-box {
     background-color: var(--toolbarbutton-hover-background) !important;
 }
 
-:is(.searchbar-engine-one-off-item, .addengine-item)[selected]
-    > .button-box {
+:is(.searchbar-engine-one-off-item, .addengine-item)[selected] > .button-box {
     background-color: var(--toolbarbutton-active-background) !important;
     color: var(--lwt-text-color) !important;
-}
-
-/* individual search one off adjustments */
-.searchbar-engine-one-off-item[image="chrome://userchrome/content/engines/gatherer.svg"] .button-icon,
-.searchbar-engine-one-off-item[image="chrome://userchrome/content/engines/scryfall.svg"] .button-icon
-{
-    width: 17.5px !important;
-    height: 17.5px !important;
-}
-
-.searchbar-engine-one-off-item:is([image="chrome://userchrome/content/engines/wiki.svg"], [image="moz-extension://19649ec6-a7ee-4eeb-bff8-84c72584edba/favicon.svg"])
-    .button-icon {
-    width: 19px !important;
-    height: 19px !important;
-    margin-left: -0.3px !important;
-    margin-top: 0.7px !important;
-}
-
-.searchbar-engine-one-off-item:is([image="chrome://userchrome/content/engines/amazon.svg"], [image="moz-extension://c2a6335f-fd4d-4206-bae7-b755cc686f59/favicon.svg"])
-    .button-icon {
-    margin-top: 0.7px !important;
 }

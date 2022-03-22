@@ -1,3 +1,9 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* controls the appearance of the sidebar itself,
 as well as the internal appearance of the built-in sidebars, e.g. bookmarks, history, etc. */
 
@@ -19,7 +25,8 @@ as well as the internal appearance of the built-in sidebars, e.g. bookmarks, his
 
 #sidebar-header {
     appearance: none !important;
-    padding: 7px !important;
+    padding: 6px !important;
+    padding-bottom: 3px !important;
     border-bottom: 0px solid transparent !important;
     background-color: var(--ui-secondary-bg) !important;
     color: #fff !important;
@@ -27,63 +34,56 @@ as well as the internal appearance of the built-in sidebars, e.g. bookmarks, his
 }
 
 #sidebar-switcher-target {
-    min-height: 27px !important;
-    min-width: 27px !important;
-    padding-inline: 5px !important;
+    min-height: 28px !important;
+    min-width: 28px !important;
+    padding-inline: 6px !important;
 }
 
 #sidebar-switcher-target #sidebar-title {
-    padding-inline: 6px 4px !important;
+    padding-inline: 6px !important;
 }
 
 #sidebar-search-container {
-    padding-block: 0 var(--menupopup-inner-padding-magnitude) !important;
+    padding: 3px 6px !important;
 }
 
-.sidebar-search-container .tabsFilter {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-#sidebar-search-container #search-box,
-.sidebar-search-container .tabsFilter {
+:where(#sidebar-search-container, .sidebar-search-container) search-textbox {
     appearance: none !important;
-    padding-inline-start: 5px !important;
+    padding-inline: 5px 0 !important;
     background-color: var(--search-box-color) !important;
     border-radius: var(--general-button-border-radius) !important;
     padding-block: 0 !important;
-    transition: 300ms !important;
+    transition: 300ms background-color !important;
     color: currentColor !important;
     min-height: 25px !important;
+    margin: 0 !important;
+    outline: 0 solid transparent !important;
+    transition: var(--textbox-outline-transition-duration, 100ms) outline ease-in,
+        var(--findbar-textbox-bg-transition-duration, 200ms) background-color !important;
 }
 
-.sidebar-search-container .search-box,
-.sidebar-search-container .tabsFilter {
-    padding-inline-start: 5px !important;
-    background-color: var(--search-box-color) !important;
-    transition: 300ms background-color !important;
-}
-
-.sidebar-search-container .search-box .textbox-input-box {
-    padding-inline-start: 13px !important;
+/* animate the purple focus outline & background */
+:is(#sidebar-search-container, .sidebar-search-container) search-textbox:focus {
+    background-color: var(--search-box-focus) !important;
+    outline: 2px solid var(--search-box-focus-outline-color, -moz-accent-color) !important;
+    transition-duration: calc(
+        var(--textbox-outline-transition-duration, 100ms) * 0.6
+    ), var(--findbar-textbox-bg-transition-duration, 200ms) !important;
+    transition-timing-function: ease-out, linear !important;
 }
 
 /* search-textbox icons (magnifying glass and clear input button) */
 @-moz-document url("chrome://browser/content/browser.xhtml"), regexp(".*Sidebar.*"), regexp(".*sidebar.*")
 {
-    .textbox-search-icons {
+    .textbox-search-icons[selectedIndex="1"] {
         display: flex !important;
         flex-flow: row nowrap;
         align-items: center;
+        padding-inline-end: 4px !important;
+        cursor: default !important;
     }
 
-    .textbox-search-icons:not([selectedIndex="1"]) {
-        opacity: 0 !important;
-        pointer-events: none !important;
-        -moz-inert: initial !important;
-    }
-
-    .textbox-search-clear {
+    .textbox-search-icons[selectedIndex="1"] .textbox-search-clear {
         background-image: url(chrome://userchrome/content/textbox-clear.svg) !important;
         background-size: contain !important;
         background-position: center !important;
@@ -95,47 +95,32 @@ as well as the internal appearance of the built-in sidebars, e.g. bookmarks, his
         height: 16px !important;
         min-height: 1px !important;
         border-radius: var(--tab-button-border-radius, 2px) !important;
-        margin: 0 3px 0 0 !important;
         padding: 0 !important;
         box-sizing: border-box !important;
     }
 
-    .textbox-search-clear[src]:not([src=""]) {
+    .textbox-search-icons[selectedIndex="1"] .textbox-search-clear[src]:not([src=""]) {
         padding-inline-start: 16px !important;
     }
 
-    .textbox-search-clear:is(:hover, :active) {
+    .textbox-search-icons[selectedIndex="1"] .textbox-search-clear:hover {
         fill: rgba(255, 255, 255, 1) !important;
         background-color: var(--button-hover-bgcolor) !important;
     }
 
     .textbox-search-sign {
-        margin-left: 2px !important;
-        margin-top: 0.5px !important;
-        margin-inline-end: 6px !important;
+        margin: 1px 5px 0 1px !important;
         -moz-context-properties: fill, fill-opacity;
         list-style-image: url(chrome://userchrome/content/textbox-search.svg) !important;
-        fill: var(--panel-shortcut-color) !important;
+        fill: var(--panel-description-color) !important;
         fill-opacity: 1;
     }
 
-    link[href="chrome://global/skin/search-textbox.css"] ~ input::placeholder
+    .textbox-search-sign[part="search-sign"] ~ input::placeholder
     {
         opacity: 1;
-        color: var(--panel-shortcut-color);
+        color: var(--panel-description-color);
     }
-}
-
-#sidebar-search-container #search-box:focus-within,
-.sidebar-search-container :is(.tabsFilter, .search-box):focus-within {
-    background-color: var(--search-box-focus) !important;
-    transition: 300ms background-color !important;
-}
-
-#sidebar-search-container #search-box :is(input, textarea) {
-    background: none !important;
-    color: #fff !important;
-    transition: 300ms !important;
 }
 
 #viewButton {
@@ -200,11 +185,12 @@ as well as the internal appearance of the built-in sidebars, e.g. bookmarks, his
 #sidebar-close {
     border-radius: var(--general-button-border-radius) !important;
     list-style-image: url(chrome://userchrome/content/close.svg) !important;
-    fill-opacity: 0.8 !important;
+    width: 28px !important;
+    height: 28px !important;
 }
 
 #sidebar-close .toolbarbutton-icon {
-    width: 20px !important;
+    width: 18px !important;
     height: auto !important;
 }
 
@@ -219,7 +205,7 @@ as well as the internal appearance of the built-in sidebars, e.g. bookmarks, his
 
 .sidebar-placesTreechildren::-moz-tree-cell {
     border-radius: var(--general-button-border-radius) !important;
-    margin-inline: 8px !important;
+    margin-inline: 6px !important;
     cursor: default !important;
 }
 
@@ -258,7 +244,11 @@ as well as the internal appearance of the built-in sidebars, e.g. bookmarks, his
 
 .sidebar-panel .sidebar-placesTreechildren::-moz-tree-cell(cutting, selected),
 .sidebar-panel .sidebar-placesTreechildren::-moz-tree-cell(cutting, hover) {
-    background-color: color-mix(in srgb, transparent 50%, var(--places-cell-hover-bgcolor)) !important;
+    background-color: color-mix(
+        in srgb,
+        transparent 50%,
+        var(--places-cell-hover-bgcolor)
+    ) !important;
 }
 
 .sidebar-placesTree {
@@ -273,10 +263,12 @@ as well as the internal appearance of the built-in sidebars, e.g. bookmarks, his
 .sidebar-placesTreechildren::-moz-tree-row(current, focus),
 .sidebar-placesTreechildren::-moz-tree-row(selected, current, focus) {
     border: none !important;
+    outline: none !important;
 }
 
 .sidebar-placesTreechildren::-moz-tree-row(selected, current, focus) {
     border: none !important;
+    outline: none !important;
 }
 
 .sidebar-placesTreechildren::-moz-tree-cell-text(primary, dropOn) {
@@ -312,7 +304,11 @@ as well as the internal appearance of the built-in sidebars, e.g. bookmarks, his
 .sidebar-placesTreechildren::-moz-tree-separator(hover),
 .sidebar-placesTreechildren:not(:-moz-window-inactive)::-moz-tree-separator(selected),
 .sidebar-placesTreechildren:not(:-moz-window-inactive)::-moz-tree-separator(hover, selected) {
-    border-color: color-mix(in srgb, var(--panel-shortcut-color) 30%, var(--panel-separator-color)) !important;
+    border-color: color-mix(
+        in srgb,
+        var(--panel-shortcut-color) 30%,
+        var(--panel-separator-color)
+    ) !important;
 }
 
 .sidebar-placesTreechildren:not(:-moz-window-inactive)::-moz-tree-separator(cutting) {
@@ -419,8 +415,6 @@ there are normally no twistys in sorted trees so it is relatively safe to collap
 
     .content-header {
         appearance: none !important;
-        padding-inline: 1px !important;
-        margin-top: -4px !important;
         border-bottom: 0px solid transparent !important;
         background-color: var(--ui-secondary-bg) !important;
         color: #fff !important;
@@ -436,8 +430,7 @@ there are normally no twistys in sorted trees so it is relatively safe to collap
     }
 
     .sidebar-search-container {
-        padding-inline-start: 3px !important;
-        padding-inline-end: 3px !important;
+        padding: 3px 6px !important;
     }
 
     .sidebar-search-container .search-box input {
@@ -471,7 +464,7 @@ there are normally no twistys in sorted trees so it is relatively safe to collap
 
     .item-title-container {
         border-radius: var(--general-button-border-radius) !important;
-        margin-inline: 8px !important;
+        margin-inline: 6px !important;
         min-height: 24px;
         box-sizing: border-box !important;
     }
@@ -493,7 +486,7 @@ there are normally no twistys in sorted trees so it is relatively safe to collap
     }
 
     .item.empty .item-title-container {
-        color: var(--context-menu-disabled-color) !important;
+        color: var(--uc-menu-disabled-color) !important;
         background: none !important;
     }
 
@@ -503,7 +496,10 @@ there are normally no twistys in sorted trees so it is relatively safe to collap
     }
 
     :-moz-window-inactive::selection {
-        background-color: var(--ui-selection-bgcolor-disabled, text-select-disabled-background) !important;
+        background-color: var(
+            --ui-selection-bgcolor-disabled,
+            text-select-disabled-background
+        ) !important;
     }
 }
 
@@ -513,14 +509,14 @@ there are normally no twistys in sorted trees so it is relatively safe to collap
 
 #sidebar-box {
     --sidebar-background-color: var(--ui-secondary-bg) !important;
+    display: flex !important;
+    position: absolute !important;
     top: 0 !important;
     bottom: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    position: absolute !important;
-    z-index: 1 !important;
     left: 0 !important;
     right: auto !important;
+    z-index: 1 !important;
+    flex-direction: column !important;
     box-shadow: 0px 0px 8px -4px hsla(240, 4%, 0%, 0.6), 0px 0px 15px 0px hsla(0, 0%, 0%, 0.2) !important;
 }
 

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           All Tabs Menu Expansion Pack
-// @version        1.7.5
+// @version        1.7.6
 // @author         aminomancer
 // @homepage       https://github.com/aminomancer
 // @description    Next to the "new tab" button in Firefox there's a V-shaped button that opens a big scrolling menu containing all the tabs. This script adds several new features to the "all tabs menu" to help it catch up to the functionality of the regular tabs bar.
@@ -21,6 +21,7 @@
 // 10. Makes the sound icon show if the tab has blocked media or media in picture-in-picture, just like regular tabs.
 // 11. And a few other subtle improvements.
 // All the relevant CSS for this is already included in and loaded by the script. It's designed to look consistent with my theme as well as with the latest vanilla (proton) Firefox. If you need to change anything, see the "const css" line in here, or the end of uc-tabs-bar.css on my repo.
+// @license        This Source Code Form is subject to the terms of the Creative Commons Attribution-NonCommercial-ShareAlike International License, v. 4.0. If a copy of the CC BY-NC-SA 4.0 was not distributed with this file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 // ==/UserScript==
 (function () {
     let prefSvc = Services.prefs;
@@ -823,14 +824,14 @@
     font-style: italic;
 }
 #allTabsMenu-allTabsViewTabs > .all-tabs-item .all-tabs-secondary-button {
-    max-width: 18px;
-    max-height: 18px;
+    width: 18px;
+    height: 18px;
     border-radius: var(--tab-button-border-radius, 2px);
     color: inherit;
     background-color: transparent !important;
     opacity: 0.7;
-    min-height: 0;
-    min-width: 0;
+    min-height: revert;
+    min-width: revert;
     padding: 0;
 }
 #allTabsMenu-allTabsViewTabs > .all-tabs-item .all-tabs-secondary-button > .toolbarbutton-icon {

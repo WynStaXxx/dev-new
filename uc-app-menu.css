@@ -1,9 +1,14 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* this stylesheet focuses on the app menu.
 (the menu opened by the PanelUI hamburger button at the far right end of the toolbar) */
 
 #PanelUI-menu-button {
     padding-inline: var(--toolbarbutton-outer-padding) !important;
-    margin-inline-end: 3px !important;
 }
 
 #PanelUI-menu-button[badge-status=""] > .toolbarbutton-badge-stack > .toolbarbutton-badge {
@@ -59,12 +64,23 @@
     padding: 0 !important;
 }
 
-.panel-banner-item:is([notificationid="update-available"], [notificationid="update-downloading"])
-    > .toolbarbutton-icon,
-#PanelUI-menu-button:is([badge-status="update-available"], [badge-status="update-downloading"])
+.panel-banner-item[notificationid="update-available"] > .toolbarbutton-icon,
+#PanelUI-menu-button[badge-status="update-available"]
     > .toolbarbutton-badge-stack
     > .toolbarbutton-badge {
+    background: var(--update-badge-bg) url(chrome://userchrome/content/update-icon-inverted.svg)
+        no-repeat center/contain !important;
+    fill: var(--update-badge-color) !important;
     transform: scaleY(-1);
+}
+
+.panel-banner-item[notificationid="update-downloading"] > .toolbarbutton-icon,
+#PanelUI-menu-button[badge-status="update-downloading"]
+    > .toolbarbutton-badge-stack
+    > .toolbarbutton-badge {
+    background: var(--update-badge-bg) url(chrome://userchrome/content/more.svg) no-repeat
+        center/75% !important;
+    fill: var(--update-badge-color) !important;
 }
 
 .panel-banner-item[notificationid="update-restart"] > .toolbarbutton-icon,
@@ -74,7 +90,6 @@
     background: var(--update-badge-bg) url(chrome://userchrome/content/check.svg) no-repeat
         center/contain !important;
     fill: var(--update-badge-color) !important;
-    transform: none !important;
 }
 
 .panel-banner-item[notificationid="update-unsupported"] > .toolbarbutton-icon,
@@ -87,10 +102,9 @@
     background: var(--low-warning-icon-background)
         url(chrome://userchrome/content/check-partial.svg) no-repeat center/contain !important;
     fill: var(--low-warning-icon-detail) !important;
-    transform: none !important;
 }
 
-#PanelUI-menu-button[badge-status] .toolbarbutton-badge {
+#PanelUI-menu-button[badge-status] > .toolbarbutton-badge-stack > .toolbarbutton-badge {
     filter: none !important;
 }
 
@@ -150,11 +164,6 @@
     display: none;
 }
 
-.PanelUI-subView .subviewbutton-nav::after {
-    color: var(--panel-shortcut-color) !important;
-    fill-opacity: 1 !important;
-}
-
 /* add icons to non-iconized appmenu items */
 .subviewbutton:not(.subviewbutton-iconic) > .toolbarbutton-icon {
     -moz-context-properties: fill, fill-opacity;
@@ -186,7 +195,7 @@
 }
 
 #appMenu-print-button2 {
-    list-style-image: url(chrome://userchrome/content/print.svg);
+    list-style-image: url(chrome://global/skin/icons/print.svg);
 }
 
 #appMenu-passwords-button {
@@ -367,11 +376,11 @@
 }
 
 #appMenu_helpSafeMode {
-    list-style-image: url(chrome://userchrome/content/material/auto-fix.svg);
+    list-style-image: url(chrome://userchrome/content/material/diagnostic.svg);
 }
 
 #appMenu_troubleShooting {
-    list-style-image: url(chrome://userchrome/content/material/drugs.svg);
+    list-style-image: url(chrome://userchrome/content/material/system-report.svg);
 }
 
 #appMenu_help_reportSiteIssue {
@@ -389,7 +398,7 @@
 }
 
 #appMenu_aboutName {
-    list-style-image: url(chrome://userchrome/content/info-filled.svg);
+    list-style-image: url(chrome://userchrome/content/identity-icons-brand.svg);
 }
 
 #appMenu_helpPolicySupport::before {
@@ -452,11 +461,6 @@
     background-image: url(chrome://userchrome/content/fxa/add-device.svg);
 }
 
-/* appmenu buttons border radius */
-.subviewbutton-back {
-    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
-}
-
 :is(#appMenu-zoomReduce-button2, #appMenu-zoomEnlarge-button2, #appMenu-fullscreen-button2)
     > .toolbarbutton-icon {
     background-color: unset !important;
@@ -476,6 +480,10 @@
     background-color: var(--arrowpanel-dimmed-further) !important;
 }
 
+panel .toolbaritem-combined-buttons {
+    margin-inline-end: 0 !important;
+}
+
 #appMenu-zoom-controls2 toolbarbutton {
     margin-inline: 4px !important;
     border: 1px solid transparent !important;
@@ -490,6 +498,10 @@
     height: 12px !important;
 }
 
+#appMenu-zoom-controls2 :where(.toolbarbutton-icon, .toolbarbutton-text) {
+    outline: none !important;
+}
+
 #appMenu-zoom-controls2 #appMenu-zoomReset-button2 {
     border: 1px solid var(--desaturate-dimmed) !important;
     height: 20px !important;
@@ -497,7 +509,7 @@
     padding: 0 4px !important;
     height: 20px !important;
     min-height: 20px !important;
-	min-width: calc(6ch + 8px) !important;
+    min-width: calc(6ch + 8px) !important;
     -moz-box-align: center !important;
     -moz-box-pack: center !important;
 }
@@ -506,7 +518,7 @@
     margin-block: 1px !important;
     margin-inline: 6px !important;
     background: none !important;
-	text-align: center !important;
+    text-align: center !important;
 }
 
 #appMenu-zoomEnlarge-button2 {
@@ -529,6 +541,27 @@
     padding-block: 4px !important;
     min-height: 40px !important;
     font-weight: inherit !important;
+}
+
+toolbarseparator.proton-zap {
+    opacity: 0.7 !important;
+}
+
+@supports -moz-bool-pref("userChrome.panels.vibrant-fxa-banner") {
+    #appMenu-fxa-status2 > #appMenu-fxa-label2,
+    [mainViewId="PanelUI-fxa"] #fxa-manage-account-button {
+        background-image: linear-gradient(
+            -90deg,
+            hsla(259.9, 100%, 67.5%, 0.275) 0%,
+            hsla(330.8, 100%, 64.5%, 0.275) 52.08%,
+            hsla(37.5, 100%, 65.5%, 0.275) 100%
+        );
+    }
+
+    toolbarseparator.proton-zap {
+        border-image: none !important;
+        opacity: 1 !important;
+    }
 }
 
 #appMenu-fxa-status2 > #appMenu-fxa-label2 label {
@@ -555,6 +588,7 @@
 #appMenu-fxa-status2:not([fxastatus]) {
     margin-inline-end: 0 !important;
     padding-inline-end: var(--arrowpanel-menuitem-inline-margin) !important;
+    padding-block: 0 !important;
 }
 
 #appMenu-fxa-status2:not([fxastatus]) > #appMenu-fxa-label2 {
@@ -667,10 +701,32 @@
 }
 
 .panel-banner-item {
-    padding: calc(var(--arrowpanel-menuitem-padding-block) + 2px) var(--arrowpanel-menuitem-padding-inline) !important;
+    padding: calc(var(--arrowpanel-menuitem-padding-block) + 2px)
+        var(--arrowpanel-menuitem-padding-inline) !important;
     margin: var(--arrowpanel-menuitem-margin) !important;
     font-weight: inherit !important;
     min-height: 40px !important;
+    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+}
+
+.addon-banner-item {
+    padding: calc(var(--arrowpanel-menuitem-padding-block) + 2px)
+        var(--arrowpanel-menuitem-padding-inline) !important;
+    margin: var(--arrowpanel-menuitem-margin) !important;
+    margin-bottom: 4px !important;
+    -moz-box-align: center !important;
+    font-weight: inherit !important;
+    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+    min-height: 40px !important;
+    --panel-banner-item-color: #f9f9fa;
+    --panel-banner-item-background-color: var(--eom-warning-bg);
+    --panel-banner-item-hover-bgcolor: var(--eom-warning-bg-hover);
+    --panel-banner-item-active-bgcolor: var(--eom-warning-bg-active);
+}
+
+.addon-banner-item::after {
+    -moz-box-ordinal-group: 0 !important;
+    margin: 0 !important;
 }
 
 #appMenu-proton-update-banner {
@@ -694,11 +750,6 @@
     margin-inline: var(--arrowpanel-menuitem-inline-margin) !important;
 }
 
-#appMenu-fxa-separator {
-    opacity: 0.7 !important;
-}
-
-.addon-banner-item > .toolbarbutton-icon,
-.panel-banner-item > .toolbarbutton-icon {
+:is(.addon-banner-item, .panel-banner-item) > .toolbarbutton-icon {
     -moz-box-ordinal-group: 0 !important;
 }

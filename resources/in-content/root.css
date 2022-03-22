@@ -1,3 +1,9 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* fundamental content styles, e.g. plaintext pages. */
 
 @media (prefers-color-scheme: dark) {
@@ -25,30 +31,23 @@
     }
 }
 
-:read-only:-moz-focusring,
-:not(textarea, [contenteditable]:read-write, input[type="text"], input[type="password"], input[type="date"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="week"]):-moz-focusring {
+:read-only:focus:not(:focus-visible),
+:not(textarea, [contenteditable]:read-write, input[type="text"], input[type="password"], input[type="date"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="week"]):focus:not(:focus-visible) {
     outline: unset;
     outline-offset: unset;
 }
 
 @-moz-document plain-text-document(), media-document(all) {
-    @font-face {
-        font-family: "Overpass Mono";
-        font-style: normal;
-        font-weight: 100;
-        src: local("Overpass Mono"), local("Overpass Mono Light"), local("OverpassMono-Light");
-    }
-
     :root {
-        font-family: Overpass Mono, -moz-fixed;
-        font-size: 12;
+        font-family: Fira Code UC, Fira Code, SF Mono, -moz-fixed, monospace;
+        font-weight: 300;
     }
 
     xmp,
     pre,
     plaintext {
-        font-family: Overpass Mono, -moz-fixed;
-        font-size: 12;
+        font-family: Fira Code UC, Fira Code, SF Mono, -moz-fixed, monospace;
+        font-weight: 300;
     }
 
     img.transparent {
@@ -76,7 +75,10 @@
     }
 }
 
-:root,
-menupopup {
-    --in-content-category-outline-focus: transparent !important;
+.controlsContainer {
+    --control-focus-outline: 2px solid var(--purple-30) !important;
+}
+
+#texttracks {
+    font-family: SF Pro Text, SF Arabic, Segoe UI, sans-serif !important;
 }

@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name           Urlbar Mods
-// @version        1.5.2
+// @version        1.5.5
 // @author         aminomancer
 // @homepage       https://github.com/aminomancer/uc.css.js
 // @description    Make some minor modifications to the urlbar. See the code comments below for more details.
+// @license        This Source Code Form is subject to the terms of the Creative Commons Attribution-NonCommercial-ShareAlike International License, v. 4.0. If a copy of the CC BY-NC-SA 4.0 was not distributed with this file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 // ==/UserScript==
 
 class UrlbarMods {
@@ -28,9 +29,6 @@ class UrlbarMods {
 
         // when you type nothing but space or tab characters in the urlbar, the first result will have an empty title. consecutive whitespace characters don't add to the displayed node width so it ends up looking basically empty. we can change this by setting it to use non-breaking spaces instead of space characters, and adding an attribute "all-whitespace" to the title element. then your CSS can underline it. this is already done in uc-urlbar-results.css but if you wanna do it yourself: .urlbarView-title[all-whitespace] {text-decoration: underline}
         "underline whitespace results": true,
-
-        // simply add a separator between the urlbar results and the one-off search buttons, like the searchbar's popup has.
-        "add separator above one-off search buttons": true,
     };
     constructor() {
         if (UrlbarMods.config["add new tooltips and classes for identity icon"])
@@ -43,8 +41,6 @@ class UrlbarMods {
             this.disableUrlbarInterventions();
         if (UrlbarMods.config["sort urlbar results consistently"]) this.urlbarResultsSorting();
         if (UrlbarMods.config["underline whitespace results"]) this.underlineSpaceResults();
-        if (UrlbarMods.config["add separator above one-off search buttons"])
-            this.oneOffsSeparator();
     }
     get urlbarOneOffs() {
         return this._urlbarOneOffs || (this._urlbarOneOffs = gURLBar.view.oneOffSearchButtons);
@@ -98,12 +94,14 @@ class UrlbarMods {
             let icon_label = "";
             let tooltip = "";
             if (this._isSecureInternalUI) {
-                this._identityBox.className = "chromeUI";
+                this._identityBox.className = isInitialPage(this._uri) ? "initialPage" : "chromeUI";
                 let brandBundle = document.getElementById("bundle_brand");
                 icon_label = brandBundle.getString("brandShorterName");
                 tooltip = this._fluentStrings.chromeUI;
             } else if (this._pageExtensionPolicy) {
-                this._identityBox.className = "extensionPage";
+                this._identityBox.className = isInitialPage(this._uri)
+                    ? "initialPage"
+                    : "extensionPage";
                 let extensionName = this._pageExtensionPolicy.name;
                 icon_label = gNavigatorBundle.getFormattedString("identity.extension.label", [
                     extensionName,
@@ -152,8 +150,12 @@ class UrlbarMods {
                 this._identityBox.className = "aboutBlockedPage unknownIdentity";
                 tooltip = gNavigatorBundle.getString("identity.notSecure.tooltip");
             } else if (this._isPotentiallyTrustworthy) {
-                this._identityBox.className = "localResource";
+                this._identityBox.className = isInitialPage(this._uri)
+                    ? "initialPage"
+                    : "localResource";
                 tooltip = this._fluentStrings.localResource;
+                if (this._uri.spec.startsWith("about:reader?"))
+                    this._identityBox.classList.add("readerMode");
             } else {
                 let warnOnInsecure =
                     this._insecureConnectionIconEnabled ||
@@ -289,9 +291,7 @@ class UrlbarMods {
         function getUniqueId(prefix) {
             return prefix + (gUniqueIdSerial++ % 9999);
         }
-        let provider = gURLBar.view.controller.manager.providers.find(
-            (provider) => provider.name === "RemoteTabs"
-        );
+        let provider = gURLBar.view.controller.manager.getProvider("RemoteTabs");
         UrlbarUtils.RESULT_PAYLOAD_SCHEMA[
             UrlbarUtils.RESULT_TYPE.REMOTE_TAB
         ].properties.clientType = {
@@ -395,14 +395,6 @@ class UrlbarMods {
                 index = highlightIndex + highlightLength;
             }
         };
-    }
-    oneOffsSeparator() {
-        document.querySelector(".urlbarView-body-outer").after(
-            _ucUtils.createElement(document, "menuseparator", {
-                class: "searchbar-separator",
-                id: "urlbar-search-one-offs-separator",
-            })
-        );
     }
 }
 

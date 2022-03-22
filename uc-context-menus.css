@@ -1,10 +1,20 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* this stylesheet controls the appearance of context menus,
 select dropdowns, autocomplete popups, and similar menus.
 rules in here should match similar rules in userContent.css,
 since devtools and certain system pages contain the same elements,
 but *inside* of content documents rather than in the UI where userChrome.css can style them. */
 
-menupopup:not(.PanelUI-subView) {
+menupopup {
+    -moz-window-shadow: none !important;
+}
+
+menupopup:not([type="arrow"]) {
     appearance: none !important;
     background: var(--menupopup-background) !important;
     border: none !important;
@@ -13,7 +23,7 @@ menupopup:not(.PanelUI-subView) {
     overflow: visible !important;
 }
 
-menupopup:not(.PanelUI-subView) menu > menupopup {
+menupopup:not([type="arrow"]) menu > menupopup {
     margin-inline-start: var(--menupopup-child-margin-inline-start) !important;
     margin-block-start: var(--menupopup-child-margin-block-start) !important;
 }
@@ -26,7 +36,7 @@ menupopup:not([height], .in-menulist) {
     background-color: var(--menu-background-color) !important;
     color: var(--menu-color) !important;
     border-radius: var(--menupopup-border-radius) !important;
-    box-shadow: var(--menupopup-shadow) !important;
+    box-shadow: var(--uc-menupopup-shadow) !important;
 }
 
 .menupopup-arrowscrollbox[orient="vertical"][overflowing="true"] {
@@ -36,7 +46,7 @@ menupopup:not([height], .in-menulist) {
     ) !important;
 }
 
-menupopup:not(.PanelUI-subView) :is(menuitem, menu),
+menupopup:not([type="arrow"]) :is(menuitem, menu),
 panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem {
     appearance: none !important;
     color: var(--menu-color) !important;
@@ -49,7 +59,7 @@ panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem {
     padding-inline-start: 5px !important;
 }
 
-menupopup:not(.PanelUI-subView) :is(menuitem, menu)[disabled="true"],
+menupopup:not([type="arrow"]) :is(menuitem, menu)[disabled="true"],
 panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem[disabled="true"] {
     appearance: none !important;
     color: var(--menu-disabled-color) !important;
@@ -61,13 +71,13 @@ panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem[disabled="tr
     fill: currentColor;
 }
 
-menupopup:not(.PanelUI-subView) :is(menuitem, menu) .menu-iconic-left {
+menupopup:not([type="arrow"]) :is(menuitem, menu) .menu-iconic-left {
     padding: 0 !important;
     appearance: none !important;
     margin-inline-end: 0 !important;
 }
 
-menupopup:not(.PanelUI-subView) :is(menuitem, menu) .menu-iconic-icon {
+menupopup:not([type="arrow"]) :is(menuitem, menu) .menu-iconic-icon {
     margin-inline: var(--context-iconic-margin);
 }
 
@@ -100,15 +110,15 @@ moz-input-box > menupopup .context-menu-add-engine:not([image]) .menu-iconic-ico
     list-style-image: url(chrome://userchrome/content/search-glass.svg);
 }
 
-menupopup:not(.PanelUI-subView) menugroup {
+menupopup:not([type="arrow"]) menugroup {
     padding: 0 !important;
     background-color: transparent !important;
 }
 
-menupopup:not(.PanelUI-subView) .menu-right {
+menupopup:not([type="arrow"]) .menu-right {
     appearance: none !important;
     padding: 0px !important;
-    margin-right: var(--menu-right-margin) !important;
+    margin-inline-end: var(--menu-right-margin) !important;
     min-width: 0 !important;
     width: var(--menu-right-size) !important;
     height: var(--menu-right-size) !important;
@@ -122,30 +132,34 @@ menupopup:not(.PanelUI-subView) .menu-right {
     list-style-image: var(--menu-right-img) !important;
 }
 
-menupopup:not(.PanelUI-subView) menu[disabled="true"] > .menu-right {
+menupopup:not([type="arrow"]) menu[disabled="true"] > .menu-right {
     visibility: collapse;
 }
 
-menupopup:not(.PanelUI-subView) :is(menu, menuitem)[_moz-menuactive="true"]:not([disabled="true"]) {
+menupopup:not([type="arrow"]) :is(menu, menuitem)[_moz-menuactive="true"]:not([disabled="true"]) {
     appearance: none !important;
     background-color: var(--menuitem-hover-background-color) !important;
 }
 
-menupopup:not(.PanelUI-subView) :is(menu, menuitem)[_moz-menuactive="true"][disabled="true"] {
+menupopup:not([type="arrow"]) :is(menu, menuitem)[_moz-menuactive="true"][disabled="true"] {
     background: none !important;
     appearance: none !important;
 }
 
-.subviewbutton[_moz-menuactive="true"][disabled="true"] {
+:is(menuitem, menu).subviewbutton[_moz-menuactive="true"][disabled="true"] {
     color: var(--menu-disabled-color) !important;
 }
 
-menu.subviewbutton:not([disabled="true"])[_moz-menuactive="true"]:active {
-    background: var(--menuitem-hover-background-color) !important;
+:where(menuitem, menu).subviewbutton:not([disabled="true"])[_moz-menuactive="true"] {
+    background: var(--panel-item-hover-bgcolor) !important;
+}
+
+menuitem.subviewbutton:not([disabled="true"])[_moz-menuactive="true"]:active {
+    background: var(--panel-item-active-bgcolor) !important;
     box-shadow: none !important;
 }
 
-menupopup:not(.PanelUI-subView) menuseparator {
+menupopup:not([type="arrow"]) menuseparator {
     appearance: none !important;
     border-color: var(--menu-separator-color) !important;
     margin: var(--menu-separator-margin) !important;
@@ -172,7 +186,7 @@ menupopup menuitem:is([type="checkbox"], [type="radio"])::before {
     background-size: contain;
     border: 1px solid var(--checkbox-border-color);
     background-color: var(--checkbox-unchecked-bgcolor);
-    color: var(--in-parent-primary-button-text-color);
+    color: var(--uc-parent-primary-button-text-color);
 }
 
 menupopup .unified-nav-current[type="radio"][checked="true"] {
@@ -271,14 +285,27 @@ panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem {
     font: menu !important;
 }
 
+#ContentSelectDropdown menucaption {
+	background: none !important;
+}
+
 :is(#ContentSelectDropdown, menupopup.in-menulist, .contentSelectDropdown-ingroup)
     :where(menu, menuitem, menucaption).menuitem-iconic,
-panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem[image] {
+panel[type="autocomplete-richlistbox"]
+    > richlistbox
+    > richlistitem:is([originaltype="insecureWarning"], [image]:not([image=""], [image="null"])) {
     padding-inline: 0 8px !important;
 }
 
-panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem[image] :is(.ac-site-icon, .ac-type-icon) {
+panel[type="autocomplete-richlistbox"]
+    > richlistbox
+    > richlistitem:is([originaltype="insecureWarning"], [image]:not([image=""], [image="null"]))
+    :is(.ac-site-icon, .ac-type-icon):not([type="null"]) {
     margin-inline: var(--context-iconic-margin) !important;
+}
+
+#PopupAutoComplete > richlistbox > richlistitem[originaltype="insecureWarning"] > .ac-site-icon {
+    fill: currentColor !important;
 }
 
 :is(#ContentSelectDropdown, menupopup.in-menulist, .contentSelectDropdown-ingroup)
@@ -289,28 +316,18 @@ panel[type="autocomplete-richlistbox"] > richlistbox > richlistitem[image] :is(.
 
 :is(#ContentSelectDropdown, menupopup.in-menulist, .contentSelectDropdown-ingroup) menucaption {
     font-weight: inherit !important;
-    min-height: 22px !important;
-    border-bottom: 1px solid var(--menu-separator-color) !important;
-    margin-block: 1px 2px;
-    padding-inline: 5px !important;
-}
-
-:is(#ContentSelectDropdown, menupopup.in-menulist, .contentSelectDropdown-ingroup)
-    menucaption:first-child {
-    margin-bottom: 2px !important;
-    border-bottom: 1px solid var(--menu-separator-color) !important;
+    min-height: 26px !important;
+    padding-block: 1px 2px !important;
+    padding-inline: 0 !important;
+    color: var(--panel-description-color) !important;
 }
 
 :is(#ContentSelectDropdown, menupopup.in-menulist, .contentSelectDropdown-ingroup)
     menucaption
     > :is(label, .menu-iconic-text, .menu-text) {
+    padding: 4px 5px !important;
+    border-bottom: 1px solid var(--menu-separator-color) !important;
     font-weight: var(--uc-font-weight-bold, 600) !important;
-}
-
-:is(#ContentSelectDropdown, menupopup.in-menulist, .contentSelectDropdown-ingroup)
-    menucaption:first-child
-    > :is(label, .menu-iconic-text, .menu-text) {
-    margin-block: -3px 0 !important;
 }
 
 #ContentSelectDropdown > menupopup {
@@ -384,11 +401,12 @@ panel[type="autocomplete-richlistbox"] > richlistbox {
     panel menulist {
         appearance: none !important;
         background-color: var(--button-bgcolor) !important;
-        padding: 2px 2px 2px 8px !important;
+        padding: var(--panel-menulist-padding, 4px 6px) !important;
         min-height: 24px !important;
         color: inherit !important;
         fill: currentColor !important;
         outline-offset: unset !important;
+        outline: revert !important;
         border-radius: var(--context-menuitem-border-radius) !important;
     }
 
@@ -430,7 +448,7 @@ menuitem[disabled="true"] :is(.menu-accel, .menu-iconic-accel) {
     opacity: 0.6;
 }
 
-menupopup:not(.PanelUI-subView) menuseparator:last-child {
+menupopup:not([type="arrow"]) menuseparator:last-child {
     display: none;
 }
 
@@ -452,15 +470,15 @@ menupopup:not(.PanelUI-subView) menuseparator:last-child {
 /* a way to reduce the number of menuseparators in the context menu, if they feel excessive */
 @supports -moz-bool-pref("userChrome.contextmenu.reduce-menuseparators") {
     #contentAreaContextMenu
-    > menuseparator[id]:not(#context-sep-open, #context-media-sep-commands, #context-sep-copylink, #spell-suggestions-separator, #context-sep-selectall) {
+        > menuseparator[id]:not(#context-sep-open, #context-media-sep-commands, #context-sep-copylink, #spell-suggestions-separator, #context-sep-selectall) {
         display: none !important;
     }
 
     @-moz-document url(chrome://browser/content/browser.xhtml)
-        {
-            #contentAreaContextMenu menuseparator:not([id]) {
-                display: -moz-box !important;
-            }
+    {
+        #contentAreaContextMenu menuseparator:not([id]) {
+            display: -moz-box !important;
+        }
     }
 }
 

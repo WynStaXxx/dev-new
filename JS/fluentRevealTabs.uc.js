@@ -10,11 +10,11 @@
     class FluentRevealEffect {
         // user configuration
         static options = {
-            showOnSelectedTab: false, // whether to show the effect if the tab is selected. this doesn't look good with my theme so I set it to false.
-            showOnPinnedTab: false, // whether to show the effect on pinned tabs. likewise, doesn't look good with my theme but may work with yours.
-            lightColor: "hsla(224, 100%, 80%, 0.05)", // the color of the gradient. default is sort of a faint baby blue. you may prefer just white, e.g. hsla(0, 0%, 100%, 0.05)
+            showOnSelectedTab: true, // whether to show the effect if the tab is selected. this doesn't look good with my theme so I set it to false.
+            showOnPinnedTab: true, // whether to show the effect on pinned tabs. likewise, doesn't look good with my theme but may work with yours.
+            lightColor: "hsla(0, 0%, 100%, 0.30)", // the color of the gradient. default is sort of a faint baby blue. you may prefer just white, e.g. hsla(0, 0%, 100%, 0.05)
             gradientSize: 50, // how wide the radial gradient is. 50px looks best with my theme, but default proton tabs are larger so you may want to try 60 or even 70.
-            clickEffect: false, // whether to show an additional light burst when clicking a tab. I don't recommend this since it doesn't play nicely with dragging & dropping if you release while your mouse is outside the tab box. I can probably fix this issue but I don't think it's a great fit for tabs anyway.
+            clickEffect: true, // whether to show an additional light burst when clicking a tab. I don't recommend this since it doesn't play nicely with dragging & dropping if you release while your mouse is outside the tab box. I can probably fix this issue but I don't think it's a great fit for tabs anyway.
         };
 
         /**

@@ -1,3 +1,9 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* controls the appearance of individual tabs and elements inside a tab. */
 
 #TabsToolbar .tabbrowser-tab {
@@ -7,39 +13,39 @@
 
 /* different tab background colors in various states */
 .tabbrowser-tab:not([selected]):is(:hover, .keyboard-focused-tab, [open]) .tab-background {
-    background: var(--tab-hover) !important;
+    background: var(--uc-tab-hover) !important;
 }
 
 .tabbrowser-tab:is([visuallyselected], [selected]) .tab-background {
-    background: var(--tab-selected) !important;
+    background: var(--uc-tab-selected) !important;
 }
 
 .tabbrowser-tab:focus:not([aria-activedescendant]) > .tab-stack > .tab-background,
 .tabbrowser-tab.keyboard-focused-tab[selected] > .tab-stack > .tab-background {
-    background: var(--tab-focused-hover) !important;
+    background: var(--uc-tab-focused-hover) !important;
 }
 
 .tabbrowser-tab:not([selected])[pinned]:is(:hover, .keyboard-focused-tab, [open]) .tab-background {
-    background: var(--tab-pinned-hover) !important;
+    background: var(--uc-tab-pinned-hover) !important;
 }
 
 .tabbrowser-tab:not([selected], [pinned], [multiselected], :hover, .keyboard-focused-tab, [open])
     .tab-background {
-    background: var(--tab-background) !important;
+    background: var(--uc-tab-background) !important;
 }
 
 .tabbrowser-tab:not([selected])[pinned] .tab-background {
-    background: var(--tab-pinned) !important;
+    background: var(--uc-tab-pinned) !important;
 }
 
 .tabbrowser-tab[multiselected]:not([selected], [pinned], :hover, .keyboard-focused-tab, [open])
     .tab-background {
-    background: var(--tab-multi) !important;
+    background: var(--uc-tab-multi) !important;
 }
 
 .tabbrowser-tab[multiselected]:not([selected], [pinned]):is(:hover, .keyboard-focused-tab, [open])
     .tab-background {
-    background: var(--tab-multi-hover) !important;
+    background: var(--uc-tab-multi-hover) !important;
 }
 
 /* block our animations while tabs are being dragged & dropped */
@@ -50,6 +56,7 @@
 
 .tab-background {
     border: none !important;
+    outline: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
     opacity: 1 !important;
@@ -102,15 +109,12 @@
     display: none !important;
 }
 
-.tab-label[attention]:not([selected="true"]) {
-    font-weight: unset !important;
+.tab-label-container {
+    height: revert !important;
 }
 
-.tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
-.tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-    background-image: unset !important;
-    background-position: unset !important;
-    background-repeat: unset !important;
+.tab-label[attention]:not([selected="true"]) {
+    font-weight: unset !important;
 }
 
 /* highlight unread tabs; requires italicizeUnreadTabs.uc.js */
@@ -127,72 +131,58 @@
     overflow: hidden;
 }
 
-#TabsToolbar .tabbrowser-tab[selected],
-#TabsToolbar
-    .tabbrowser-tab[selected]
-    :is(.tab-stack, .tab-background, .tab-content, .tab-loading-burst) {
-    border-top-right-radius: 5px !important;
-    border-top-left-radius: 5px !important;
-}
-
-#TabsToolbar .tabbrowser-tab[multiselected]:not([pinned]),
-#TabsToolbar
-    .tabbrowser-tab[multiselected]:not([pinned])
-    :is(.tab-stack, .tab-background, .tab-content, .tab-loading-burst) {
-    border-top-left-radius: 5px !important;
-    border-top-right-radius: 5px !important;
-}
-
-#TabsToolbar .tabbrowser-tab:not([selected]):is(:hover, .keyboard-focused-tab, [open]),
-#TabsToolbar
-    .tabbrowser-tab:not([selected]):is(:hover, .keyboard-focused-tab, [open])
-    :is(.tab-stack, .tab-background, .tab-content, .tab-loading-burst) {
-    border-top-right-radius: 5px !important;
-}
-
 /* unround top left/right corner for first/last tab.
-this is complicated because we don't want to unround a tab unless it's really in place as the first/last tab.
-that means we don't unround tabs when 1) a tab is being dragged/dropped, 2) a tab is being moved by an animation,
-or 3) tabs are being closed from the end and the mouse is still in the navbar,
-because in this condition tabs are prevented from flexing to the end by the closing tabs spacer, until mouse leaves the navbar. */
+this is complicated because we don't want to unround a tab unless it's really in place as the first/last tab,
+and is stuck up against the left/right edge of the tab strip. that means we don't unround tabs when
+1) a tab is being dragged/dropped, 2) a tab is being moved by an animation,
+or 3) tabs are being closed from the end via mouse, and the mouse is still in the navbar,
+because tabs are prevented from flexing to the end until the user's mouse leaves the navbar. */
 #TabsToolbar
     #tabbrowser-tabs:not([using-closing-tabs-spacer])
     .tabbrowser-tab[last-visible-tab]:not([justmoved], [style*="transform"]),
 #TabsToolbar
     #tabbrowser-tabs:not([using-closing-tabs-spacer])
     .tabbrowser-tab[last-visible-tab]:not([justmoved], [style*="transform"])
-    :is(.tab-stack, .tab-background, .tab-content, .tab-loading-burst),
-#TabsToolbar
-    #tabbrowser-tabs:not([using-closing-tabs-spacer])
-    .tabbrowser-tab[last-visible-tab]:not([justmoved], [style*="transform"]):is(:hover, .keyboard-focused-tab, [open]),
-#TabsToolbar
-    #tabbrowser-tabs:not([using-closing-tabs-spacer])
-    .tabbrowser-tab[last-visible-tab]:not([justmoved], [style*="transform"]):is(:hover, .keyboard-focused-tab, [open])
     :is(.tab-stack, .tab-background, .tab-content, .tab-loading-burst) {
     border-top-right-radius: 0 !important;
 }
 
+/* remove the first tab's rounded top left corner */
 #TabsToolbar
     #tabbrowser-tabs:not([using-closing-tabs-spacer])
     .tabbrowser-tab[first-visible-tab]:not([justmoved], [style*="transform"]),
 #TabsToolbar
     #tabbrowser-tabs:not([using-closing-tabs-spacer])
     .tabbrowser-tab[first-visible-tab]:not([justmoved], [style*="transform"])
-    :is(.tab-stack, .tab-background, .tab-content, .tab-loading-burst),
-#TabsToolbar
-    #tabbrowser-tabs:not([using-closing-tabs-spacer])
-    .tabbrowser-tab[first-visible-tab]:not([justmoved], [style*="transform"]):is(:hover, .keyboard-focused-tab, [open]),
-#TabsToolbar
-    #tabbrowser-tabs:not([using-closing-tabs-spacer])
-    .tabbrowser-tab[first-visible-tab]:not([justmoved], [style*="transform"]):is(:hover, .keyboard-focused-tab, [open])
     :is(.tab-stack, .tab-background, .tab-content, .tab-loading-burst) {
     border-top-left-radius: 0 !important;
 }
 
+/* when there are no unpinned tabs and the tab strip is not overflowing,
+the tab strip won't be filled since they don't flex to fill the tab strip.
+so the last tab should have a rounded corner since it won't be touching the end of the tab strip. */
 #TabsToolbar
     #tabbrowser-tabs
     #tabbrowser-arrowscrollbox:not([overflowing="true"])
     .tabbrowser-tab[last-visible-tab][pinned]
+    :is(.tab-stack, .tab-background, .tab-content, .tab-loading-burst),
+/* when the last tab has its max-width property set, it means tab sizing
+has been set to some value less than what would fill the tab strip,
+by _lockTabSizing in tabbrowser-tabs.js. this prevents the tabs from snapping
+to fill the space when the user closes tabs with the mouse, in order to keep
+the close button under the mouse. if the tab strip is overflowing, this is achieved
+by adding a spacer (using-closing-tabs-spacer) at the end of the tab strip.
+if it's not overflowing, this is achieved by setting the max-width of every tab
+to the current width of the tab that was just closed. this way the tabs don't expand
+when a tab is removed, until the user's mouse has moved out of the tab strip.
+since the tabs no longer fill the entire tab strip, we give the final tab a rounded top-right corner.
+you can see this at work by making a new tab and opening 5 tabs. select the first tab,
+then close tab 2 by clicking its close button. then close tabs 3 and 4 without moving the mouse.
+the tabs' width will not expand until you move your mouse out of the tab strip. */
+#TabsToolbar
+    #tabbrowser-tabs
+    #tabbrowser-arrowscrollbox:not([overflowing="true"])
+    .tabbrowser-tab[last-visible-tab][style*="max-width"]
     :is(.tab-stack, .tab-background, .tab-content, .tab-loading-burst) {
     border-top-right-radius: 5px !important;
 }
@@ -280,6 +270,15 @@ or else they'll end up being covered up or showing through things they shouldn't
     display: none;
 }
 
+/* we can't apply the rounded outside corner to the last tab when tabs' max-width is manually set
+to prevent tabs from flexing, while the user is closing tabs with the mouse button.
+it's kinda complicated but basically the outside corner would add 5px to the last tab,
+which would make the tab strip overflow for like 1ms which changes the way tabbrowser-tabs.js works.
+if we apply the corner in this situation when closing a tab to the right of the active tab,
+while the tab strip is not overflowing, then there'll be no animation when the tab closes.
+which would look very ugly so it's not worth it. this means there'll be rounded inside corners
+on the last tab when it's not stretching to the right edge of the tab strip,
+but unfortunately it won't have rounded outside corners unless the tab strip is overflowing. */
 #TabsToolbar
     #tabbrowser-tabs
     #tabbrowser-arrowscrollbox:not([overflowing="true"])
@@ -364,12 +363,12 @@ which could represent a security risk if you accidentally use the wrong containe
 @supports -moz-bool-pref("userChrome.tabs.rounded-outer-corners.disabled") {
     .tabbrowser-tab .tab-stack::before,
     .tabbrowser-tab .tab-stack::after {
-        display: none;
+        display: none !important;
     }
 
     #TabsToolbar .tabbrowser-tab,
     #TabsToolbar .tabbrowser-tab .tab-stack {
-        overflow: hidden;
+        overflow: hidden !important;
     }
 }
 
@@ -467,34 +466,37 @@ does nothing without restoreTabSoundButton.uc.js since sound icon no longer exis
 
 /* tab buttons are generally styled the same */
 .tab-close-button,
-.tab-icon-sound:not([pictureinpicture]) {
+.tab-icon-sound {
+    width: 16px !important;
+    height: 16px !important;
+    padding: 0 !important;
     opacity: 0 !important;
-    fill: white !important;
-    fill-opacity: 0 !important;
+    fill: currentColor !important;
     border-radius: var(--tab-button-border-radius, 2px) !important;
 }
 
-.tab-close-button:hover {
-    opacity: 1 !important;
-}
-
-.tab-icon-sound:is([soundplaying], [muted]) {
-    padding: 0 !important;
+.tab-close-button {
+    -moz-box-ordinal-group: 0;
+    display: block !important;
+    -moz-context-properties: fill, fill-opacity, stroke, stroke-opacity !important;
+    position: relative;
+    margin-inline: 0 -16px !important;
+    list-style-image: url(chrome://userchrome/content/textbox-clear.svg) !important;
+    fill-opacity: 0 !important;
+    stroke-opacity: 0.6 !important;
 }
 
 .tab-icon-sound {
     display: -moz-inline-box !important;
-    width: 16px !important;
-    height: 16px !important;
     list-style-image: none !important;
     background-image: url(chrome://userchrome/content/audioUnmutedButton.svg) !important;
     background-size: 12px !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     list-style-image: none !important;
-    -moz-context-properties: fill !important;
+    -moz-context-properties: fill, fill-opacity !important;
     -moz-box-ordinal-group: 2 !important;
-    fill: currentColor !important;
+    fill-opacity: 0.6 !important;
 }
 
 .tab-icon-sound[muted] {
@@ -514,37 +516,37 @@ does nothing without restoreTabSoundButton.uc.js since sound icon no longer exis
     background-repeat: no-repeat !important;
 }
 
-:is(.tab-icon-sound, .tab-close-button):hover {
+.tab-close-button:hover {
     background-color: var(--arrowpanel-dimmed) !important;
-    opacity: 1 !important;
+    stroke-opacity: 1 !important;
+}
+
+.tab-icon-sound:hover {
+    background-color: var(--arrowpanel-dimmed) !important;
+    fill-opacity: 1 !important;
 }
 
 .tabbrowser-tab:is(:hover, .keyboard-focused-tab, [open])
-    :is(.tab-icon-sound, .tab-close-button):not(:hover) {
-    opacity: 0.6 !important;
+    :is(.tab-icon-sound, .tab-close-button) {
+    opacity: 1 !important;
 }
 
 .tabbrowser-tab:is(:hover, .keyboard-focused-tab, [open])
     :is(.tab-icon-sound, .tab-close-button):hover:active {
     background-color: var(--arrowpanel-dimmed-further) !important;
-    opacity: 1 !important;
 }
 
 /* for the picture in picture button to mute/unmute tabs with proton, you need to follow the restore tab sound button instructions on my repo's readme */
-.tabbrowser-tab:not(:hover, .keyboard-focused-tab, [open]) .tab-icon-sound[pictureinpicture] {
+.tabbrowser-tab:not(:hover, .keyboard-focused-tab, [open], [justmoved]) .tab-icon-sound[pictureinpicture] {
     background-image: url(chrome://userchrome/content/tab-picture-in-picture.svg) !important;
     background-size: 12px !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
+    border-radius: revert !important;
 }
 
-.tab-icon-sound:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]):not(:hover) {
-    opacity: 0.6 !important;
-}
-
-:root:not([customizing])
-    .tab-icon-sound:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]):not(:hover):-moz-window-inactive {
-    opacity: 0.5 !important;
+.tab-icon-sound:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]) {
+    opacity: 1 !important;
 }
 
 .tabbrowser-tab:is(:hover, .keyboard-focused-tab, [open])
@@ -558,19 +560,17 @@ does nothing without restoreTabSoundButton.uc.js since sound icon no longer exis
     border-radius: var(--tab-button-border-radius, 2px) !important;
 }
 
-.tabbrowser-tab .tab-icon-sound[pictureinpicture]:hover {
-    opacity: 1 !important;
-    background-color: var(--arrowpanel-dimmed) !important;
-}
-
 .tabbrowser-tab:is(:hover, .keyboard-focused-tab, [open])
-    .tab-icon-sound[pictureinpicture][soundplaying] {
+    .tab-icon-sound[pictureinpicture][soundplaying],
+.tabbrowser-tab[selected][justmoved]:not([pinned]) .tab-icon-sound[pictureinpicture][soundplaying] {
     background-image: url(chrome://userchrome/content/audioUnmutedButton.svg) !important;
 }
 
 .tabbrowser-tab:is(:hover, .keyboard-focused-tab, [open]) .tab-icon-sound[pictureinpicture][muted],
 .tabbrowser-tab:is(:hover, .keyboard-focused-tab, [open])
-    .tab-icon-sound[pictureinpicture][soundplaying][muted] {
+    .tab-icon-sound[pictureinpicture][soundplaying][muted],
+.tabbrowser-tab[selected][justmoved]:not([pinned]) .tab-icon-sound[pictureinpicture][muted],
+.tabbrowser-tab[selected][justmoved]:not([pinned]) .tab-icon-sound[pictureinpicture][soundplaying][muted] {
     background-image: url(chrome://userchrome/content/audioMutedButton.svg) !important;
 }
 
@@ -617,31 +617,36 @@ so in other words it won't show if audio is playing until you hover the general 
     margin-right: -16px !important;
     z-index: 1 !important;
     visibility: visible !important;
-    opacity: 0.6 !important;
+    opacity: 1 !important;
 }
 
+/* attention indicator */
 .tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
 .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-    background-image: url(chrome://userchrome/content/indicator-tab-attention.svg);
-    background-position: right 6px top 4px !important;
+    background-image: url(chrome://userchrome/content/indicator-tab-attention-purple.svg) !important;
+    background-position: right 4px top 4px !important;
+    background-size: 10px !important;
     background-repeat: no-repeat;
 }
 
-.tab-close-button {
-    -moz-box-ordinal-group: 0;
-    display: block !important;
-    -moz-context-properties: fill, fill-opacity, stroke !important;
-    position: relative;
-    margin-inline: 0 -16px !important;
-    width: 16px !important;
-    height: 16px !important;
-    padding: 0 !important;
-    list-style-image: url(chrome://userchrome/content/textbox-clear.svg) !important;
-}
-
-.tabbrowser-tab:not([pinned]):is(:hover, .keyboard-focused-tab, [open])
-    .tab-close-button:not(:hover, :active) {
-    opacity: 0.6 !important;
+/* tab crashed indicator */
+.tabbrowser-tab[crashed] > .tab-stack > .tab-content::after {
+    top: 4px;
+    right: 4px;
+    content: "";
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    width: 10px;
+    height: 10px;
+    z-index: 2;
+    -moz-context-properties: fill, stroke;
+    stroke: var(--warning-icon-detail);
+    fill: var(--warning-icon-background);
+    background-image: url(chrome://userchrome/content/devtools/error-small-two-tone.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* tab buttons are animated with opacity and transformation */
@@ -673,7 +678,12 @@ so in other words it won't show if audio is playing until you hover the general 
     transform: translateX(25px) scale(0.5) !important;
 }
 
-.tabbrowser-tab .tab-throbber:not([busy], [progress]) {
+.tabbrowser-tab .tab-label:not([fadein]),
+.tabbrowser-tab .tab-throbber:not([fadein]) {
+    display: none !important;
+}
+
+.tabbrowser-tab .tab-throbber:not([busy]) {
     opacity: 0 !important;
     pointer-events: none !important;
     transform: translateX(-15px) scale(0.5) !important;
@@ -696,104 +706,91 @@ so in other words it won't show if audio is playing until you hover the general 
 }
 
 /* this pref enables a special loading throbber animation that spins instead of bouncing horizontally */
-@supports (-moz-bool-pref("userChrome.tabs.new-loading-spinner-animation")) {
-    @keyframes uc-tab-throbber-spinner {
-        to {
-            rotate: 360deg;
-        }
+
+@keyframes uc-tab-throbber-spinner {
+    to {
+        rotate: 360deg;
     }
+}
 
-    .tab-throbber {
-        display: block !important;
-        position: relative !important;
-    }
+:root[sessionrestored] .tab-throbber[fadein] {
+    display: block !important;
+    position: relative !important;
+}
 
-    /* the handling of SVG animations seems to be in constant flux.
-    sometimes CSS animations embedded in SVGs with the <style> tag stop working in certain icons.
-    other times, the animateTransform or animate tags seem to break.
-    I believe this is because of changes in how elements are assumed to be "active" in various documents.
-    SVG documents need to be treated differently from XUL and HTML documents and I guess this is an area of vigorous development.
-    so sometimes it seems like components of SVG documents are treated as inactive elements,
-    and the animation doesn't repaint automatically at a calculated or specified framerate.
-    instead the animation only refreshes when you interact with it with your mouse or something.
-    this isn't normal obviously, and shouldn't be a problem in any release builds of firefox.
-    but if you use Nightly, as I recommend you do if you're using this theme, you may run into this problem on certain nightly builds.
-    so far I've seen it 3 times and with 3 different scenarios, so there's nothing really predictable about it.
-    it's always been fixed very quickly, but just in case you get stuck on a version with broken animations,
-    I'm leaving multiple rule options in here. I made different versions of this animation to circumvent the issue.
-    I've never seen all 3 of these methods broken at the same time.
-    uncomment one of the 2 alternate rules below if you run into problems.
-    you can do the same thing with the all-tabs-menu loading icons in the next ruleset below. */
-    .tab-throbber::before {
-        content: "" !important;
-        display: -moz-box !important;
-        -moz-context-properties: fill, fill-opacity !important;
-        width: 16px !important;
-        height: 16px !important;
-        animation: none !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
+/* I made different versions of this animation to circumvent an SVG issue. if
+   you update Firefox and the throbber animation stops working, uncomment one of
+   the 2 alternate rules below. one of the 3 should work. you can do the same
+   thing with the all-tabs-menu loading icons in the next ruleset below. */
+:root[sessionrestored] .tab-throbber[throbber-loaded]::before {
+    content: "" !important;
+    display: -moz-box !important;
+    -moz-context-properties: fill, fill-opacity !important;
+    width: 16px !important;
+    height: 16px !important;
+    animation: none !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 
-        /* ANIMATION METHOD #1:
-        this version of the animation is implemented by an <animateTransform> tag.
-        it's the most efficient method but it has broken once for a couple days due to an erroneous nightly patch. */
+    /* ANIMATION METHOD #1:
+       this version of the animation is implemented by an <animateTransform> tag.
+       it's the most efficient method but it has broken once for a couple days due to an erroneous nightly patch. */
 
-        /* background-image: url(chrome://userchrome/content/loading-spinner.svg) !important; */
+    background-image: url(chrome://userchrome/content/loading-spinner.svg) !important;
 
-        /* ---------------------------------- */
+    /* ---------------------------------- */
 
-        /* ANIMATION METHOD #2:
-        the animation is written in a <style> tag embedded inside the SVG code.
-        it's visually identical to method #1, but in terms of performance it is slightly less efficient.
-        the animation is applied to the compound vector path via the inline style attribute,
-        giving the element a CSS property "animation" that references the animation in the style tag.
-        use this if method #1 randomly breaks, *temporarily*. mozilla should patch such a bug quickly. */
+    /* ANIMATION METHOD #2:
+       the animation is written in a <style> tag embedded inside the SVG code.
+       it's visually identical to method #1, but in terms of performance it is slightly less efficient.
+       the animation is applied to the compound vector path via the inline style attribute,
+       giving the element a CSS property "animation" that references the animation in the style tag.
+       use this if method #1 randomly breaks, *temporarily*. mozilla should patch such a bug quickly. */
 
-        background-image: url(chrome://userchrome/content/loading-spinner-css.svg) !important;
+    /* background-image: url(chrome://userchrome/content/loading-spinner-css.svg) !important; */
 
-        /* ---------------------------------- */
+    /* ---------------------------------- */
 
-        /* ANIMATION METHOD #3:
-        use this if neither method #1 nor #2 works; or if you want to adjust the speed or other properties of the animation.
-        in this version, the SVG image itself is not animated at all. it's completely static.
-        instead, the entire animation is added post hoc via CSS in this user stylesheet. therefore, it should never break.
-        I believe this method is significantly less efficient than the two aforementioned methods,
-        because you don't get to use optimizations that stop SVG animations playing when they're not active.
-        my understanding is the animation is basically running 24/7 even when the spinner isn't visible,
-        because the spinner technically is always visible in order to support the sliding tab-hover transitions.
-        you can't see it but it's not hidden in the DOM sense. so I think that makes this method a last resort. */
+    /* ANIMATION METHOD #3:
+       use this if neither method #1 nor #2 works; or if you want to adjust the speed or other properties of the animation.
+       in this version, the SVG image itself is not animated at all. it's completely static.
+       instead, the entire animation is added post hoc via CSS in this user stylesheet. therefore, it should never break.
+       I believe this method is significantly less efficient than the two aforementioned methods,
+       because you don't get to use optimizations that stop SVG animations playing when they're not active.
+       my understanding is the animation is basically running 24/7 even when the spinner isn't visible,
+       because the spinner technically is always visible in order to support the sliding tab-hover transitions.
+       you can't see it but it's not hidden in the DOM sense. so I think that makes this method a last resort. */
 
-        /* background-image: url(chrome://userchrome/content/loading-spinner-static.svg) !important;
+    /* background-image: url(chrome://userchrome/content/loading-spinner-static.svg) !important;
         animation: 0.85s steps(12, end) uc-tab-throbber-spinner infinite !important; */
-    }
+}
 
-    /* all tabs menu & vertical tabs pane (script) */
-    .tab-throbber-tabslist:is([busy], [progress]) {
-        /* METHOD #1: */
-        /* list-style-image: url(chrome://userchrome/content/loading-spinner.svg) !important; */
+/* all tabs menu & vertical tabs pane (script) */
+:root[uc-loading-spinner] .tab-throbber-tabslist:is([busy], [progress]) {
+    /* ANIMATION METHOD #1: */
+    list-style-image: url(chrome://userchrome/content/loading-spinner.svg) !important;
 
-        /* METHOD #2: */
-        list-style-image: url(chrome://userchrome/content/loading-spinner-css.svg) !important;
+    /* ANIMATION METHOD #2: */
+    /* list-style-image: url(chrome://userchrome/content/loading-spinner-css.svg) !important; */
 
-        /* METHOD #3: */
-        /* animation: 0.85s steps(12, end) uc-tab-throbber-spinner infinite !important;
+    /* ANIMATION METHOD #3: */
+    /* animation: 0.85s steps(12, end) uc-tab-throbber-spinner infinite !important;
         list-style-image: url(chrome://userchrome/content/loading-spinner-static.svg) !important; */
-    }
+}
 
-    .tab-throbber-tabslist[busy] {
-        opacity: 0.8 !important;
-        fill: var(--busy-throbber-fill) !important;
-    }
+:root[uc-loading-spinner] .tab-throbber-tabslist[busy] {
+    opacity: 0.8 !important;
+    fill: var(--busy-throbber-fill) !important;
+}
 
-    .tab-throbber-tabslist[progress] {
-        opacity: 1 !important;
-        fill: var(--loading-throbber-fill) !important;
-    }
+:root[uc-loading-spinner] .tab-throbber-tabslist[progress] {
+    opacity: 1 !important;
+    fill: var(--loading-throbber-fill) !important;
 }
 
 /* hide the close button for pinned tabs. if the last visible tab is pinned, it doesn't hide the close button since the tab doesn't get shrunk in that case.
 this requires you to make a pref in about:config and set it to true: "userChrome.tabs.pinned-tabs.close-buttons.disabled" */
-@supports (-moz-bool-pref("userChrome.tabs.pinned-tabs.close-buttons.disabled")) {
+@supports -moz-bool-pref("userChrome.tabs.pinned-tabs.close-buttons.disabled") {
     .tabbrowser-tab[pinned] .tab-close-button {
         display: none !important;
     }

@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name           Undo Recently Closed Tabs in Tab Context Menu
-// @version        2.0.1
+// @version        2.0.2
 // @author         aminomancer
 // @homepage       https://github.com/aminomancer/uc.css.js
 // @description    Adds new menus to the context menu that appears when you right-click a tab (in the tab bar or in the TreeStyleTabs sidebar): one lists recently closed tabs so you can restore them, and another lists recently closed windows. These are basically the same functions that exist in the history toolbar button's popup, but I think the tab context menu is a more convenient location for them. Also optionally adds a context menu to the history panel's subview pages for "Recently closed tabs" and "Recently closed windows" with various functions for interacting with the closed tabs and their session history. You can right-click a closed tab item to open the context menu, then click "Remove from List" to get rid of it. You can click "Remove from History" to not only remove the closed tab item, but also forget all of the tab's history — that is, every page it navigated to. The same can be done with recently closed windows. From this menu you can also restore a tab in a new window or private window, bookmark a closed tab/window, and more.
+// @license        This Source Code Form is subject to the terms of the Creative Commons Attribution-NonCommercial-ShareAlike International License, v. 4.0. If a copy of the CC BY-NC-SA 4.0 was not distributed with this file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 // ==/UserScript==
 
 class UndoListInTabmenu {
@@ -574,6 +575,9 @@ class UndoListInTabmenu {
 }
 
 class RecentlyClosedPanelContext {
+    sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
     constructor() {
         this.config = UndoListInTabmenu.config;
         let { l10n } = this.config;
@@ -687,15 +691,15 @@ class RecentlyClosedPanelContext {
             default:
         }
     }
-    observe(subject, topic, data) {
-        if (topic === "sessionstore-closed-objects-changed")
-            setTimeout(() => {
-                let sel =
-                    "panelview[visible]:is(#appMenu-library-recentlyClosedTabs, #appMenu-library-recentlyClosedWindows, #PanelUI-history)";
-                let el = document.querySelector(sel);
-                if (!el) return;
-                this.updatePanel(el);
-            }, 15);
+    async observe(subject, topic, data) {
+        if (this.updateTimer || topic !== "sessionstore-closed-objects-changed") return;
+        this.updateTimer = await this.sleep(15);
+        this.updatePanel(
+            document.querySelector(
+                "panelview[visible]:is(#appMenu-library-recentlyClosedTabs, #appMenu-library-recentlyClosedWindows, #PanelUI-history)"
+            )
+        );
+        delete this.updateTimer;
     }
     onPopupShowing(e) {
         let button = this.menupopup.triggerNode;

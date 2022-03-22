@@ -1,5 +1,18 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* controls just about every aspect of panelmultiview panels.
 includes general rules as well as rules for specific panels, e.g. tracking protection panel. */
+
+panel {
+    --panel-separator-color: var(--desaturate-dimmed) !important;
+    --uc-content-button-background: var(--uc-arrowpanel-faint);
+    --uc-content-button-background-hover: var(--uc-arrowpanel-dimmed);
+    --uc-content-button-background-active: var(--uc-arrowpanel-dimmed-further);
+}
 
 /* hide the stupid outline shown on panels when transitioning from subview to subview */
 /* see here: https://searchfox.org/mozilla-central/source/browser/components/customizableui/PanelMultiView.jsm#1037 */
@@ -58,12 +71,25 @@ this connects with .panel-subview-body rules in userChrome.au.css */
     max-height: 0 !important;
 }
 
-.protections-popup-list {
-    -moz-box-flex: 0 !important;
+#protections-popup .panel-viewstack {
+    min-height: inherit !important;
+}
+
+#protections-popup-socialblockView,
+#protections-popup-cookiesView,
+#protections-popup-trackersView,
+#protections-popup-fingerprintersView,
+#protections-popup-cryptominersView {
+    max-height: calc(50vh + var(--height-offset)) !important;
+    min-height: inherit !important;
 }
 
 .protections-popup-list.empty {
     padding: 16px !important;
+}
+
+.protections-popup-list.empty image {
+    color: var(--panel-description-color);
 }
 
 /* .panel-subview-body + toolbarseparator {
@@ -87,13 +113,12 @@ this connects with .panel-subview-body rules in userChrome.au.css */
     margin-inline: -20.4px !important;
 }
 
-#permission-popup[type="arrow"][side="top"],
-#permission-popup[type="arrow"][side="bottom"] {
+#permission-popup {
     margin-inline: -18px !important;
 }
 
 #identity-popup[type="arrow"][side="top"][connection="chrome"] {
-    margin-inline: -44px !important;
+    margin-inline: -46px !important;
 }
 
 #customizationui-widget-panel[viewId="PanelUI-profiler"][type="arrow"][side="top"] {
@@ -118,9 +143,12 @@ this connects with .panel-subview-body rules in userChrome.au.css */
     margin-top: revert !important;
 }
 
-#extension-notification-panel,
-#notification-popup {
+#extension-notification-panel {
     margin-top: -1px !important;
+}
+
+#notification-popup {
+    margin-top: calc(-1px - var(--uc-panel-top-offset, 0px)) !important;
 }
 
 panel[type="arrow"][side="top"] {
@@ -131,12 +159,147 @@ panel[type="arrow"][side="top"] {
     margin-top: -9px;
 }
 
+#confirmation-hint,
+#protections-popup[toast] {
+    --arrowpanel-border-radius: var(--panel-border-radius-mini, 3px) !important;
+}
+
 #BMB_bookmarksPopup {
     margin-top: -12px !important;
 }
 
-.subviewbutton {
-    min-height: var(--subviewbutton-height) !important;
+#editBookmarkPanel[on-toolbar-button] {
+    margin-top: -12px;
+}
+
+#protections-popup {
+    --popup-width: 33em !important;
+}
+
+/* protect the arrowpanel animations from future updates */
+@supports -moz-bool-pref("xul.panel-animations.enabled") {
+    @media (prefers-reduced-motion: no-preference) {
+        :root[operatingsystem="macosx"] panel[type="arrow"]:not([animate="false"]),
+        :root[operatingsystem="macosx"] #BMB_bookmarksPopup:not([animate="false"]) {
+            transition-property: -moz-window-transform, -moz-window-opacity !important;
+            transition-duration: 0.18s, 0.18s !important;
+            transition-timing-function: var(--animation-easing-function), ease-out !important;
+        }
+
+        @media (-moz-mac-big-sur-theme: 0) {
+            :root[operatingsystem="macosx"] panel[type="arrow"]:not([animate="false"]),
+            :root[operatingsystem="macosx"] #BMB_bookmarksPopup:not([animate="false"]) {
+                -moz-window-opacity: 0 !important;
+                -moz-window-transform: translateY(-70px) !important;
+            }
+
+            :root[operatingsystem="macosx"]
+                panel[type="arrow"][side="bottom"]:not([animate="false"]),
+            :root[operatingsystem="macosx"]
+                #BMB_bookmarksPopup[side="bottom"]:not([animate="false"]) {
+                -moz-window-transform: translateY(70px) !important;
+            }
+        }
+
+        :root[operatingsystem="macosx"] panel[type="arrow"][animate][animate="open"],
+        :root[operatingsystem="macosx"] #BMB_bookmarksPopup[animate][animate="open"] {
+            -moz-window-opacity: 1 !important;
+            transition-duration: 0.18s, 0.18s !important;
+            -moz-window-transform: none !important;
+            transition-timing-function: var(--animation-easing-function), ease-in-out !important;
+        }
+
+        :root[operatingsystem="macosx"] panel[type="arrow"][animate][animate="cancel"],
+        :root[operatingsystem="macosx"] #BMB_bookmarksPopup[animate][animate="cancel"] {
+            -moz-window-opacity: 0 !important;
+            -moz-window-transform: none !important;
+        }
+
+        :root[operatingsystem]:not([operatingsystem="macosx"])
+            panel[type="arrow"]:not([animate="false"]),
+        :root[operatingsystem]:not([operatingsystem="macosx"])
+            #BMB_bookmarksPopup:not([animate="false"]) {
+            opacity: 0 !important;
+            transform: translateY(-70px) !important;
+            transition-property: transform, opacity !important;
+            transition-duration: 0.18s, 0.18s !important;
+            transition-timing-function: var(--animation-easing-function), ease-out !important;
+        }
+
+        :root[operatingsystem]:not([operatingsystem="macosx"])
+            panel[type="arrow"][side="bottom"]:not([animate="false"]),
+        :root[operatingsystem]:not([operatingsystem="macosx"])
+            #BMB_bookmarksPopup[side="bottom"]:not([animate="false"]) {
+            transform: translateY(70px) !important;
+        }
+
+        :root[operatingsystem]:not([operatingsystem="macosx"])
+            panel[type="arrow"][animate][animate="open"],
+        :root[operatingsystem]:not([operatingsystem="macosx"])
+            #BMB_bookmarksPopup[animate][animate="open"] {
+            opacity: 1 !important;
+            transition-duration: 0.18s, 0.18s !important;
+            transform: none !important;
+            transition-timing-function: var(--animation-easing-function), ease-in-out !important;
+        }
+
+        :root[operatingsystem]:not([operatingsystem="macosx"])
+            panel[type="arrow"][animate][animate="cancel"],
+        :root[operatingsystem]:not([operatingsystem="macosx"])
+            #BMB_bookmarksPopup[animate][animate="cancel"] {
+            transform: none !important;
+        }
+    }
+}
+
+.subview-subheader {
+    padding-block: var(--subview-subheader-padding, 4px) !important;
+}
+
+.subviewbutton-back {
+    min-height: revert !important;
+    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+}
+
+.subviewbutton-back > .toolbarbutton-icon {
+    width: 16px;
+    height: 16px;
+    -moz-context-properties: inherit !important;
+}
+
+.messageCloseButton {
+    appearance: none;
+    background-color: transparent;
+    -moz-context-properties: fill, fill-opacity !important;
+    fill-opacity: 0.6;
+    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+    padding: var(--arrowpanel-menuitem-padding) !important;
+    min-height: revert !important;
+    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+}
+
+.messageCloseButton > .toolbarbutton-icon {
+    padding: 0 !important;
+    margin-inline-end: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+    outline: revert !important;
+}
+
+.panel-header > .subviewbutton-back,
+.messageCloseButton {
+    -moz-context-properties: fill, fill-opacity !important;
+    fill-opacity: 0.6;
+}
+
+.panel-header > .subviewbutton-back:not([disabled], [open], :hover:active):is(:hover, :focus-visible),
+.messageCloseButton:not([disabled], [open], :hover:active):is(:hover, :focus-visible) {
+    fill-opacity: 0.8;
+}
+
+.panel-header > .subviewbutton-back:not([disabled]):is([open], :hover:active),
+.messageCloseButton:not([disabled]):is([open], :hover:active) {
+    fill-opacity: 1;
 }
 
 .panel-footer > button:not([disabled]):is(:hover, :focus-visible) {
@@ -153,6 +316,16 @@ panel[type="arrow"][side="top"] {
     );
 }
 
+.messageCloseButton:not([disabled], [open], :active):is(:hover, :focus-visible) {
+    color: inherit !important;
+    background-color: var(--panel-item-hover-bgcolor) !important;
+}
+
+.messageCloseButton:not([disabled]):not([disabled]):is([open], :hover:active) {
+    color: inherit !important;
+    background-color: var(--panel-item-active-bgcolor) !important;
+}
+
 #protections-popup-content {
     margin-bottom: 0 !important;
     padding-block: 4px !important;
@@ -167,7 +340,8 @@ panel[type="arrow"][side="top"] {
 }
 
 .protections-popup-category-label {
-    margin-inline-start: 6px !important;
+    padding-inline-start: var(--arrowpanel-subviewbutton-iconic-gap, 8px) !important;
+    margin-inline-start: 0 !important;
 }
 
 .protections-popup-category:focus-visible,
@@ -181,12 +355,13 @@ panel[type="arrow"][side="top"] {
 }
 
 #protections-popup-footer-protection-type-label {
-    margin-inline-end: 4px !important;
+    margin: var(--arrowpanel-menuitem-margin) !important;
+    padding: 0 0 0 var(--arrowpanel-menuitem-padding-inline) !important;
 }
 
 #protections-popup-trackers-blocked-counter-box {
-    padding-inline-end: 6px !important;
-    margin-inline-end: 4px !important;
+    margin: var(--arrowpanel-menuitem-margin) !important;
+    padding: 0 var(--arrowpanel-menuitem-padding-inline) !important;
 }
 
 #protections-popup-category-list {
@@ -282,7 +457,10 @@ panel[type="arrow"][side="top"] {
 .popup-notification-button-container > button {
     background-color: var(--button-hover-bgcolor) !important;
     border: 1px solid transparent !important;
-    padding: 7.25px 16px !important;
+    padding: 6px 16px !important;
+    min-height: var(--subviewbutton-height, 28px) !important;
+    -moz-box-align: center !important;
+    -moz-box-pack: center !important;
 }
 
 .popup-notification-button-container > button[disabled] {
@@ -322,12 +500,29 @@ panel[type="arrow"][side="top"] {
     background-color: var(--button-primary-active-bgcolor) !important;
 }
 
-.panel-info-button[checked]:not([disabled]):is(:hover, :focus-visible) {
-    background-color: var(--arrowpanel-dimmed-even-further) !important;
+.panel-info-button:not(:hover)[checked] {
+    background-color: var(--toolbarbutton-checked-background) !important;
+}
+
+.panel-info-button:not([disabled]):is(:hover, :focus-visible) {
+    background-color: var(--toolbarbutton-hover-background) !important;
+}
+
+.panel-info-button[checked]:not([disabled]):is(:hover, :focus-visible),
+.panel-info-button:not([disabled]):is([open], :hover:active) {
+    background-color: var(--toolbarbutton-active-background) !important;
+}
+
+.panel-info-button[checked]:not([disabled]):is([open], :hover:active) {
+    background-color: var(--toolbarbutton-checked-active-background) !important;
 }
 
 #protections-popup-info-button {
     margin-inline-end: 10px !important;
+}
+
+#protections-popup:not([toast]) #protections-popup-main-header-label {
+    margin-inline-start: 10px !important;
 }
 
 #protections-popup .panel-footer {
@@ -340,6 +535,7 @@ panel[type="arrow"][side="top"] {
     flex: 1 !important;
     font-weight: normal !important;
     border-inline: 0 !important;
+    margin: revert !important;
 }
 
 .panel-footer.popup-notification-button-container
@@ -419,28 +615,9 @@ popupnotificationcontent {
     opacity: 1 !important;
 }
 
-panel {
-    --panel-separator-color: var(--desaturate-dimmed) !important;
-}
-
 popupnotification checkbox .checkbox-check {
-    appearance: none !important;
-    min-width: 10px !important;
-    min-height: 10px !important;
-    width: 14px !important;
-    height: 14px !important;
-    margin-inline-end: 4px !important;
-    padding: 0.5px;
+    margin-inline-end: var(--context-checkbox-margin-end) !important;
     border-radius: 2px !important;
-    margin: 0;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-popupnotification checkbox .checkbox-check[checked] {
-    background-image: url(chrome://userchrome/content/check.svg);
-    -moz-context-properties: fill, fill-opacity !important;
-    fill: currentColor !important;
 }
 
 .addon-installed-notification-content > checkbox,
@@ -448,33 +625,25 @@ popupnotification .popup-notification-body > .popup-notification-checkbox {
     margin-inline-start: 0 !important;
 }
 
-popupnotification .popup-notification-checkbox .checkbox-check {
-    width: 14px !important;
-    height: 14px !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: contain !important;
-}
-
-popupnotification .popup-notification-checkbox .checkbox-check[checked] {
-    background-image: url(chrome://userchrome/content/check.svg) !important;
-    -moz-context-properties: fill, fill-opacity !important;
-    fill: currentColor !important;
-}
-
 .popup-notification-checkbox > .checkbox-label-box > .checkbox-label {
-    margin-block: 0 !important;
     opacity: revert !important;
-    color: var(--panel-description-color);
 }
 
-#eom-allow-auto-updates .subviewradio {
-    background: none !important;
+.subviewradio {
+    padding-inline-start: 0 !important;
+    min-height: var(--menuitem-height) !important;
+    border: 0 !important;
 }
 
 .subviewradio > .radio-check {
     border-color: var(--uc-checkbox-border-color) !important;
     background-color: var(--uc-checkbox-unchecked-bgcolor) !important;
+    margin-inline: var(--context-iconic-margin) !important;
+}
+
+.subviewradio > .radio-label-box {
+    margin: 0 !important;
+    padding-block: 0 !important;
 }
 
 .subviewradio > .radio-check[selected] {
@@ -499,6 +668,19 @@ popupnotification .popup-notification-checkbox .checkbox-check[checked] {
 
 .subviewradio:not([focused="true"]):hover:active .radio-check[selected] {
     background-color: var(--uc-checkbox-checked-active-bgcolor) !important;
+}
+
+.eom-radio-group .subviewradio {
+    background: none !important;
+    border: 1px solid transparent !important;
+}
+
+.eom-radio-group .subviewradio .radio-check {
+    margin-inline: 5px !important;
+}
+
+.eom-radio-group .radio-label {
+    padding: 0 !important;
 }
 
 popupnotification progress {
@@ -530,6 +712,10 @@ popupnotification progress[paused]::-moz-progress-bar {
     background-color: var(--desaturate-dimmed-further);
 }
 
+popupnotificationcontent label[control]:not([hidden]) + menulist {
+    margin-top: 4px !important;
+}
+
 /* "downloading and verifying add-on..." goes above the addon install progress bar */
 #addon-progress-notification .popup-notification-origin.header + .popup-notification-description {
     margin-block: 3px !important;
@@ -550,6 +736,7 @@ popupnotification progress[paused]::-moz-progress-bar {
 :is(.popup-notification-learnmore-link, panel .text-link):is(:hover, :focus-visible),
 #protections-popup .text-link:is(:hover, :focus-visible) {
     text-decoration: underline !important;
+    outline: revert !important;
 }
 
 .popup-subitem {
@@ -558,7 +745,8 @@ popupnotification progress[paused]::-moz-progress-bar {
 }
 
 .permission-popup-permission-remove-button {
-    padding: 2px !important;
+    padding: var(--panel-menulist-padding, 4px 6px) !important;
+    min-height: 24px !important;
     background-color: var(--button-bgcolor) !important;
     color: inherit !important;
     opacity: 1 !important;
@@ -571,7 +759,6 @@ popupnotification progress[paused]::-moz-progress-bar {
 
 .permission-popup-permission-remove-button[disabled="true"] {
     opacity: 0.6 !important;
-    pointer-events: none !important;
 }
 
 .permission-popup-permission-remove-button[disabled="true"] > .button-box {
@@ -579,37 +766,45 @@ popupnotification progress[paused]::-moz-progress-bar {
 }
 
 .permission-popup-permission-remove-button > .button-box {
-    margin: 1px !important;
-    border-radius: 500px;
-    width: 16px;
-    height: 16px;
-}
-
-.permission-popup-permission-remove-button:is(:hover, :focus-visible) > .button-box {
-    background-color: var(--arrowpanel-dimmed);
+    margin-block: 1px !important;
+    margin-inline: var(--menulist-dropmarker-margin, 8px 0) !important;
+    width: 12px;
+    max-width: 12px;
+    height: 12px;
 }
 
 .permission-popup-permission-remove-button > label {
-    margin: 1px 6px !important;
-    height: 16px !important;
-    line-height: 16px !important;
+    margin: 1px 0 !important;
+    text-align: revert !important;
 }
 
 .permission-popup-permission-remove-button > .button-box > .button-icon {
-    width: 16px !important;
-    height: 16px !important;
+    width: 12px !important;
+    height: 12px !important;
     padding: 0 !important;
-    list-style-image: url(chrome://userchrome/content/textbox-clear.svg) !important;
+    list-style-image: url(chrome://userchrome/content/close-big.svg) !important;
+    fill-opacity: inherit;
     -moz-context-properties: fill, fill-opacity !important;
-    fill-opacity: 0 !important;
 }
 
-.permission-popup-permission-remove-button:is(:hover, :focus-visible) {
+.permission-popup-permission-remove-button:not([disabled="true"]):is(:hover, :focus-visible) {
     background-color: var(--button-hover-bgcolor) !important;
 }
 
-.permission-popup-permission-remove-button:hover:active {
+.permission-popup-permission-remove-button:not([disabled="true"]):hover:active {
     background-color: var(--button-active-bgcolor) !important;
+}
+
+.permission-popup-permission-remove-button {
+    fill-opacity: 0.6;
+}
+
+.permission-popup-permission-remove-button:not([disabled="true"]):where(:hover) {
+    fill-opacity: 0.8;
+}
+
+.permission-popup-permission-remove-button:not([disabled="true"]):is(:focus-visible, :hover:active) {
+    fill-opacity: 1;
 }
 
 .permission-popup-permission-item > .popup-subitem {
@@ -622,22 +817,17 @@ popupnotification progress[paused]::-moz-progress-bar {
     margin-inline-start: 24px !important;
 }
 
-#permission-popup-permissions-content {
-    padding-inline: 12px 4px !important;
-    padding-block: 4px 0 !important;
-    padding: 4px 8px 0 12px !important;
-}
-
-.permission-popup-permission-item {
-    margin-block: 4px !important;
-}
-
-#permission-popup-storage-access-permission-list-header {
-    margin-block: 4px 0 !important;
-}
-
 .permission-popup-section {
     padding-bottom: 8px !important;
+}
+
+#permission-popup-permissions-content {
+    padding: 4px 8px 0 8px !important;
+}
+
+.permission-popup-permission-label,
+.permission-popup-permission-header-label {
+    margin-inline-start: var(--arrowpanel-subviewbutton-iconic-gap) !important;
 }
 
 #permission-popup-permission-reload-hint,
@@ -651,20 +841,8 @@ popupnotification progress[paused]::-moz-progress-bar {
     margin-top: 0 !important;
 }
 
-.subviewbutton-back > .toolbarbutton-icon {
-    width: 16px;
-    height: 16px;
-}
-
-.panel-header > .subviewbutton-back,
-.panel-header > .subviewbutton-back > .toolbarbutton-icon {
-    -moz-context-properties: fill, fill-opacity !important;
-    fill-opacity: 0.6;
-}
-
-.panel-header > .subviewbutton-back:is(:hover, :focus-visible),
-.panel-header > .subviewbutton-back:is(:hover, :focus-visible) > .toolbarbutton-icon {
-    fill-opacity: 0.8;
+.permission-popup-section menulist {
+    margin-block: 0 !important;
 }
 
 #plugins-notification-icon[extraAttr="inactive"] > .plugin-icon {
@@ -676,45 +854,43 @@ popupnotification progress[paused]::-moz-progress-bar {
 }
 
 .identity-popup-security-connection {
-    /* background-position: 2em 40% !important; */
-    background-size: 18px auto !important;
-    font-size: 1.15em;
+    background-size: 16px auto !important;
 }
 
 #identity-popup-securityView .identity-popup-connection-secure.security-view,
 #identity-popup-securityView .identity-popup-connection-not-secure.security-view {
-    margin-inline-start: 28px !important;
+    margin-inline-start: calc(16px + var(--arrowpanel-subviewbutton-iconic-gap, 8px)) !important;
 }
 
 #identity-popup-securityView .identity-popup-security-connection {
-    background-position: 5px center !important;
-    padding-block: 4px !important;
-    margin-block: 5px 0 !important;
-    margin-inline: 3px !important;
+    background-position: left center !important;
+    padding: var(--arrowpanel-menuitem-padding-block) 0 !important;
+    margin: 0 var(--arrowpanel-menuitem-padding-inline) !important;
+    margin-bottom: calc(0px - var(--arrowpanel-menuitem-padding-block)) !important;
 }
 
-#identity-popup-securityView .identity-popup-security-connection description {
-    margin-inline-start: 28px !important;
+.identity-popup-security-connection :where(description, label) {
+    margin-inline-start: calc(16px + var(--arrowpanel-subviewbutton-iconic-gap, 8px)) !important;
 }
 
 #identity-popup-mainView .identity-popup-security-connection {
-    background-position: 5px center !important;
-    min-height: 34px !important;
+    background-position: 0 center !important;
     -moz-box-pack: center !important;
 }
 
 #identity-popup-mainView
     #identity-popup-security-button[disabled]
     .identity-popup-security-connection {
-    min-height: 18px !important;
-}
-
-#identity-popup .subviewbutton-nav {
-    padding-block: 0 !important;
+    min-height: 16px !important;
 }
 
 #identity-popup-security-button {
     margin-bottom: revert !important;
+    padding: 0 var(--arrowpanel-menuitem-padding-inline) !important;
+}
+
+#identity-popup-security-button > .identity-button {
+    padding-block: var(--arrowpanel-menuitem-padding-block) !important;
 }
 
 #identity-popup-security-button[disabled="true"] {
@@ -732,11 +908,11 @@ popupnotification progress[paused]::-moz-progress-bar {
     flex-flow: column nowrap !important;
     justify-content: center !important; */
     -moz-box-align: center !important;
-    margin-inline: 3px !important;
+    margin-inline: 0 !important;
 }
 
 #identity-popup-mainView .identity-popup-security-connection description {
-    margin-inline-start: 28px !important;
+    margin-inline-start: calc(16px + var(--arrowpanel-subviewbutton-iconic-gap, 8px)) !important;
 }
 
 #identity-popup-mainView .identity-popup-security-connection .upgraded {
@@ -750,12 +926,8 @@ popupnotification progress[paused]::-moz-progress-bar {
     font-size: 0.91em !important;
 }
 
-#identity-popup-security-description {
-    font-size: 12px !important;
-}
-
 #identity-popup[connection="chrome"] .identity-popup-security-connection {
-    background-image: url(chrome://branding/content/about-logo.png) !important;
+    background-image: url(chrome://userchrome/content/identity-icons-brand.svg) !important;
 }
 
 #identity-popup[connection="file"] .identity-popup-security-connection {
@@ -768,16 +940,21 @@ popupnotification progress[paused]::-moz-progress-bar {
     fill: var(--secure-color) !important;
 }
 
+#identity-popup[ciphers="weak"] .identity-popup-security-connection,
+#identity-popup[mixedcontent~="passive-loaded"][isbroken] .identity-popup-security-connection,
+#identity-popup[connection="secure-cert-user-overridden"] .identity-popup-security-connection,
+#identity-popup[connection="cert-error-page"] .identity-popup-security-connection,
 #identity-popup[connection="secure-cert-user-overridden"] .identity-popup-security-connection {
-    background-image: url(chrome://global/skin/icons/security-warning.svg) !important;
+    background-image: url(chrome://global/skin/icons/security-warning.svg);
+    -moz-context-properties: fill, stroke !important;
     fill: unset !important;
-    -moz-context-properties: fill !important;
+    stroke: var(--low-warning-icon-stroke) !important;
 }
 
 #identity-popup[connection="https-only-error-page"] .identity-popup-security-connection,
 #identity-popup[connection="cert-error-page"] .identity-popup-security-connection,
 #identity-popup[connection="net-error-page"] .identity-popup-security-connection {
-    background-image: url(chrome://userchrome/content/warning.svg) !important;
+    background-image: url(chrome://userchrome/content/warning-big.svg) !important;
 }
 
 #identity-popup[connection="extension"] .identity-popup-security-connection {
@@ -791,6 +968,12 @@ popupnotification progress[paused]::-moz-progress-bar {
     color: var(--secure-text-color) !important;
 }
 
+#identity-popup:where([connection="not-secure"])
+    .identity-popup-security-connection
+    .identity-popup-connection-not-secure.security-view[when-connection~="not-secure"] {
+    color: var(--warning-color) !important;
+}
+
 #identity-popup:where([ciphers="weak"])
     .identity-popup-security-connection
     .identity-popup-connection-not-secure.security-view[when-connection~="not-secure"],
@@ -798,12 +981,6 @@ popupnotification progress[paused]::-moz-progress-bar {
     .identity-popup-security-connection
     .identity-popup-connection-not-secure.security-view[when-connection~="not-secure"] {
     color: var(--low-warning-text-color) !important;
-}
-
-#identity-popup[connection="not-secure"]
-    .identity-popup-security-connection
-    .identity-popup-connection-not-secure.security-view[when-connection~="not-secure"] {
-    color: var(--warning-color) !important;
 }
 
 /* url bar popups */
@@ -815,15 +992,13 @@ popupnotification progress[paused]::-moz-progress-bar {
 }
 
 #protections-popup-mainView-panel-header {
-    min-height: 44px !important;
+    min-height: 40px !important;
     padding-block: 8px 4px !important;
 }
 
 #protections-popup-main-header-label {
-    display: -moz-box;
     height: auto !important;
-    -moz-box-align: center !important;
-    -moz-box-pack: center !important;
+    padding-inline: 15px !important;
 }
 
 #protections-popup[toast]
@@ -921,6 +1096,11 @@ popupnotification progress[paused]::-moz-progress-bar {
     background: var(--protections-popup-switch-on-hover-background-custom) !important;
 }
 
+.protections-popup-tp-switch:focus-visible {
+    outline: var(--focus-outline) !important;
+    outline-offset: var(--focus-outline-offset) !important;
+}
+
 .protections-popup-tp-switch:not([enabled]):hover:active {
     background: var(--protections-popup-switch-off-active-background-custom) !important;
 }
@@ -929,50 +1109,8 @@ popupnotification progress[paused]::-moz-progress-bar {
     background: var(--protections-popup-switch-on-active-background-custom) !important;
 }
 
-#identity-popup-mainView .subviewbutton-nav[disabled="true"]::after {
-    display: none !important;
-}
-
-#identity-popup .subviewbutton-nav::after {
-    margin-inline-end: 2px !important;
-}
-
 #identity-popup-security-expander > .button-box {
     border: none !important;
-}
-
-#identity-popup-security-description > :is(description, label, button) {
-    margin-inline: 34px !important;
-    padding-inline: 0 !important;
-    margin-block: 3px 12px !important;
-}
-
-#identity-popup-security-description > .identity-popup-warning-box {
-    font-weight: var(--uc-font-weight-semibold, 500) !important;
-}
-
-#identity-popup-mainView .identity-popup-warning-box {
-    font-size: 1em !important;
-}
-
-#identity-popup-securityView-body > .identity-popup-warning-box {
-    font-weight: var(--uc-font-weight-semibold, 500) !important;
-    background: var(--uc-warning-background);
-    padding: 4px !important;
-    margin-inline: 24px 1px !important;
-    border-radius: 3px;
-}
-
-#identity-popup-securityView-body > .identity-popup-warning-box.identity-popup-warning-yellow {
-    background: var(--low-warning-background);
-}
-
-#identity-popup-securityView-body > .identity-popup-warning-box.identity-popup-warning-gray {
-    background: var(--arrowpanel-faint);
-}
-
-:root[lwt-popup-brighttext] panel .identity-popup-warning-yellow .text-link {
-    color: var(--low-warning-text-color) !important;
 }
 
 .identity-popup-section {
@@ -1015,7 +1153,7 @@ popupnotification progress[paused]::-moz-progress-bar {
     appearance: none !important;
     color: currentColor !important;
     fill: currentColor !important;
-    background-color: var(--arrowpanel-dimmed) !important;
+    background-color: transparent !important;
     border-radius: 3px !important;
     padding: 0.15em 0.4em !important;
     margin-inline: 24px 1px !important;
@@ -1023,16 +1161,16 @@ popupnotification progress[paused]::-moz-progress-bar {
     align-self: center !important;
 }
 
-#identity-popup-multiView .panel-button:not([disabled]):is(:hover:active, [open]) {
-    background-color: var(--arrowpanel-dimmed-even-further) !important;
+#identity-popup-multiView .panel-button:not([disabled="true"]) {
+    background-color: var(--panel-item-bgcolor) !important;
 }
 
-#identity-popup-multiView .panel-button:not([disabled]):is(:hover, :focus-visible) {
-    background-color: var(--arrowpanel-dimmed-further) !important;
+#identity-popup-multiView .panel-button:not([disabled="true"]):is(:hover, :focus-visible) {
+    background-color: var(--panel-item-hover-bgcolor) !important;
 }
 
-#identity-popup-multiView .panel-button:not([disabled]) {
-    background-color: var(--arrowpanel-dimmed) !important;
+#identity-popup-multiView .panel-button:not([disabled="true"]):is(:hover:active, [open]) {
+    background-color: var(--panel-item-active-bgcolor) !important;
 }
 
 #identity-popup-multiView .panel-button[disabled="true"] {
@@ -1040,22 +1178,65 @@ popupnotification progress[paused]::-moz-progress-bar {
     pointer-events: none !important;
 }
 
+#identity-popup-mainView #identity-popup-security-description > :is(description, label, button) {
+    margin-block: 4px 8px !important;
+    margin-inline-start: calc(16px + var(--arrowpanel-subviewbutton-iconic-gap, 8px)) !important;
+    padding-inline: 0 !important;
+}
+
+#identity-popup-mainView #identity-popup-security {
+    margin-inline: 10px !important;
+    padding-inline-end: 1em !important;
+}
+
+#identity-popup-securityView .identity-popup-security-connection,
+#identity-popup-security-description > description {
+    font-weight: var(--uc-font-weight-bold, 600) !important;
+}
+
+#identity-popup-security-description > .identity-popup-warning-box {
+    font-weight: var(--uc-font-weight-semibold, 500) !important;
+}
+
+#identity-popup-mainView .identity-popup-warning-box {
+    font-size: 1em !important;
+}
+
+:root[lwt-popup-brighttext] panel .identity-popup-warning-yellow .text-link {
+    color: var(--low-warning-text-color) !important;
+}
+
 #identity-popup-securityView-body {
     display: flex;
     flex-flow: column nowrap;
     gap: 8px;
-    font-weight: var(--uc-font-weight-thin, 400);
-    font-size: 12px;
 }
 
-#identity-popup-securityView-body > button {
+#identity-popup-securityView-body > :is(button, .panel-button) {
     width: -moz-available;
-    min-height: var(--subviewbutton-height) !important;
+    min-height: var(--menuitem-height) !important;
+    margin-inline: calc(16px + var(--arrowpanel-subviewbutton-iconic-gap, 8px) - 8px) -5px !important;
 }
 
 #identity-popup-securityView-body > :is(description, label, button) {
     margin-block: 0 !important;
-    margin-inline-start: 28px !important;
+    margin-inline-start: calc(16px + var(--arrowpanel-subviewbutton-iconic-gap, 8px)) !important;
+}
+
+#identity-popup-securityView-body > .identity-popup-warning-box {
+    font-weight: var(--uc-font-weight-semibold, 500) !important;
+    background-color: var(--uc-warning-background);
+    padding: 6px 8px !important;
+    margin-inline: calc(16px + var(--arrowpanel-subviewbutton-iconic-gap, 8px) - 8px) -5px !important;
+    border-radius: 3px;
+}
+
+#identity-popup-securityView-body > .identity-popup-warning-box.identity-popup-warning-yellow {
+    background-color: var(--low-warning-background);
+}
+
+#identity-popup-securityView-body > .identity-popup-warning-box.identity-popup-warning-gray {
+    background-color: var(--panel-item-bgcolor);
 }
 
 #identity-popup-securityView-body > description#identity-popup-content-verifier {
@@ -1073,13 +1254,8 @@ popupnotification progress[paused]::-moz-progress-bar {
     padding-inline-start: 16px;
 }
 
-panel .header,
-#identity-popup-security-description > description {
+panel .header {
     font-weight: var(--uc-font-weight-bold, 600) !important;
-}
-
-.panel-view-body-unscrollable {
-    overflow-y: scroll !important;
 }
 
 #notification-popup menulist {
@@ -1102,243 +1278,6 @@ panel .header,
 
 #webRTC-previewWarning-learnMore {
     margin-block: 0 4px !important;
-}
-
-#downloadsPanel-mainView {
-    min-width: revert !important;
-    width: revert !important;
-}
-
-#downloadsListBox {
-    width: 56ch !important;
-    margin: var(--arrowpanel-menuitem-inline-margin) 0 !important;
-}
-
-#downloadsRichListBox {
-    padding: var(--arrowpanel-menuitem-inline-margin) 0 !important;
-}
-
-#emptyDownloads {
-    padding-block: 1.25em !important;
-    padding-inline: 16px 20px !important;
-}
-
-#downloadsPanel-mainView {
-    padding: 0 !important;
-}
-
-#downloadsFooterButtons:not([hidden]) {
-    display: flex !important;
-    flex-flow: row nowrap;
-    padding-block: var(--arrowpanel-menuitem-inline-margin) !important;
-    margin: 0 var(--arrowpanel-menuitem-inline-margin) !important;
-    border-top: 1px solid var(--panel-separator-color) !important;
-    gap: var(--arrowpanel-menuitem-inline-margin) !important;
-    --button-hover-bgcolor: var(--in-content-button-background);
-    --button-active-bgcolor: var(--in-content-button-background-hover);
-}
-
-#downloadsFooterButtons > toolbarseparator {
-    display: none !important;
-}
-
-#downloadsFooterButtons > button {
-    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
-    margin: 0 !important;
-    flex-grow: 1;
-    padding: 6px 8px !important;
-    -moz-context-properties: fill, fill-opacity;
-    fill: currentColor;
-}
-
-#downloadsFooterButtons > button > .button-box {
-    display: flex !important;
-    flex-flow: row nowrap;
-    align-items: center;
-}
-
-#downloadsFooterButtons > button .button-icon {
-    margin-inline: 0 6px;
-    width: 16px;
-    height: 16px;
-}
-
-#downloadsHistory {
-    list-style-image: url(chrome://userchrome/content/skin/sort.svg);
-}
-
-#clearDownloadsPanel {
-    list-style-image: url(chrome://userchrome/content/delete.svg);
-}
-
-richlistitem.download-state > toolbarseparator {
-    visibility: collapse !important;
-}
-
-richlistitem.download-state {
-    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    margin: 0 var(--arrowpanel-menuitem-inline-margin) !important;
-    border: 0 !important;
-    outline: 0 !important;
-    background: none !important;
-}
-
-richlistitem.download-state {
-    min-height: 60px !important;
-    height: 60px !important;
-    -moz-box-align: center !important;
-    border: none !important;
-}
-
-.downloadMainArea {
-    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
-}
-
-richlistitem.download-state .downloadMainArea {
-    padding-inline: 12px 4px !important;
-}
-
-.downloadsPanelFooterButton:hover {
-    outline: none !important;
-}
-
-richlistitem.download-state[state="1"][exists] .downloadMainArea:hover,
-richlistitem.download-state:not([verdict]) > .downloadButton:hover,
-richlistitem.download-state[verdict]:hover {
-    background-color: unset !important;
-}
-
-richlistitem.download-state[state="1"][exists]:is(:hover, :focus-within),
-richlistitem.download-state:is([verdict], .openWhenFinished):is(:hover, :focus-within) {
-    background: var(--download-button-hover-bg) !important;
-}
-
-richlistitem.download-state[state="1"][exists]:hover:active,
-richlistitem.download-state:is([verdict], .openWhenFinished):hover:active {
-    background: var(--download-button-active-bg) !important;
-}
-
-panel richlistitem.download-state[state="1"]:not([exists]) .downloadTarget {
-    color: var(--panel-description-color);
-}
-
-panel richlistitem.download-state .downloadDetails {
-    opacity: 1 !important;
-    color: var(--panel-description-color);
-}
-
-#downloadsListBox .downloadContainer {
-    min-height: 60px !important;
-}
-
-richlistitem.download-state > .downloadButton {
-    min-height: 60px !important;
-    min-width: 60px !important;
-    height: auto !important;
-    width: auto !important;
-    box-sizing: content-box !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: none !important;
-    border-radius: 0 !important;
-    -moz-box-align: center !important;
-    -moz-box-pack: center !important;
-}
-
-richlistitem.download-state > .downloadButton:is(:hover, :focus-visible) .button-box {
-    background: var(--in-content-button-background-hover) !important;
-}
-
-richlistitem.download-state > .downloadButton:hover:active .button-box {
-    background: var(--in-content-button-background-active) !important;
-}
-
-richlistitem.download-state > .downloadButton .button-box {
-    max-width: 34px !important;
-    height: 34px !important;
-    border-radius: var(--arrowpanel-menuitem-border-radius) !important;
-    padding: 0 !important;
-}
-
-richlistitem.download-state > .downloadButton .button-box .button-icon {
-    width: 19px !important;
-    height: auto !important;
-}
-
-.downloadIconShow .button-box .button-icon {
-    list-style-image: url(chrome://userchrome/content/material/places/folder.svg) !important;
-}
-
-.downloadIconCancel .button-box .button-icon {
-    list-style-image: url(chrome://userchrome/content/close-big.svg) !important;
-}
-
-.downloadIconRetry .button-box .button-icon {
-    list-style-image: url(chrome://userchrome/content/skin/reload.svg) !important;
-}
-
-richlistitem.download-state > .downloadButton.downloadIconCancel .button-box .button-icon {
-    width: 21px !important;
-}
-
-.downloadProgress {
-    appearance: none !important;
-    margin: 3px 0 -2px 0 !important;
-    border: 1px solid transparent !important;
-    border-radius: 16px !important;
-    height: 8px !important;
-    background-color: var(--arrowpanel-dimmed) !important;
-    overflow: hidden !important;
-}
-
-.downloadProgress[paused] {
-    background-color: var(--desaturate-dimmed) !important;
-}
-
-.downloadProgress::-moz-progress-bar {
-    background-image: none !important;
-    animation: none !important;
-}
-
-.downloadProgress:not([value="0"])::-moz-progress-bar {
-    margin: 0 !important;
-    height: 100% !important;
-    border-radius: 16px !important;
-}
-
-.downloadProgress:indeterminate::-moz-progress-bar {
-    border-radius: 0 !important;
-	background-image: linear-gradient(90deg, transparent 0%, var(--download-progress-flare-color) 25%, transparent 50%, var(--download-progress-flare-color) 75%, transparent 100%) !important;
-}
-
-.downloadProgress[paused]:indeterminate::-moz-progress-bar {
-	background-color: transparent !important;
-	background-image: none !important;
-    animation: none !important;
-    animation-play-state: paused !important;
-}
-
-/* just for downloads in the places organizer */
-@-moz-document url-prefix("chrome://browser/content/places/places.xhtml")
-{
-    richlistitem.download-state:is(:hover, :focus-within) {
-        background: hsl(230, 5%, 18%) !important;
-    }
-
-    richlistitem.download-state[selected]:not(:hover, :focus-within) {
-        background: hsl(230, 5%, 15%) !important;
-    }
-
-    richlistitem.download-state[state="1"]:not([exists]) .downloadTarget {
-        color: var(--organizer-deemphasized-color);
-    }
-
-    richlistitem.download-state .downloadDetails {
-        opacity: 1 !important;
-        color: var(--organizer-deemphasized-color);
-    }
 }
 
 /* overflow menu */
@@ -1512,34 +1451,55 @@ richlistitem.download-state > .downloadButton.downloadIconCancel .button-box .bu
 
 .panel-header > h1 {
     font-size: 1.1em !important;
-    line-height: 1.1em !important;
+    line-height: normal !important;
     font-weight: var(--uc-font-weight-bold, 600) !important;
 }
 
+#downloadsPanel:not([hasdownloads]) #emptyDownloads {
+	line-height: 1.1em !important;
+    padding-block: 0 !important;
+    color: var(--panel-description-color);
+}
+
+#downloadsPanel:not([hasdownloads]) .panel-view-body-unscrollable {
+    -moz-box-align: center !important;
+    -moz-box-pack: center !important;
+    height: 44px !important;
+}
+
 .popup-notification-description {
-    font-size: 1.1em !important;
-    line-height: 1.1em !important;
+    font-size: 1.075em !important;
+    line-height: normal !important;
     font-weight: normal !important;
+}
+
+.popup-notification-description b {
+    font-weight: var(--uc-font-weight-extrabold, 600) !important;
 }
 
 #permission-popup-mainView-panel-header,
 #identity-popup-mainView-panel-header,
 #protections-popup-mainView-panel-header,
 #eom-mainView-panel-header {
-    min-height: 44px !important;
+    min-height: 40px !important;
+    word-break: break-word !important;
 }
 
 #editBookmarkPanel > .panel-header {
-    height: 44px !important;
+    height: 40px !important;
 }
 
 :is(#identity-popup-mainView-panel-header, #eom-mainView-panel-header, #permission-popup-mainView-panel-header, #protections-popup-mainView-panel-header)
     :is(label, description) {
     font-size: 1.1em !important;
-    line-height: 1.1em !important;
+    line-height: normal !important;
     font-weight: var(--uc-font-weight-bold, 600) !important;
     margin: 0 !important;
     height: auto !important;
+}
+
+#protections-popup:not([toast]) #protections-popup-main-header-label {
+    padding-inline: 4px !important;
 }
 
 #editBookmarkPanel > .panel-header {
@@ -1562,10 +1522,6 @@ richlistitem.download-state > .downloadButton.downloadIconCancel .button-box .bu
     padding-block: 0 !important;
 }
 
-.popup-notification-description {
-    margin-block: 1px 8px !important;
-}
-
 #addon-webext-perm-list,
 #addon-webext-perm-single-entry {
     margin-block-start: 6px !important;
@@ -1586,21 +1542,26 @@ richlistitem.download-state > .downloadButton.downloadIconCancel .button-box .bu
 .identity-popup-section,
 .permission-popup-section,
 .protections-popup-section {
-    margin-inline: 4px;
+    margin-inline: var(--arrowpanel-menuitem-inline-margin);
 }
 
 #geo-access-indicator-item,
 #blocked-popup-indicator-item {
-    font-size: 0.9em !important;
-    font-weight: var(--uc-font-weight-thin) !important;
     min-height: 20px !important;
-    background: url(chrome://userchrome/content/notifications/popup-subitem.svg) left center
+    background: url(chrome://userchrome/content/notifications/popup-subitem.svg) left center/16px
         no-repeat;
+    margin-block: -2px 0.4em !important;
     margin-inline-start: 22px !important;
-    padding-inline-start: 12px !important;
+    padding-inline-start: 13px !important;
     -moz-context-properties: fill, fill-opacity;
     fill: currentColor !important;
     color: var(--panel-description-color) !important;
+    font-size: revert !important;
+}
+
+:is(#geo-access-indicator-item, #blocked-popup-indicator-item)
+    > .permission-popup-permission-label {
+    margin-block: 0 !important;
 }
 
 #protections-popup-sendReportView-heading,
@@ -1626,7 +1587,13 @@ richlistitem.download-state > .downloadButton.downloadIconCancel .button-box .bu
     margin-bottom: 6px !important;
 }
 
+#PanelUI-panic-actionlist-main-label {
+    color: var(--panel-description-color);
+    font-size: revert !important;
+}
+
 .PanelUI-panic-actionlist {
+    color: var(--panel-shortcut-color) !important;
     margin-bottom: 4px !important;
     filter: brightness(1.5);
 }
@@ -1634,6 +1601,82 @@ richlistitem.download-state > .downloadButton.downloadIconCancel .button-box .bu
 #PanelUI-panic-warning {
     color: var(--warning-color) !important;
     margin-top: 12px !important;
+}
+
+/* profiler panel */
+#PanelUI-profiler-header-bar {
+    min-height: 40px !important;
+    -moz-box-align: center !important;
+    border-bottom: 1px solid var(--panel-separator-color) !important;
+    margin: 0 var(--panel-separator-margin) !important;
+}
+
+#PanelUI-profiler-header {
+    background: none !important;
+    color: var(--panel-color) !important;
+    --arrowpanel-dimmed: var(--uc-arrowpanel-dimmed) !important;
+    --arrowpanel-dimmed-further: var(--uc-arrowpanel-dimmed-further) !important;
+    --panel-item-active-bgcolor: var(--arrowpanel-dimmed-further) !important;
+}
+
+#PanelUI-profiler-header-bar label {
+    margin-inline-start: 28px !important;
+    padding: 0 8px !important;
+    margin-block: 0 !important;
+    word-break: break-word !important;
+    font-weight: var(--uc-font-weight-bold, 600) !important;
+}
+
+.PanelUI-profiler-description-title,
+.PanelUI-profiler-content-label {
+    font-weight: var(--uc-font-weight-bold, 600) !important;
+}
+
+.PanelUI-profiler-toolbarbutton-container {
+    margin-inline: revert !important;
+}
+
+.PanelUI-profiler-button-link {
+    padding-inline: 0 !important;
+    background: none !important;
+    text-decoration: none !important;
+    color: var(--lwt-popup-brighttext-url-color) !important;
+    font-weight: var(--uc-font-weight-bold, 600) !important;
+    outline: revert !important;
+    box-shadow: revert !important;
+}
+
+.PanelUI-profiler-button-link:is(:hover, :focus-visible) {
+    text-decoration: underline !important;
+}
+
+#PanelUI-profiler-content {
+    background: var(--panel-background) !important;
+}
+
+.PanelUI-profiler-shortcut {
+    opacity: revert !important;
+    color: var(--panel-shortcut-color) !important;
+}
+
+.PanelUI-profiler-button-primary {
+    background-color: var(--uc-parent-primary-button-background) !important;
+    color: var(--uc-parent-primary-button-text-color) !important;
+    box-shadow: revert !important;
+}
+
+.PanelUI-profiler-button-primary:hover {
+    background-color: var(--uc-parent-primary-button-background-hover) !important;
+}
+
+.PanelUI-profiler-button-primary:hover:active {
+    background-color: var(--uc-parent-primary-button-background-active) !important;
+}
+
+.PanelUI-profiler-button:focus-visible {
+    box-shadow: 0 0 0 1px var(--uc-parent-primary-button-background-hover) inset,
+        0 0 0 1px var(--uc-parent-primary-button-background-hover),
+        0 0 0 4px var(--global-focus-shadow-color) !important;
 }
 
 .eom-addon-button[message-type="warning"]:not([disabled], [open]):is(:hover, :focus-visible) {
@@ -1655,19 +1698,16 @@ richlistitem.download-state > .downloadButton.downloadIconCancel .button-box .bu
 /* add icons to some panel subviewbuttons */
 #identity-popup-clear-sitedata-button {
     list-style-image: url(chrome://userchrome/content/skin/forget.svg);
-    /* list-style-image: url(chrome://userchrome/content/skin/3rdpartycookies-disabled.svg); */
-    padding-inline-start: 7.5px !important;
 }
 
 #identity-popup-more-info {
     list-style-image: url(chrome://userchrome/content/info-filled.svg);
-    padding-inline-start: 7.5px !important;
 }
 
-#identity-popup-clear-sitedata-button .toolbarbutton-icon,
-#identity-popup-more-info .toolbarbutton-icon {
-    width: 18px;
-    height: 18px;
+#identity-popup-clear-sitedata-button .toolbarbutton-icon {
+    padding: 0.5px !important;
+    width: 16px !important;
+    height: 16px !important;
 }
 
 #identity-popup-clear-sitedata-button .toolbarbutton-text,
@@ -1680,17 +1720,26 @@ richlistitem.download-state > .downloadButton.downloadIconCancel .button-box .bu
 }
 
 #protections-popup-show-report-button {
-    list-style-image: url(chrome://userchrome/content/skin/dashboard.svg);
+    list-style-image: url(chrome://userchrome/content/skin/controlcenter/dashboard.svg);
+}
+
+.subviewbutton[data-l10n-id="protections-panel-content-blocking-manage-settings"]
+    .toolbarbutton-icon {
+    list-style-image: url(chrome://userchrome/content/settings.svg);
 }
 
 #protections-popup-settings-button .protections-popup-footer-icon,
-#protections-popup-show-report-button .protections-popup-footer-icon {
+#protections-popup-show-report-button .protections-popup-footer-icon,
+.subviewbutton[data-l10n-id="protections-panel-content-blocking-manage-settings"]
+    .toolbarbutton-icon {
     width: 16px;
     height: 16px;
 }
 
 #protections-popup-settings-button .protections-popup-footer-button-label,
-#protections-popup-show-report-button .protections-popup-footer-button-label {
+#protections-popup-show-report-button .protections-popup-footer-button-label,
+.subviewbutton[data-l10n-id="protections-panel-content-blocking-manage-settings"]
+    .toolbarbutton-text {
     padding-inline-start: var(--arrowpanel-subviewbutton-iconic-gap, 8px) !important;
 }
 
@@ -1700,4 +1749,82 @@ richlistitem.download-state > .downloadButton.downloadIconCancel .button-box .bu
 
 #downloads-button-autohide-panel:is(:dir(rtl), :-moz-locale-dir(rtl)) {
     --arrowpanel-padding: 8px 8px 8px 12px !important;
+}
+
+#contextual-feature-recommendation-notification[data-notification-bucket="CFR_MILESTONE_MESSAGE"]:not([hidden]) {
+    display: flex !important;
+    align-items: center !important;
+    background: none !important;
+}
+
+#contextual-feature-recommendation-notification[data-notification-bucket="CFR_MILESTONE_MESSAGE"]
+    description {
+    transform: none !important;
+}
+
+#contextual-feature-recommendation-notification[data-notification-bucket="CFR_MILESTONE_MESSAGE"]
+    .popup-notification-button-container {
+    float: inline-end;
+    background-color: transparent;
+    flex-direction: row-reverse;
+    margin: 0 !important;
+    gap: 0 !important;
+}
+
+#contextual-feature-recommendation-notification[data-notification-bucket="CFR_MILESTONE_MESSAGE"]
+    .popup-notification-button.popup-notification-secondary-button {
+    margin: 0 !important;
+    height: 22px !important;
+    width: 22px !important;
+    padding: 0 !important;
+    align-self: center !important;
+    flex: none !important;
+    min-height: revert !important;
+    min-width: revert !important;
+    order: 1 !important;
+}
+
+#contextual-feature-recommendation-notification[data-notification-bucket="CFR_MILESTONE_MESSAGE"]
+    .popup-notification-button.popup-notification-primary-button {
+    margin: 4px !important;
+    padding: 3px 6px 3px 12px !important;
+    flex: 1 !important;
+    min-height: revert !important;
+    min-width: revert !important;
+    order: 0 !important;
+}
+
+#contextual-feature-recommendation-notification[data-notification-bucket="CFR_MILESTONE_MESSAGE"]
+    .popup-notification-button.popup-notification-primary-button::after {
+    margin-inline-start: 4px !important;
+}
+
+#contextual-feature-recommendation-notification[data-notification-category="icon_and_message"]
+    .popup-notification-body-container {
+    padding-bottom: calc(var(--arrowpanel-padding) / 2) !important;
+}
+
+#protections-popup-milestones-separator {
+    margin-top: 0 !important;
+}
+
+#protections-popup-milestones {
+    margin: var(--arrowpanel-menuitem-inline-margin) !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+}
+
+#protections-popup-milestones-content {
+	padding: var(--arrowpanel-menuitem-padding) !important;
+	background-color: var(--arrowpanel-faint) !important;
+    border-radius: var(--panel-border-radius-mini) !important;
+}
+
+#protections-popup-milestones-content:is(:hover, :focus-visible) {
+	background-color: var(--arrowpanel-dimmed) !important;
+}
+
+#protections-popup-milestones-text {
+    margin-inline: 4px !important;
 }

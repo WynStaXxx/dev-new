@@ -1,3 +1,9 @@
+/* This Source Code Form is subject to the terms of the Creative Commons
+* Attribution-NonCommercial-ShareAlike International License, v. 4.0.
+* If a copy of the CC BY-NC-SA 4.0 was not distributed with this
+* file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/
+* or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA. */
+
 /* this does nothing on its own — it requires searchModeIndicatorIcons.uc.js.
 when you switch to a one-off search engine in the urlbar, or otherwise enable search mode,
 this changes the identity icon to one matching the search engine.
@@ -35,14 +41,8 @@ and the URL to the search engine so I can find a suitable icon and set a rule fo
     --search-engine-icon: url(chrome://userchrome/content/skin/tab.svg) !important;
 }
 
-#urlbar[pageproxystate="invalid"]
-    #identity-box
-    #identity-icon-box[engine="Bookmarks"]
-    #identity-icon,
-#urlbar[pageproxystate="valid"] #identity-box #identity-icon-box[engine="Bookmarks"] #identity-icon,
-#identity-icon-box[engine="Bookmarks"] #identity-icon {
+#identity-icon-box[engine="Bookmarks"] {
     --search-engine-icon: url(chrome://userchrome/content/skin/bookmark.svg) !important;
-    margin-top: -0.6px !important;
 }
 
 /* for google */
@@ -75,46 +75,24 @@ and the URL to the search engine so I can find a suitable icon and set a rule fo
     --search-engine-icon: url(chrome://userchrome/content/engines/youtube.svg) !important;
 }
 
-/* porn */
-#identity-icon-box[engine="XVIDEOS"] {
-    --search-engine-icon: url(chrome://userchrome/content/engines/xxx.svg) !important;
+/* etc... */
+#identity-icon-box[engine="Google Translate"] {
+    --search-engine-icon: url(chrome://userchrome/content/engines/googletranslate.svg) !important;
 }
 
-/* etc... */
 #identity-icon-box[engine="GitHub"] {
     --search-engine-icon: url(chrome://userchrome/content/engines/github.svg) !important;
 }
 
-#urlbar[pageproxystate="invalid"]
-    #identity-box
-    #identity-icon-box[engine^="Wikipedia"]
-    #identity-icon,
-#urlbar[pageproxystate="valid"]
-    #identity-box
-    #identity-icon-box[engine^="Wikipedia"]
-    #identity-icon,
-#urlbar[searchmode]
-    > #urlbar-input-container
-    > #identity-box
-    #identity-icon-box[engine^="Wikipedia"]
-    #identity-icon {
-    width: 20px !important;
-    padding-inline: 1px !important;
-    margin-inline: -2px !important;
-    margin-block: 1px 0 !important;
-    --search-engine-icon: url(chrome://userchrome/content/engines/wiki.svg) !important;
+#identity-icon-box[engine^="Wikipedia"] {
+    --search-engine-icon: url(chrome://userchrome/content/engines/wikipedia.svg) !important;
 }
 
-#urlbar[pageproxystate="invalid"]
-    #identity-box
-    #identity-icon-box:is([engine="Amazon"], [engine="Amazon.com"])
-    #identity-icon,
-#urlbar[pageproxystate="valid"]
-    #identity-box
-    #identity-icon-box:is([engine="Amazon"], [engine="Amazon.com"])
-    #identity-icon,
-#identity-icon-box:is([engine="Amazon"], [engine="Amazon.com"]) #identity-icon {
-    margin-top: 1.4px !important;
+#identity-icon-box[engine="Wiktionary"] {
+    --search-engine-icon: url(chrome://userchrome/content/engines/wiktionary.svg) !important;
+}
+
+#identity-icon-box:is([engine="Amazon"], [engine="Amazon.com"]) {
     --search-engine-icon: url(chrome://userchrome/content/engines/amazon.svg) !important;
 }
 
@@ -126,32 +104,20 @@ and the URL to the search engine so I can find a suitable icon and set a rule fo
     --search-engine-icon: url(chrome://userchrome/content/engines/ebay.svg) !important;
 }
 
-#urlbar[pageproxystate="invalid"] #identity-box #identity-icon-box[engine="Netflix"] #identity-icon,
-#urlbar[pageproxystate="valid"] #identity-box #identity-icon-box[engine="Netflix"] #identity-icon,
-#identity-icon-box[engine="Netflix"] #identity-icon {
-    height: 18px !important;
+#identity-icon-box[engine="Netflix"] {
     --search-engine-icon: url(chrome://userchrome/content/engines/netflix.svg) !important;
 }
 
-#urlbar[pageproxystate="invalid"]
-    #identity-box
-    #identity-icon-box[engine="Google Maps"]
-    #identity-icon,
-#urlbar[pageproxystate="valid"]
-    #identity-box
-    #identity-icon-box[engine="Google Maps"]
-    #identity-icon,
-#identity-icon-box[engine="Google Maps"] #identity-icon {
-    height: 17px !important;
-    --search-engine-icon: url(chrome://userchrome/content/engines/maps.svg) !important;
+#identity-icon-box[engine="Google Maps"] {
+    --search-engine-icon: url(chrome://userchrome/content/engines/googlemaps.svg) !important;
 }
 
 #identity-icon-box[engine="Google Drive"] {
-    --search-engine-icon: url(chrome://userchrome/content/engines/drive.svg) !important;
+    --search-engine-icon: url(chrome://userchrome/content/engines/googledrive.svg) !important;
 }
 
 #identity-icon-box[engine="Gmail"] {
-    --search-engine-icon: url(chrome://userchrome/content/engines/mail.svg) !important;
+    --search-engine-icon: url(chrome://userchrome/content/engines/gmail.svg) !important;
 }
 
 #identity-icon-box[engine="Gatherer"] {
@@ -162,6 +128,26 @@ and the URL to the search engine so I can find a suitable icon and set a rule fo
     --search-engine-icon: url(chrome://userchrome/content/engines/scryfall.svg) !important;
 }
 
+#identity-icon-box[engine="Goatbots"] {
+    --search-engine-icon: url(chrome://userchrome/content/engines/cards.svg) !important;
+}
+
+#identity-icon-box[engine="MTGO Traders"] {
+    --search-engine-icon: url(chrome://userchrome/content/engines/swordshield.svg) !important;
+}
+
 #identity-icon-box[engine="Searchfox"] {
     --search-engine-icon: url(chrome://userchrome/content/engines/searchfox.svg) !important;
+}
+
+#identity-icon-box[engine="Bugzilla"] {
+    --search-engine-icon: url(chrome://userchrome/content/engines/bugzilla.svg) !important;
+}
+
+#identity-icon-box[engine="MDN Web Docs"] {
+    --search-engine-icon: url(chrome://userchrome/content/engines/mdnwebdocs.svg) !important;
+}
+
+#identity-icon-box[engine="Reelgood"] {
+    --search-engine-icon: url(chrome://userchrome/content/engines/reelgood.svg) !important;
 }

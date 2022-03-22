@@ -1,5 +1,4 @@
 {
-  "editor.fontSize": 18,
-"editor.wordWrap": "on",
-"editor.fontFamily": "Fira Code,",
+    "editor.fontFamily": "Victor Mono",
+    "editor.fontSize": 18
 }
