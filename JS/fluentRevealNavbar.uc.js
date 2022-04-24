@@ -4,6 +4,7 @@
 // @author         aminomancer
 // @homepage       https://github.com/aminomancer/uc.css.js
 // @description    Adds a visual effect to navbar buttons similar to the spotlight gradient effect on Windows 10's start menu tiles. When hovering over or near a button, a subtle radial gradient is applied to every button in the vicinity the mouse. This is compatible with Fluent Reveal Tabs.
+// @license        This Source Code Form is subject to the terms of the Creative Commons Attribution-NonCommercial-ShareAlike International License, v. 4.0. If a copy of the CC BY-NC-SA 4.0 was not distributed with this file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 // ==/UserScript==
 
 (function () {
@@ -11,9 +12,9 @@
         // user configuration
         static options = {
             includeBookmarks: true, // if true, show the effect on bookmarks on the toolbar
-            lightColor: "hsla(240, 93%, 68%, 0.30)", // the color of the gradient. default is sort of a faint baby blue. you may prefer just white, e.g. hsla(0, 0%, 100%, 0.05)
+            lightColor: "hsla(224, 100%, 80%, 0.15)", // the color of the gradient. default is sort of a faint baby blue. you may prefer just white, e.g. hsla(0, 0%, 100%, 0.05)
             gradientSize: 50, // how wide the radial gradient is.
-            clickEffect: true, // whether to show an additional light burst when clicking an element. (not recommended)
+            clickEffect: false, // whether to show an additional light burst when clicking an element. (not recommended)
         };
 
         // instantiate the handler for a given window

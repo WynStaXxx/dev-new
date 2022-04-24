@@ -4,17 +4,18 @@
 // @author         aminomancer
 // @homepage       https://github.com/aminomancer/uc.css.js
 // @description    Adds a visual effect to tabs similar to the spotlight gradient effect on Windows 10's start menu tiles. When hovering a tab, a subtle radial gradient is applied under the mouse. Inspired by the proof of concept here: https://www.reddit.com/r/FirefoxCSS/comments/ng5lnt/proof_of_concept_legacy_edge_like_interaction/
+// @license        This Source Code Form is subject to the terms of the Creative Commons Attribution-NonCommercial-ShareAlike International License, v. 4.0. If a copy of the CC BY-NC-SA 4.0 was not distributed with this file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 // ==/UserScript==
 
 (function () {
     class FluentRevealEffect {
         // user configuration
         static options = {
-            showOnSelectedTab: true, // whether to show the effect if the tab is selected. this doesn't look good with my theme so I set it to false.
-            showOnPinnedTab: true, // whether to show the effect on pinned tabs. likewise, doesn't look good with my theme but may work with yours.
-            lightColor: "hsla(0, 0%, 100%, 0.30)", // the color of the gradient. default is sort of a faint baby blue. you may prefer just white, e.g. hsla(0, 0%, 100%, 0.05)
+            showOnSelectedTab: false, // whether to show the effect if the tab is selected. this doesn't look good with my theme so I set it to false.
+            showOnPinnedTab: false, // whether to show the effect on pinned tabs. likewise, doesn't look good with my theme but may work with yours.
+            lightColor: "hsla(224, 100%, 80%, 0.05)", // the color of the gradient. default is sort of a faint baby blue. you may prefer just white, e.g. hsla(0, 0%, 100%, 0.05)
             gradientSize: 50, // how wide the radial gradient is. 50px looks best with my theme, but default proton tabs are larger so you may want to try 60 or even 70.
-            clickEffect: true, // whether to show an additional light burst when clicking a tab. I don't recommend this since it doesn't play nicely with dragging & dropping if you release while your mouse is outside the tab box. I can probably fix this issue but I don't think it's a great fit for tabs anyway.
+            clickEffect: false, // whether to show an additional light burst when clicking a tab. I don't recommend this since it doesn't play nicely with dragging & dropping if you release while your mouse is outside the tab box. I can probably fix this issue but I don't think it's a great fit for tabs anyway.
         };
 
         /**

@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1648310359624,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649575499775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,5 +125,5 @@\n # XML document stylesheet. Used when opening an XML file or response.\n override chrome://global/content/xml/XMLPrettyPrint.css ../resources/layout/XMLPrettyPrint.css\n # The script for the searchbar on about:preferences.\n # Its highlight color doesn't match the theme, so I changed how it works.\n-override chrome://browser/content/preferences/findInPage.js ../resources/script-override/findInPage.js\n\\ No newline at end of file\n+override chrome://browser/content/preferences/findInPage.js ../resources/script-override/findInPage.js\n"
                 }
             ],
             "date": 1648310359624,

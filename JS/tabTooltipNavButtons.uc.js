@@ -13,7 +13,7 @@ class TabTooltipNav {
         // accepted values are "ctrl", "shift", "alt", "meta", and "accel". combinations are not accepted.
         // if you want a modifier key, the value must be surrounded by quotes. don't delete the comma after the value.
         // if you don't want a modifier key, change this to false — with no quotes. but don't delete the comma.
-        "Modifier key": "accel",
+        "Modifier key": false,
 
         // if you want the normal tooltip to show when hovering a tab without the modifier key, set this to true.
         // if you want no tooltip to show at all unless the modifier key is pressed, set this to false.
