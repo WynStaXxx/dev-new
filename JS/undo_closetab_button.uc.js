@@ -36,7 +36,7 @@ try {
   var undoicon = '\
 	  #uc_undo_closetab_button .toolbarbutton-icon {\
 		list-style-image: url("chrome://global/skin/icons/reload.svg"); /* icon / path to icon */ \
-		fill: white; /* icon color name/code */\
+		fill: blue; /* icon color name/code */\
 	  }\
 	  ';
 	  
@@ -51,7 +51,7 @@ try {
 	  undoicon = '\
 	  #uc_undo_closetab_button .toolbarbutton-icon {\
 		list-style-image: url("chrome://browser/skin/undo.svg"); /* icon / path to icon */ \
-		fill: white; /* icon color name/code */\
+		fill: blue; /* icon color name/code */\
 	  }\
 	  ';
   }
@@ -62,7 +62,7 @@ try {
 	  #uc_undo_closetab_button .toolbarbutton-icon {\
 		list-style-image: url("chrome://browser/skin/reload.svg"); /* icon / path to icon */ \
 		transform: scaleX(-1); /* icon mirroring */\
-		fill: white; /* icon color name/code */\
+		fill: blue; /* icon color name/code */\
 	  }\
 	  :-moz-any(#customization-palette,#widget-overflow-fixed-list) #uc_undo_closetab_button .toolbarbutton-icon {\
 		width: 16px !important; \
