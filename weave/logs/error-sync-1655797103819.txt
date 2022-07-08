@@ -1,0 +1,47 @@
+1655797103741	FirefoxAccounts	TRACE	initializing new storage manager
+1655797103741	FirefoxAccounts	TRACE	starting fetch of json user data
+1655797103743	Sync.Status	INFO	Resetting Status.
+1655797103743	Sync.Status	DEBUG	Status.service: undefined => success.status_ok
+1655797103750	Sync.SyncScheduler	TRACE	Setting SyncScheduler policy values to defaults.
+1655797103750	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1655797103750	Sync.Service	INFO	Loading Weave 1.104.0
+1655797103751	Sync.Engine.Clients	DEBUG	Engine constructed
+1655797103751	Sync.Engine.Clients	DEBUG	Resetting clients last sync time
+1655797103756	Sync.Engine.Addons	DEBUG	Engine constructed
+1655797103763	FirefoxAccounts	TRACE	initializing of new storage manager done
+1655797103764	Sync.Engine.Addons	DEBUG	SyncEngine initialized: addons
+1655797103764	Sync.AddonsReconciler	DEBUG	No data seen in loaded file: addonsreconciler
+1655797103766	Sync.Engine.Bookmarks	DEBUG	Engine constructed
+1655797103772	Sync.Engine.Bookmarks	DEBUG	SyncEngine initialized: bookmarks
+1655797103773	Sync.Engine.Forms	DEBUG	Engine constructed
+1655797103776	Sync.Engine.Forms	DEBUG	SyncEngine initialized: forms
+1655797103777	Sync.Engine.History	DEBUG	Engine constructed
+1655797103779	Sync.Engine.History	DEBUG	SyncEngine initialized: history
+1655797103780	Sync.Engine.Passwords	DEBUG	Engine constructed
+1655797103793	Sync.Engine.Passwords	DEBUG	SyncEngine initialized: passwords
+1655797103795	Sync.Engine.Prefs	DEBUG	Engine constructed
+1655797103796	Sync.Engine.Prefs	DEBUG	SyncEngine initialized: prefs
+1655797103798	Sync.Engine.Tabs	DEBUG	Engine constructed
+1655797103799	Sync.Engine.Tabs	DEBUG	SyncEngine initialized: tabs
+1655797103799	Sync.Engine.Tabs	DEBUG	Resetting tabs last sync time
+1655797103801	Sync.Engine.Addresses	DEBUG	Engine constructed
+1655797103801	Sync.Engine.Addresses	DEBUG	SyncEngine initialized: addresses
+1655797103801	Sync.Engine.CreditCards	DEBUG	Engine constructed
+1655797103802	Sync.Engine.CreditCards	DEBUG	SyncEngine initialized: creditcards
+1655797103805	Sync.Engine.Extension-Storage	DEBUG	Engine constructed
+1655797103807	Sync.Engine.Extension-Storage	DEBUG	SyncEngine initialized: extension-storage
+1655797103807	Sync.Service	INFO	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0) Gecko/20100101 Firefox/102.0
+1655797103808	Sync.Engine.History.Tracker	INFO	Adding Places observer.
+1655797103817	Sync.Service	DEBUG	User-Agent: Firefox/102.0 (Intel Mac OS X 10.15) FxSync/1.104.0.20220616185542.desktop
+1655797103818	Sync.Service	INFO	Starting sync at 2022-06-21 00:38:23 in browser session q_rgIL4uisEb
+1655797103818	Sync.Service	DEBUG	In sync: should login.
+1655797103818	Sync.Service	INFO	User logged in successfully - verifying login.
+1655797103818	Sync.SyncAuthManager	DEBUG	unlockAndVerifyAuthState has no FxA user
+1655797103818	Sync.Status	DEBUG	Status.login: success.login => error.login.reason.no_username
+1655797103818	Sync.Status	DEBUG	Status.service: success.status_ok => service.client_not_configured
+1655797103818	Sync.Service	DEBUG	Fetching unlocked auth state returned error.login.reason.no_username
+1655797103818	Sync.ErrorHandler	ERROR	Sync encountered a login error
+1655797103818	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1655797103818	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1655797103819	Sync.Service	DEBUG	Exception calling WrappedLock: Error: Login failed: error.login.reason.no_username(resource://services-sync/service.js:1037:15) JS Stack trace: onNotify@service.js:1037:15
+1655797103819	Sync.Service	DEBUG	Not syncing: login returned false.

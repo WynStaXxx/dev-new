@@ -1,0 +1,922 @@
+1655797103819	Sync.LogManager	DEBUG	Flushing file log
+1655797103832	FirefoxAccounts	DEBUG	FxAccountsWebChannel registered: account_updates with origin https://accounts.firefox.com
+1655797103872	Sync.LogManager	DEBUG	Log cleanup threshold time: 1654933103872
+1655797103877	Sync.LogManager	DEBUG	Done deleting files.
+1655797109136	Sync.Engine.Bookmarks.Tracker	DEBUG	Tracking all items on successful import.
+1655797109136	Sync.Engine.Bookmarks.Tracker	DEBUG	Import succeeded.
+1655797117092	Sync.RemoteTabs	INFO	Sync client is not configured, so not attempting a tab sync
+1655797117092	Sync.RemoteTabs	INFO	Generating tab list with filter
+1655797117093	Sync.RemoteTabs	INFO	Final tab list has 0 clients with 0 tabs.
+1655797142884	FirefoxAccounts	DEBUG	FxAccountsWebChannel message received: fxaccounts:fxa_status
+1655797142884	FirefoxAccounts	DEBUG	fxa_status received
+1655797142884	FirefoxAccounts	DEBUG	service: sync
+1655797142884	FirefoxAccounts	DEBUG	is private browsing: false
+1655797142925	FirefoxAccounts	DEBUG	FxAccountsWebChannel message received: fxaccounts:loaded
+1655797142925	FirefoxAccounts	WARN	Unrecognized FxAccountsWebChannel command: fxaccounts:loaded
+1655797149542	FirefoxAccounts	DEBUG	FxAccountsWebChannel message received: fxaccounts:fxa_status
+1655797149542	FirefoxAccounts	DEBUG	fxa_status received
+1655797149542	FirefoxAccounts	DEBUG	service: sync
+1655797149542	FirefoxAccounts	DEBUG	is private browsing: false
+1655797149584	FirefoxAccounts	DEBUG	FxAccountsWebChannel message received: fxaccounts:loaded
+1655797149584	FirefoxAccounts	WARN	Unrecognized FxAccountsWebChannel command: fxaccounts:loaded
+1655797163737	FirefoxAccounts	DEBUG	FxAccountsWebChannel message received: fxaccounts:can_link_account
+1655797163737	FirefoxAccounts	DEBUG	FxAccountsWebChannel response: {"command":"fxaccounts:can_link_account","messageId":"16557971637362","data":{"ok":true}}
+1655797201872	FirefoxAccounts	DEBUG	FxAccountsWebChannel message received: fxaccounts:can_link_account
+1655797207594	FirefoxAccounts	DEBUG	FxAccountsWebChannel response: {"command":"fxaccounts:can_link_account","messageId":"16557972018643","data":{"ok":true}}
+1655797211596	FirefoxAccounts	DEBUG	FxAccountsWebChannel message received: fxaccounts:login
+1655797211597	FirefoxAccounts	DEBUG	Webchannel is logging a user in.
+1655797211598	FirefoxAccounts	DEBUG	setSignedInUser - aborting any existing flows
+1655797211598	Sync.Engine.Clients.Tracker	DEBUG	client.name preference changed
+1655797211598	FirefoxAccounts	DEBUG	removing account data
+1655797211598	FirefoxAccounts	TRACE	starting write of json user data: null
+1655797211625	FirefoxAccounts	TRACE	finished write of json user data - took: 26
+1655797211625	FirefoxAccounts	TRACE	storage set finished clearing account data
+1655797211625	FirefoxAccounts	DEBUG	account data reset
+1655797211625	FirefoxAccounts	TRACE	StorageManager finalizing
+1655797211625	FirefoxAccounts	TRACE	StorageManager finalized
+1655797211625	FirefoxAccounts	TRACE	initializing new storage manager
+1655797211625	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified"]
+1655797211625	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified"]
+1655797211634	FirefoxAccounts	TRACE	finished write of json user data - took: 9
+1655797211634	FirefoxAccounts	DEBUG	writing secure storage: ["keyFetchToken","unwrapBKey"]
+1655797211634	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797211640	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797211640	FirefoxAccounts	TRACE	initializing of new storage manager done
+1655797211640	FirefoxAccounts	DEBUG	startVerifiedCheck: false
+1655797211640	FirefoxAccounts	DEBUG	whenVerified promise starts polling for verified email
+1655797211640	FirefoxAccounts	DEBUG	entering startPollEmailStatus: start
+1655797211640	FirefoxAccounts	DEBUG	entering pollEmailStatus: start
+1655797211643	FirefoxAccounts	DEBUG	Notifying observers of fxaccounts:onlogin
+1655797211643	Sync.SyncAuthManager	DEBUG	observed fxaccounts:onlogin
+1655797211643	Sync.SyncAuthManager	INFO	Sync has been connected to a logged in user
+1655797211643	FirefoxAccounts	DEBUG	startVerifiedCheck: false
+1655797211644	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Initialized
+1655797211644	FirefoxAccounts	DEBUG	startVerifiedCheck: false
+1655797211645	FirefoxAccounts	DEBUG	FxAccountsPush loading service
+1655797211645	FirefoxAccounts	DEBUG	FxAccountsPush initialized
+1655797211645	FirefoxAccounts	TRACE	FxAccountsPush registerPushEndpoint
+1655797211645	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Requested profile
+1655797211645	FirefoxAccounts	DEBUG	getOAuthToken enter
+1655797211646	Sync.SyncAuthManager	INFO	The user is not verified
+1655797211646	FirefoxAccounts	ERROR	FxA rejecting with error UNVERIFIED_ACCOUNT, details: undefined
+1655797211646	FirefoxAccounts	ERROR	Background refresh of initial profile failed: Error: UNVERIFIED_ACCOUNT(resource://gre/modules/FxAccounts.jsm:1530:18) JS Stack trace: _error@FxAccounts.jsm:1530:18
+withSessionToken@FxAccounts.jsm:789:18
+1655797211646	FirefoxAccounts	ERROR	Background refresh of initial profile failed: Error: UNVERIFIED_ACCOUNT(resource://gre/modules/FxAccounts.jsm:1530:18) JS Stack trace: _error@FxAccounts.jsm:1530:18
+withSessionToken@FxAccounts.jsm:789:18
+1655797211651	Services.Common.RESTRequest	DEBUG	GET request to https://api.accounts.firefox.com/v1/recovery_email/status?reason=start
+1655797211717	FirefoxAccounts	DEBUG	FxAccountsPush got subscription
+1655797211719	Sync.Engine.Clients.Tracker	DEBUG	client.name preference changed
+1655797211719	FirefoxAccounts	INFO	Generating and persisting encrypted sendtab keys
+1655797211719	FirefoxAccounts	INFO	Could not find sendtab keys, generating them
+1655797211723	FirefoxAccounts	DEBUG	_updateAccountData with items: ["device"]
+1655797211723	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device"]
+1655797211723	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device"]
+1655797211723	FirefoxAccounts	INFO	Can't get keys; user is not verified
+1655797211723	FirefoxAccounts	INFO	Can't fetch keys, so unable to determine sendtab keys
+1655797211723	FirefoxAccounts	INFO	registering with available commands: []
+1655797211723	FirefoxAccounts	DEBUG	registering new device details
+1655797211724	Services.Common.RESTRequest	DEBUG	POST request to https://api.accounts.firefox.com/v1/account/device
+1655797211724	Services.Common.RESTRequest	DEBUG	POST Length: 464
+1655797211725	FirefoxAccounts	TRACE	finished write of json user data - took: 2
+1655797211725	FirefoxAccounts	DEBUG	writing secure storage: ["keyFetchToken","unwrapBKey"]
+1655797211725	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797211727	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797211955	Services.Common.RESTRequest	DEBUG	GET https://api.accounts.firefox.com/v1/recovery_email/status?reason=start 200
+1655797211955	Hawk	DEBUG	(Response) /recovery_email/status?reason=start: code: 200 - Status text: OK
+1655797211955	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -955
+1655797211955	FirefoxAccounts	DEBUG	checkEmailStatus -> {"email":"wynstaxxx@gmail.com","verified":false,"sessionVerified":false,"emailVerified":true}
+1655797211955	FirefoxAccounts	DEBUG	polling with timeout = 60000
+1655797212098	Services.Common.RESTRequest	DEBUG	POST https://api.accounts.firefox.com/v1/account/device 200
+1655797212098	Hawk	DEBUG	(Response) /account/device: code: 200 - Status text: OK
+1655797212098	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -98
+1655797212099	FirefoxAccounts	DEBUG	_updateAccountData with items: ["device"]
+1655797212099	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device"]
+1655797212099	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device"]
+1655797212099	FirefoxAccounts	INFO	Generating and persisting encrypted sendtab keys
+1655797212099	FirefoxAccounts	DEBUG	Webchannel is enabling sync
+1655797212099	FirefoxAccounts	DEBUG	startVerifiedCheck: false
+1655797212099	FirefoxAccounts	INFO	Can't get keys; user is not verified
+1655797212099	FirefoxAccounts	INFO	Can't fetch keys, so unable to determine sendtab keys
+1655797212100	Sync.Service	INFO	Configuring sync with current FxA user
+1655797212100	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Requested profile
+1655797212100	FirefoxAccounts	DEBUG	getOAuthToken enter
+1655797212100	Sync.SyncAuthManager	DEBUG	observed weave:connected
+1655797212100	Sync.SyncAuthManager	INFO	Sync has been connected to a logged in user
+1655797212101	FirefoxAccounts	TRACE	FxAccountsPush registerPushEndpoint
+1655797212101	FirefoxAccounts	DEBUG	startVerifiedCheck: false
+1655797212101	FirefoxAccounts	DEBUG	startVerifiedCheck: false
+1655797212101	FirefoxAccounts	ERROR	FxA rejecting with error UNVERIFIED_ACCOUNT, details: undefined
+1655797212102	FirefoxAccounts	ERROR	Background refresh of initial profile failed: Error: UNVERIFIED_ACCOUNT(resource://gre/modules/FxAccounts.jsm:1530:18) JS Stack trace: _error@FxAccounts.jsm:1530:18
+withSessionToken@FxAccounts.jsm:789:18
+1655797212102	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Requested profile
+1655797212102	FirefoxAccounts	DEBUG	getOAuthToken enter
+1655797212102	Sync.SyncAuthManager	INFO	The user is not verified
+1655797212102	FirefoxAccounts	ERROR	FxA rejecting with error UNVERIFIED_ACCOUNT, details: undefined
+1655797212103	FirefoxAccounts	ERROR	Background refresh of initial profile failed: Error: UNVERIFIED_ACCOUNT(resource://gre/modules/FxAccounts.jsm:1530:18) JS Stack trace: _error@FxAccounts.jsm:1530:18
+withSessionToken@FxAccounts.jsm:789:18
+1655797212103	FirefoxAccounts	ERROR	Background refresh of initial profile failed: Error: UNVERIFIED_ACCOUNT(resource://gre/modules/FxAccounts.jsm:1530:18) JS Stack trace: _error@FxAccounts.jsm:1530:18
+withSessionToken@FxAccounts.jsm:789:18
+1655797212115	FirefoxAccounts	DEBUG	FxAccountsPush got subscription
+1655797212115	FirefoxAccounts	INFO	Generating and persisting encrypted sendtab keys
+1655797212115	FirefoxAccounts	INFO	Can't get keys; user is not verified
+1655797212115	FirefoxAccounts	INFO	Can't fetch keys, so unable to determine sendtab keys
+1655797212115	FirefoxAccounts	INFO	registering with available commands: []
+1655797212115	FirefoxAccounts	DEBUG	registering new device details
+1655797212115	FirefoxAccounts	TRACE	finished write of json user data - took: 16
+1655797212116	FirefoxAccounts	DEBUG	writing secure storage: ["keyFetchToken","unwrapBKey"]
+1655797212116	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797212119	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797212121	Services.Common.RESTRequest	DEBUG	POST request to https://api.accounts.firefox.com/v1/account/device
+1655797212121	Services.Common.RESTRequest	DEBUG	POST Length: 464
+1655797212232	Services.Common.RESTRequest	DEBUG	POST https://api.accounts.firefox.com/v1/account/device 200
+1655797212232	Hawk	DEBUG	(Response) /account/device: code: 200 - Status text: OK
+1655797212232	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -232
+1655797212232	FirefoxAccounts	DEBUG	_updateAccountData with items: ["device"]
+1655797212232	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device"]
+1655797212232	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device"]
+1655797212233	FirefoxAccounts	INFO	Generating and persisting encrypted sendtab keys
+1655797212233	FirefoxAccounts	INFO	Can't get keys; user is not verified
+1655797212233	FirefoxAccounts	INFO	Can't fetch keys, so unable to determine sendtab keys
+1655797212234	FirefoxAccounts	TRACE	finished write of json user data - took: 2
+1655797212234	FirefoxAccounts	DEBUG	writing secure storage: ["keyFetchToken","unwrapBKey"]
+1655797212234	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797212237	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797271982	FirefoxAccounts	DEBUG	entering pollEmailStatus: start
+1655797272000	Services.Common.RESTRequest	DEBUG	GET request to https://api.accounts.firefox.com/v1/recovery_email/status?reason=start
+1655797272077	Services.Common.RESTRequest	DEBUG	GET https://api.accounts.firefox.com/v1/recovery_email/status?reason=start 200
+1655797272077	Hawk	DEBUG	(Response) /recovery_email/status?reason=start: code: 200 - Status text: OK
+1655797272077	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -77
+1655797272077	FirefoxAccounts	DEBUG	checkEmailStatus -> {"email":"wynstaxxx@gmail.com","verified":false,"sessionVerified":false,"emailVerified":true}
+1655797272077	FirefoxAccounts	DEBUG	polling with timeout = 60000
+1655797276151	FirefoxAccounts	TRACE	observed topic=push-message, data=chrome://fxa-device-update, subject=[xpconnect wrapped nsISupports]
+1655797276151	FirefoxAccounts	TRACE	FxAccountsPushService _onPushMessage
+1655797276151	FirefoxAccounts	DEBUG	empty push message - checking account status
+1655797276151	FirefoxAccounts	TRACE	checkVerificationStatus
+1655797276152	FirefoxAccounts	TRACE	checkVerificationStatus - forcing verification status check
+1655797276152	FirefoxAccounts	DEBUG	entering startPollEmailStatus: push
+1655797276152	FirefoxAccounts	DEBUG	startPollEmailStatus starting while existing timer is running
+1655797276152	FirefoxAccounts	DEBUG	entering pollEmailStatus: push
+1655797276154	Services.Common.RESTRequest	DEBUG	GET request to https://api.accounts.firefox.com/v1/recovery_email/status?reason=push
+1655797276232	Services.Common.RESTRequest	DEBUG	GET https://api.accounts.firefox.com/v1/recovery_email/status?reason=push 200
+1655797276232	Hawk	DEBUG	(Response) /recovery_email/status?reason=push: code: 200 - Status text: OK
+1655797276232	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -232
+1655797276232	FirefoxAccounts	DEBUG	checkEmailStatus -> {"email":"wynstaxxx@gmail.com","verified":true,"sessionVerified":true,"emailVerified":true}
+1655797276232	FirefoxAccounts	DEBUG	_updateAccountData with items: ["verified"]
+1655797276232	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device"]
+1655797276233	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device"]
+1655797276233	FirefoxAccounts	INFO	the user became verified
+1655797276234	FirefoxAccounts	DEBUG	Notifying observers of fxaccounts:onverified
+1655797276235	Sync.SyncAuthManager	DEBUG	observed fxaccounts:onverified
+1655797276235	Sync.SyncAuthManager	INFO	The user became verified
+1655797276235	Sync.Status	DEBUG	Status.login: error.login.reason.no_username => success.login
+1655797276235	Sync.Status	DEBUG	Status.service: service.client_not_configured => success.status_ok
+1655797276235	Sync.Service	DEBUG	User-Agent: Firefox/102.0 (Intel Mac OS X 10.15) FxSync/1.104.0.20220616185542.desktop
+1655797276235	Sync.Service	INFO	Starting sync at 2022-06-21 00:41:16 in browser session q_rgIL4uisEb
+1655797276235	Sync.Service	DEBUG	In sync: should login.
+1655797276235	Sync.Service	INFO	User logged in successfully - verifying login.
+1655797276236	FirefoxAccounts	INFO	Generating and persisting encrypted sendtab keys
+1655797276236	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Requested profile
+1655797276236	FirefoxAccounts	DEBUG	getOAuthToken enter
+1655797276237	Sync.SyncAuthManager	DEBUG	unlockAndVerifyAuthState already has (or can fetch) sync keys
+1655797276239	FirefoxAccounts	INFO	fetching updated device list
+1655797276239	FirefoxAccounts	INFO	Already fetching device list, return existing promise
+1655797276241	Sync.Status	DEBUG	Status.login: success.login => success.status_ok
+1655797276241	Sync.Status	DEBUG	Status.service: success.status_ok => error.login.failed
+1655797276241	Sync.Service	DEBUG	Fetching unlocked auth state returned success.status_ok
+1655797276242	Sync.SyncAuthManager	INFO	Getting sync key
+1655797276248	FirefoxAccounts	TRACE	finished write of json user data - took: 15
+1655797276248	FirefoxAccounts	DEBUG	writing secure storage: ["keyFetchToken","unwrapBKey"]
+1655797276248	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797276251	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797276251	Services.Common.RESTRequest	DEBUG	GET request to https://api.accounts.firefox.com/v1/account/devices
+1655797276252	Services.Common.RESTRequest	DEBUG	POST request to https://api.accounts.firefox.com/v1/oauth/token
+1655797276252	Services.Common.RESTRequest	DEBUG	POST Length: 81
+1655797276253	Services.Common.RESTRequest	DEBUG	POST request to https://api.accounts.firefox.com/v1/account/scoped-key-data
+1655797276253	Services.Common.RESTRequest	DEBUG	POST Length: 84
+1655797276341	Services.Common.RESTRequest	DEBUG	GET https://api.accounts.firefox.com/v1/account/devices 200
+1655797276341	Hawk	DEBUG	(Response) /account/devices: code: 200 - Status text: OK
+1655797276342	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -341
+1655797276342	FirefoxAccounts	INFO	Got new device list: 01d43e56446328ca2c15d1a74c71d48a, 01fecffc3e58d450b8dd3b8b13b38d1f, 0dafb0d258c0d634656ed4ce904a8263, 1a48f063da1a22e18772ed575bd903f2, 31f55d9087984a63dd82e6a45992dcee, 5aa6289b0428aa50f9f990cdc7057967, 5ae66885cf6db8c0fc08ca34e8678b50, 62d5af5ca684da1402f62f89cd970e1d, 63ffafff49f3f92f21836bba3dfb0bf3, 7532055bbfe1cff31d1f5e4528eb29f0, 8dad32876dc1451a98b6995899ff7b4c, 8dbcb7770606ad8c7092de52fc4ff5be, 8f42236df314694749f2b48f8a7ad2b8, 8f91877714f7ab4ee8a532f7941a9cfb, 90e12353d8c1b6c75f44c016fd0045e2, 96c8f17bbf65664c531be62050b30c34, ab61d90912367471e08e3e01d87cdff9, b5202684a7f0b8683e68794bddf5e4c9, b78a97e1ae8f38a2e4fdbe50d6939dd0, be9e791f65f7067682a1809584eb53e4, d353c303beae1ce15f40c27d5811908e, d732a31163df0e8f5800ed3b5b54d5a6, da0d6a53470c084cccb564d4872b30f4, dc7b5869a9b644b23f0d3c9a27903e9a, ebbf72d0f350fbf373f991914af5edf5
+1655797276342	FirefoxAccounts	INFO	Generating and persisting encrypted sendtab keys
+1655797276419	Services.Common.RESTRequest	DEBUG	POST https://api.accounts.firefox.com/v1/account/scoped-key-data 200
+1655797276420	Hawk	DEBUG	(Response) /account/scoped-key-data: code: 200 - Status text: OK
+1655797276420	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -420
+1655797276420	FirefoxAccounts	DEBUG	Fetching keys with token true from https://api.accounts.firefox.com/v1
+1655797276421	Services.Common.RESTRequest	DEBUG	GET request to https://api.accounts.firefox.com/v1/account/keys
+1655797276518	Services.Common.RESTRequest	DEBUG	GET https://api.accounts.firefox.com/v1/account/keys 200
+1655797276518	Hawk	DEBUG	(Response) /account/keys: code: 200 - Status text: OK
+1655797276518	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -518
+1655797276519	FirefoxAccounts	DEBUG	Keys Obtained: https://identity.mozilla.com/apps/oldsync, sync:addon_storage
+1655797276520	FirefoxAccounts	DEBUG	_updateAccountData with items: ["scopedKeys","kSync","kXCS","kExtSync","kExtKbHash","keyFetchToken","unwrapBKey"]
+1655797276520	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device"]
+1655797276520	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device"]
+1655797276520	Sync.BulkKeyBundle	INFO	BulkKeyBundle being created for undefined
+1655797276520	Sync.SyncAuthManager	INFO	Getting a sync token from: https://token.services.mozilla.com/1.0/sync/1.5
+1655797276520	Sync.SyncAuthManager	DEBUG	Getting a token using OAuth
+1655797276520	FirefoxAccounts	DEBUG	getOAuthToken enter
+1655797276521	Sync.BulkKeyBundle	INFO	BulkKeyBundle being created for undefined
+1655797276521	FirefoxAccounts	DEBUG	_updateAccountData with items: ["encryptedSendTabKeys"]
+1655797276522	FirefoxAccounts	TRACE	FxAccountsPush registerPushEndpoint
+1655797276522	FirefoxAccounts	DEBUG	_updateAccountData with items: ["encryptedSendTabKeys"]
+1655797276522	FirefoxAccounts	WARN	Our commands need to be updated on the server
+1655797276522	FirefoxAccounts	TRACE	FxAccountsPush registerPushEndpoint
+1655797276522	FirefoxAccounts	TRACE	finished write of json user data - took: 2
+1655797276522	FirefoxAccounts	DEBUG	writing secure storage: ["scopedKeys","kSync","kXCS","kExtSync","kExtKbHash"]
+1655797276522	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797276527	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797276527	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys"]
+1655797276527	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys"]
+1655797276527	Services.Common.RESTRequest	DEBUG	POST request to https://api.accounts.firefox.com/v1/oauth/token
+1655797276527	Services.Common.RESTRequest	DEBUG	POST Length: 127
+1655797276528	FirefoxAccounts	DEBUG	FxAccountsPush got subscription
+1655797276528	FirefoxAccounts	INFO	registering with available commands: ["https://identity.mozilla.com/cmd/open-uri"]
+1655797276528	FirefoxAccounts	DEBUG	updating existing device details
+1655797276528	FirefoxAccounts	DEBUG	FxAccountsPush got subscription
+1655797276528	FirefoxAccounts	INFO	registering with available commands: ["https://identity.mozilla.com/cmd/open-uri"]
+1655797276528	FirefoxAccounts	DEBUG	updating existing device details
+1655797276528	FirefoxAccounts	TRACE	finished write of json user data - took: 1
+1655797276529	FirefoxAccounts	DEBUG	writing secure storage: ["scopedKeys","kSync","kXCS","kExtSync","kExtKbHash"]
+1655797276529	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797276533	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797276533	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys"]
+1655797276534	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys"]
+1655797276534	Services.Common.RESTRequest	DEBUG	POST request to https://api.accounts.firefox.com/v1/account/device
+1655797276534	Services.Common.RESTRequest	DEBUG	POST Length: 905
+1655797276535	Services.Common.RESTRequest	DEBUG	POST request to https://api.accounts.firefox.com/v1/account/device
+1655797276535	Services.Common.RESTRequest	DEBUG	POST Length: 905
+1655797276535	FirefoxAccounts	TRACE	finished write of json user data - took: 1
+1655797276535	FirefoxAccounts	DEBUG	writing secure storage: ["scopedKeys","kSync","kXCS","kExtSync","kExtKbHash"]
+1655797276535	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797276539	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797276620	Services.Common.RESTRequest	DEBUG	POST https://api.accounts.firefox.com/v1/oauth/token 200
+1655797276620	Hawk	DEBUG	(Response) /oauth/token: code: 200 - Status text: OK
+1655797276621	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -621
+1655797276621	FirefoxAccounts	DEBUG	_updateAccountData with items: ["oauthTokens"]
+1655797276621	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys","oauthTokens"]
+1655797276621	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys","oauthTokens"]
+1655797276621	Services.Common.TokenServerClient	DEBUG	Beginning OAuth token exchange: https://token.services.mozilla.com/1.0/sync/1.5
+1655797276621	Services.Common.RESTRequest	DEBUG	GET request to https://token.services.mozilla.com/1.0/sync/1.5
+1655797276622	FirefoxAccounts	TRACE	finished write of json user data - took: 1
+1655797276622	FirefoxAccounts	DEBUG	writing secure storage: ["scopedKeys","kSync","kXCS","kExtSync","kExtKbHash"]
+1655797276622	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797276625	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797276665	Services.Common.RESTRequest	DEBUG	POST https://api.accounts.firefox.com/v1/account/device 200
+1655797276665	Hawk	DEBUG	(Response) /account/device: code: 200 - Status text: OK
+1655797276665	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -665
+1655797276665	FirefoxAccounts	DEBUG	_updateAccountData with items: ["device"]
+1655797276665	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys","oauthTokens"]
+1655797276665	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys","oauthTokens"]
+1655797276666	FirefoxAccounts	TRACE	finished write of json user data - took: 1
+1655797276667	FirefoxAccounts	DEBUG	writing secure storage: ["scopedKeys","kSync","kXCS","kExtSync","kExtKbHash"]
+1655797276667	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797276669	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797276706	Services.Common.RESTRequest	DEBUG	POST https://api.accounts.firefox.com/v1/oauth/token 200
+1655797276707	Hawk	DEBUG	(Response) /oauth/token: code: 200 - Status text: OK
+1655797276707	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -707
+1655797276707	FirefoxAccounts	DEBUG	_updateAccountData with items: ["oauthTokens"]
+1655797276707	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys","oauthTokens"]
+1655797276707	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys","oauthTokens"]
+1655797276707	Services.Common.RESTRequest	DEBUG	GET request to https://profile.accounts.firefox.com/v1/profile
+1655797276708	FirefoxAccounts	TRACE	finished write of json user data - took: 1
+1655797276708	FirefoxAccounts	DEBUG	writing secure storage: ["scopedKeys","kSync","kXCS","kExtSync","kExtKbHash"]
+1655797276708	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797276711	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797276728	Services.Common.RESTRequest	DEBUG	POST https://api.accounts.firefox.com/v1/account/device 200
+1655797276728	Hawk	DEBUG	(Response) /account/device: code: 200 - Status text: OK
+1655797276728	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -728
+1655797276728	FirefoxAccounts	DEBUG	_updateAccountData with items: ["device"]
+1655797276728	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys","oauthTokens"]
+1655797276728	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys","oauthTokens"]
+1655797276728	FirefoxAccounts	INFO	updating the cache
+1655797276730	FirefoxAccounts	TRACE	finished write of json user data - took: 1
+1655797276730	FirefoxAccounts	DEBUG	writing secure storage: ["scopedKeys","kSync","kXCS","kExtSync","kExtKbHash"]
+1655797276730	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797276733	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797277072	Services.Common.RESTRequest	DEBUG	GET https://profile.accounts.firefox.com/v1/profile 200
+1655797277072	FirefoxAccounts	DEBUG	_updateAccountData with items: ["profileCache"]
+1655797277072	FirefoxAccounts	DEBUG	writing plain storage: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys","oauthTokens","profileCache"]
+1655797277072	FirefoxAccounts	TRACE	starting write of json user data: ["email","sessionToken","uid","verified","device","encryptedSendTabKeys","oauthTokens","profileCache"]
+1655797277072	FirefoxAccounts	DEBUG	notifying profile changed for user b5ef4e8f251a4b5abbc25c7deef6e629
+1655797277072	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277075	FirefoxAccounts	TRACE	finished write of json user data - took: 3
+1655797277075	FirefoxAccounts	DEBUG	writing secure storage: ["scopedKeys","kSync","kXCS","kExtSync","kExtKbHash"]
+1655797277075	FirefoxAccounts	TRACE	starting write of user data to the login manager
+1655797277078	FirefoxAccounts	TRACE	finished write of user data to the login manager
+1655797277105	Services.Common.RESTRequest	DEBUG	GET https://token.services.mozilla.com/1.0/sync/1.5 200
+1655797277105	Services.Common.TokenServerClient	DEBUG	Got token response: 200
+1655797277105	Services.Common.TokenServerClient	DEBUG	Successful token response
+1655797277105	Sync.BulkKeyBundle	INFO	BulkKeyBundle being created for undefined
+1655797277105	Sync.Status	DEBUG	Status.login: success.status_ok => success.login
+1655797277105	Sync.Status	DEBUG	Status.service: error.login.failed => success.status_ok
+1655797277106	Sync.SyncAuthManager	DEBUG	_findCluster returning https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/
+1655797277106	Sync.SyncAuthManager	DEBUG	Cluster value = https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/
+1655797277106	Sync.SyncAuthManager	DEBUG	Setting cluster to https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/
+1655797277106	Sync.Service	DEBUG	Caching URLs under storage user base: https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/
+1655797277106	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277106	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277317	Sync.Resource	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/info/collections
+1655797277317	Sync.Service	DEBUG	Fetching server configuration: https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/info/configuration
+1655797277317	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277358	Sync.Resource	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/info/configuration
+1655797277358	Sync.Service	DEBUG	Fetching global metadata record
+1655797277358	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277428	Sync.Resource	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/meta/global
+1655797277428	Sync.Service	DEBUG	Clearing cached meta record. metaModified is undefined, setting to 1650925074.96
+1655797277428	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277485	Sync.Resource	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/meta/global
+1655797277485	Sync.Service	DEBUG	Weave Version: 1.104.0 Local Storage: 5 Remote Storage: 5
+1655797277485	Sync.Service	INFO	Sync IDs differ. Local is 8faxseMnb4uJ, remote is epuMuOkIC0Mg
+1655797277485	Sync.Service	INFO	Service reset.
+1655797277485	Sync.Engine.Clients	DEBUG	Resetting clients last sync time
+1655797277488	Sync.Engine.Addons	DEBUG	Resetting addons last sync time
+1655797277489	Sync.Engine.Bookmarks	DEBUG	Resetting bookmarks last sync time
+1655797277536	Sync.Engine.Forms	DEBUG	Resetting forms last sync time
+1655797277537	Sync.Engine.History	DEBUG	Resetting history last sync time
+1655797277539	Sync.Engine.Passwords	DEBUG	Resetting passwords last sync time
+1655797277539	Sync.Engine.Prefs	DEBUG	Resetting prefs last sync time
+1655797277539	Sync.Engine.Tabs	DEBUG	Resetting tabs last sync time
+1655797277543	Sync.Engine.Extension-Storage	DEBUG	Resetting extension-storage last sync time
+1655797277551	Sync.CollectionKeyManager	INFO	Clearing collection keys...
+1655797277551	Sync.Service	DEBUG	Clear cached values and take syncId: epuMuOkIC0Mg
+1655797277551	Sync.Service	DEBUG	Fetching and verifying -- or generating -- symmetric keys.
+1655797277551	Sync.Service	INFO	Testing info/collections: {"addresses":1642715313.01,"clients":1655695266.21,"addons":1655645080.84,"passwords":1655581636.92,"meta":1650925074.96,"extension-storage":1655695273.18,"history":1655696973.9,"creditcards":1654328411.48,"forms":1655696371.85,"crypto":1570733645.57,"bookmarks":1655640697.46}
+1655797277551	Sync.CollectionKeyManager	INFO	Testing for updateNeeded. Last modified: 0
+1655797277551	Sync.Service	INFO	collection keys reports that a key update is needed.
+1655797277552	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277629	Sync.Resource	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/crypto/keys
+1655797277629	Sync.CollectionKeyManager	INFO	Updating collection keys...
+1655797277629	Sync.CollectionKeyManager	INFO	Setting collection keys contents. Our last modified: 0, input modified: 1570733645.57.
+1655797277630	Sync.BulkKeyBundle	INFO	BulkKeyBundle being created for [default]
+1655797277630	Sync.CollectionKeyManager	INFO	Processing downloaded per-collection keys.
+1655797277630	Sync.CollectionKeyManager	INFO	Clearing collection keys...
+1655797277630	Sync.CollectionKeyManager	INFO	Saving downloaded keys.
+1655797277630	Sync.CollectionKeyManager	INFO	Bumping last modified to 1570733645.57
+1655797277630	Sync.CollectionKeyManager	INFO	Collection keys updated.
+1655797277630	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277630	Sync.SyncAuthManager	DEBUG	unlockAndVerifyAuthState already has (or can fetch) sync keys
+1655797277630	Sync.Status	DEBUG	Status.login: success.login => success.status_ok
+1655797277630	Sync.Status	DEBUG	Status.service: success.status_ok => error.login.failed
+1655797277630	Sync.Service	DEBUG	Fetching unlocked auth state returned success.status_ok
+1655797277630	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277694	Sync.Resource	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/info/collections
+1655797277694	Sync.Service	DEBUG	Fetching server configuration: https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/info/configuration
+1655797277695	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277740	Sync.Resource	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/info/configuration
+1655797277740	Sync.Service	DEBUG	Fetching global metadata record
+1655797277740	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277801	Sync.Resource	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/meta/global
+1655797277801	Sync.Service	DEBUG	Weave Version: 1.104.0 Local Storage: 5 Remote Storage: 5
+1655797277801	Sync.Service	DEBUG	Fetching and verifying -- or generating -- symmetric keys.
+1655797277802	Sync.Service	INFO	Testing info/collections: {"bookmarks":1655640697.46,"clients":1655695266.21,"forms":1655696371.85,"addresses":1642715313.01,"addons":1655645080.84,"extension-storage":1655695273.18,"creditcards":1654328411.48,"history":1655696973.9,"meta":1650925074.96,"passwords":1655581636.92,"crypto":1570733645.57}
+1655797277802	Sync.CollectionKeyManager	INFO	Testing for updateNeeded. Last modified: 1570733645.57
+1655797277802	Sync.Status	DEBUG	Status.login: success.status_ok => success.login
+1655797277802	Sync.Status	DEBUG	Status.service: error.login.failed => success.status_ok
+1655797277802	Sync.Status	DEBUG	Status.login: success.login => success.login
+1655797277802	Sync.Status	DEBUG	Status.service: success.status_ok => success.status_ok
+1655797277802	Sync.Service	DEBUG	Caching URLs under storage user base: https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/
+1655797277802	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1655797277803	Sync.Status	INFO	Resetting Status.
+1655797277803	Sync.Status	DEBUG	Status.service: success.status_ok => success.status_ok
+1655797277803	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277859	Sync.Resource	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/info/collections
+1655797277859	Sync.Service	DEBUG	Fetching server configuration: https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/info/configuration
+1655797277859	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277904	Sync.Resource	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/info/configuration
+1655797277904	Sync.Service	DEBUG	Fetching global metadata record
+1655797277904	Sync.Service	DEBUG	Weave Version: 1.104.0 Local Storage: 5 Remote Storage: 5
+1655797277904	Sync.Service	DEBUG	Fetching and verifying -- or generating -- symmetric keys.
+1655797277904	Sync.Service	INFO	Testing info/collections: {"creditcards":1654328411.48,"extension-storage":1655695273.18,"bookmarks":1655640697.46,"passwords":1655581636.92,"meta":1650925074.96,"addresses":1642715313.01,"clients":1655695266.21,"crypto":1570733645.57,"history":1655696973.9,"addons":1655645080.84,"forms":1655696371.85}
+1655797277904	Sync.CollectionKeyManager	INFO	Testing for updateNeeded. Last modified: 1570733645.57
+1655797277904	Sync.Synchronizer	DEBUG	Refreshing client list.
+1655797277904	Sync.Engine.Clients	DEBUG	Engine syncIDs: m-uMXUCXhddw,mZwwRS0bDorT
+1655797277905	Sync.Engine.Clients	DEBUG	First sync, uploading all items
+1655797277905	Sync.Engine.Clients	DEBUG	Resetting clients last sync time
+1655797277905	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277970	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/clients?full=1&limit=1000
+1655797277972	Sync.Engine.Clients	INFO	Records: 2 applied, 2 successfully, 0 failed to apply, 0 newly failed to apply, 1 reconciled.
+1655797277972	FirefoxAccounts	INFO	Device list cache is fresh, re-using it
+1655797277972	Sync.Engine.Clients	DEBUG	Refreshing the known stale clients list
+1655797277975	Sync.Engine.Clients	INFO	Uploading 1 outgoing records
+1655797277976	Sync.Engine.Clients	INFO	Posting 1 records of 613 bytes with batch=true
+1655797277976	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797277977	Sync.Collection	DEBUG	POST Length: 613
+1655797278056	Sync.Collection	DEBUG	POST success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/clients?batch=true&commit=true
+1655797278058	Sync.SyncScheduler	DEBUG	Client count: 0 -> 3
+1655797278059	Sync.Synchronizer	INFO	Updating enabled engines: 3 clients.
+1655797278060	Sync.AddonsReconciler	INFO	Registering as Add-on Manager listener.
+1655797278060	Sync.AddonsReconciler	DEBUG	Adding change listener.
+1655797278060	Sync.Synchronizer	INFO	Syncing all enabled engines.
+1655797278061	Sync.Engine.Passwords	DEBUG	First sync, uploading all items
+1655797278063	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797278195	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/passwords?full=1&limit=1000
+1655797278209	Sync.Engine.Passwords	DEBUG	Switching local ID to incoming: {a8641b2f-9b00-4a10-93b1-76a1852bc335} -> _hKS_PN-b2Q1
+1655797278211	Sync.Engine.Passwords	DEBUG	Local item after duplication: age=59.66900014877319; modified=true; exists=true
+1655797278212	Sync.Engine.Passwords	WARN	DATA LOSS: Both local and remote changes to record: _hKS_PN-b2Q1
+1655797280081	Sync.Engine.Passwords	INFO	Records: 468 applied, 468 successfully, 0 failed to apply, 0 newly failed to apply, 1 reconciled.
+1655797280081	Sync.Engine.Passwords	INFO	Uploading 1 outgoing records
+1655797280082	Sync.Engine.Passwords	INFO	Posting 1 records of 555 bytes with batch=true
+1655797280083	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797280083	Sync.Collection	DEBUG	POST Length: 555
+1655797280193	Sync.Collection	DEBUG	POST success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/passwords?batch=true&commit=true
+1655797280194	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797280291	Sync.Collection	DEBUG	DELETE success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/passwords?ids={a8641b2f-9b00-4a10-93b1-76a1852bc335}
+1655797280291	Sync.Engine.Bookmarks	DEBUG	Checking if server sync ID vZfv6r9--CBf matches existing
+1655797280294	Sync.Engine.Bookmarks.BookmarkSyncUtils	INFO	Taking new bookmarks sync ID: {"newSyncId":"vZfv6r9--CBf"}
+1655797280295	Sync.Engine.Bookmarks.Mirror	INFO	Sync ID changed from  to vZfv6r9--CBf; resetting mirror
+1655797280302	Sync.Engine.Bookmarks	DEBUG	Bookmarks backup starting
+1655797281167	Sync.Engine.Bookmarks	DEBUG	Bookmarks backup done
+1655797281168	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797281364	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000
+1655797281371	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797281558	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=1000
+1655797281565	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797281708	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=2000
+1655797281714	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797281863	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=3000
+1655797281868	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797282023	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=4000
+1655797282028	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797282199	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=5000
+1655797282205	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797282378	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=6000
+1655797282382	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797282530	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=7000
+1655797282535	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797282679	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=8000
+1655797282683	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797282836	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=9000
+1655797282841	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797282980	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=10000
+1655797282985	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797283162	Sync.Collection	DEBUG	GET success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?full=1&sort=oldest&limit=1000&offset=11000
+1655797288598	Sync.Engine.Bookmarks	INFO	Records: 11794 applied, 11794 successfully, 0 failed to apply, 0 newly failed to apply, 0 reconciled.
+1655797288599	Sync.Engine.Bookmarks.Mirror	DEBUG	Merging bookmarks in Rust
+1655797288622	Sync.Engine.Bookmarks.Mirror	DEBUG	Building local tree
+1655797288741	Sync.Engine.Bookmarks.Mirror	DEBUG	Building remote tree
+1655797288969	Sync.Engine.Bookmarks.Mirror	DEBUG	Building merged tree
+1655797288973	Sync.Engine.Bookmarks.Mirror	DEBUG	Applying merged tree
+1655797288973	Sync.Engine.Bookmarks.Mirror	DEBUG	Updating local items in Places
+1655797288973	Sync.Engine.Bookmarks.Mirror	DEBUG	Cleaning up observer notifications left from last sync
+1655797288973	Sync.Engine.Bookmarks.Mirror	DEBUG	Inserting Places for new items
+1655797289001	Sync.Engine.Bookmarks.Mirror	DEBUG	Updating origins for new URLs
+1655797289002	Sync.Engine.Bookmarks.Mirror	DEBUG	Staging apply remote item ops
+1655797289080	Sync.Engine.Bookmarks.Mirror	DEBUG	Staging change GUID ops
+1655797289133	Sync.Engine.Bookmarks.Mirror	DEBUG	Staging apply new local structure ops
+1655797289146	Sync.Engine.Bookmarks.Mirror	DEBUG	Removing tombstones for revived items
+1655797289146	Sync.Engine.Bookmarks.Mirror	DEBUG	Inserting new tombstones for non-syncable and invalid items
+1655797289146	Sync.Engine.Bookmarks.Mirror	DEBUG	Removing local items
+1655797289146	Sync.Engine.Bookmarks.Mirror	DEBUG	Changing GUIDs
+1655797289247	Sync.Engine.Bookmarks.Mirror	DEBUG	Applying remote items
+1655797289248	Sync.Engine.Bookmarks.Mirror	DEBUG	Recording item added notifications for new items
+1655797289251	Sync.Engine.Bookmarks.Mirror	DEBUG	Recording item changed notifications for existing items
+1655797289258	Sync.Engine.Bookmarks.Mirror	DEBUG	Removing old keywords
+1655797289260	Sync.Engine.Bookmarks.Mirror	DEBUG	Removing old tags
+1655797289264	Sync.Engine.Bookmarks.Mirror	DEBUG	Upserting new items
+1655797289292	Sync.Engine.Bookmarks.Mirror	DEBUG	Flagging frecencies for recalculation
+1655797289294	Sync.Engine.Bookmarks.Mirror	DEBUG	Inserting new keywords for new URLs
+1655797289294	Sync.Engine.Bookmarks.Mirror	DEBUG	Inserting new tags for new URLs
+1655797289295	Sync.Engine.Bookmarks.Mirror	DEBUG	Updating origins for changed URLs
+1655797289296	Sync.Engine.Bookmarks.Mirror	DEBUG	Applying new local structure
+1655797289316	Sync.Engine.Bookmarks.Mirror	DEBUG	Resetting change counters for items that shouldn't be uploaded
+1655797289327	Sync.Engine.Bookmarks.Mirror	DEBUG	Bumping change counters for items that should be uploaded
+1655797289328	Sync.Engine.Bookmarks.Mirror	DEBUG	Flagging applied remote items as merged
+1655797289351	Sync.Engine.Bookmarks.Mirror	DEBUG	Staging items to upload
+1655797289351	Sync.Engine.Bookmarks.Mirror	DEBUG	Cleaning up staged items left from last sync
+1655797289351	Sync.Engine.Bookmarks.Mirror	DEBUG	Staging items with older local dates added
+1655797289366	Sync.Engine.Bookmarks.Mirror	DEBUG	Staging remaining locally changed items for upload
+1655797289503	Sync.Engine.Bookmarks.Mirror	DEBUG	Staging structure to upload
+1655797289526	Sync.Engine.Bookmarks.Mirror	DEBUG	Staging tags to upload
+1655797289535	Sync.Engine.Bookmarks.Mirror	DEBUG	Staging tombstones to upload
+1655797289554	Sync.Engine.Bookmarks.Mirror	DEBUG	Merging bookmarks in Rust took 955.353ms
+1655797289554	Sync.Engine.Bookmarks.Mirror	DEBUG	Notifying Places observers
+1655797289751	Sync.Engine.Bookmarks.Mirror	DEBUG	Notifying Places observers took 196.109ms
+1655797289751	Sync.Engine.Bookmarks.Mirror	DEBUG	Fetching records for local items to upload
+1655797290314	Sync.Engine.Bookmarks.Mirror	DEBUG	Fetching records for local items to upload took 562.937ms
+1655797290321	Sync.Engine.Bookmarks	INFO	Uploading 14852 outgoing records
+1655797290374	Sync.Engine.Bookmarks	INFO	Posting 100 records of 67389 bytes with batch=true
+1655797290375	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797290375	Sync.Collection	DEBUG	POST Length: 67389
+1655797290547	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=true
+1655797290593	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54445 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797290594	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797290594	Sync.Collection	DEBUG	POST Length: 54445
+1655797290718	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797290770	Sync.Engine.Bookmarks	INFO	Posting 100 records of 53377 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797290770	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797290771	Sync.Collection	DEBUG	POST Length: 53377
+1655797290868	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797290923	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55165 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797290924	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797290924	Sync.Collection	DEBUG	POST Length: 55165
+1655797291024	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291069	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54665 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291070	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797291070	Sync.Collection	DEBUG	POST Length: 54665
+1655797291175	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291221	Sync.Engine.Bookmarks	INFO	Posting 100 records of 57519 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291221	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797291222	Sync.Collection	DEBUG	POST Length: 57519
+1655797291338	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291384	Sync.Engine.Bookmarks	INFO	Posting 100 records of 59077 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291384	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797291385	Sync.Collection	DEBUG	POST Length: 59077
+1655797291496	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291545	Sync.Engine.Bookmarks	INFO	Posting 100 records of 59573 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291546	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797291546	Sync.Collection	DEBUG	POST Length: 59573
+1655797291649	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291697	Sync.Engine.Bookmarks	INFO	Posting 100 records of 60001 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291697	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797291697	Sync.Collection	DEBUG	POST Length: 60001
+1655797291802	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291857	Sync.Engine.Bookmarks	INFO	Posting 100 records of 63641 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797291858	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797291858	Sync.Collection	DEBUG	POST Length: 63641
+1655797292007	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797292058	Sync.Engine.Bookmarks	INFO	Posting 100 records of 61065 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797292058	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797292059	Sync.Collection	DEBUG	POST Length: 61065
+1655797292175	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797292229	Sync.Engine.Bookmarks	INFO	Posting 100 records of 64305 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797292229	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797292230	Sync.Collection	DEBUG	POST Length: 64305
+1655797293040	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797293637	Sync.Engine.Bookmarks	INFO	Posting 100 records of 61405 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797293637	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797293637	Sync.Collection	DEBUG	POST Length: 61405
+1655797294138	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797294205	Sync.Engine.Bookmarks	INFO	Posting 100 records of 61693 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797294205	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797294205	Sync.Collection	DEBUG	POST Length: 61693
+1655797294436	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797294494	Sync.Engine.Bookmarks	INFO	Posting 100 records of 60209 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797294495	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797294495	Sync.Collection	DEBUG	POST Length: 60209
+1655797294632	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797294686	Sync.Engine.Bookmarks	INFO	Posting 100 records of 58441 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797294686	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797294687	Sync.Collection	DEBUG	POST Length: 58441
+1655797294792	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797294829	Sync.Engine.Bookmarks	INFO	Posting 64 records of 39073 bytes with batch=4c4a041b8a22429a8de2caaa1c6ec37b
+1655797294829	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797294830	Sync.Collection	DEBUG	POST Length: 39073
+1655797295395	Sync.Collection	DEBUG	POST success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=4c4a041b8a22429a8de2caaa1c6ec37b&commit=true
+1655797295880	Sync.Engine.Bookmarks	INFO	Posting 100 records of 62005 bytes with batch=true
+1655797295880	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797295880	Sync.Collection	DEBUG	POST Length: 62005
+1655797295982	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=true
+1655797296040	Sync.Engine.Bookmarks	INFO	Posting 100 records of 59957 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797296040	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797296040	Sync.Collection	DEBUG	POST Length: 59957
+1655797296145	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797296196	Sync.Engine.Bookmarks	INFO	Posting 100 records of 61817 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797296196	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797296197	Sync.Collection	DEBUG	POST Length: 61817
+1655797296347	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797296396	Sync.Engine.Bookmarks	INFO	Posting 100 records of 57885 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797296397	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797296397	Sync.Collection	DEBUG	POST Length: 57885
+1655797296530	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797296574	Sync.Engine.Bookmarks	INFO	Posting 100 records of 59997 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797296574	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797296574	Sync.Collection	DEBUG	POST Length: 59997
+1655797296689	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797296740	Sync.Engine.Bookmarks	INFO	Posting 100 records of 58437 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797296740	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797296741	Sync.Collection	DEBUG	POST Length: 58437
+1655797296839	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797296881	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55853 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797296882	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797296882	Sync.Collection	DEBUG	POST Length: 55853
+1655797297000	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797297056	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54461 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797297056	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797297056	Sync.Collection	DEBUG	POST Length: 54461
+1655797297185	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797297233	Sync.Engine.Bookmarks	INFO	Posting 100 records of 63741 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797297233	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797297233	Sync.Collection	DEBUG	POST Length: 63741
+1655797297417	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797297467	Sync.Engine.Bookmarks	INFO	Posting 100 records of 59993 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797297467	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797297467	Sync.Collection	DEBUG	POST Length: 59993
+1655797297606	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797297659	Sync.Engine.Bookmarks	INFO	Posting 100 records of 59749 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797297659	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797297659	Sync.Collection	DEBUG	POST Length: 59749
+1655797297777	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797297826	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54905 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797297827	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797297827	Sync.Collection	DEBUG	POST Length: 54905
+1655797297947	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797297996	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54805 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797297996	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797297996	Sync.Collection	DEBUG	POST Length: 54805
+1655797298121	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797298171	Sync.Engine.Bookmarks	INFO	Posting 100 records of 57409 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797298171	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797298171	Sync.Collection	DEBUG	POST Length: 57409
+1655797298292	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797298338	Sync.Engine.Bookmarks	INFO	Posting 100 records of 60137 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797298338	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797298339	Sync.Collection	DEBUG	POST Length: 60137
+1655797298456	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797298509	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56193 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797298509	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797298509	Sync.Collection	DEBUG	POST Length: 56193
+1655797298617	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63
+1655797298653	Sync.Engine.Bookmarks	INFO	Posting 64 records of 36481 bytes with batch=bac0f917ab09438887df223607a61f63
+1655797298653	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797298654	Sync.Collection	DEBUG	POST Length: 36481
+1655797299168	Sync.Collection	DEBUG	POST success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=bac0f917ab09438887df223607a61f63&commit=true
+1655797299609	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55153 bytes with batch=true
+1655797299609	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797299609	Sync.Collection	DEBUG	POST Length: 55153
+1655797299760	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=true
+1655797299864	Sync.Engine.Bookmarks	INFO	Posting 100 records of 64449 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797299864	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797299865	Sync.Collection	DEBUG	POST Length: 64449
+1655797300005	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797300048	Sync.Engine.Bookmarks	INFO	Posting 100 records of 59253 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797300048	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797300048	Sync.Collection	DEBUG	POST Length: 59253
+1655797300207	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797300257	Sync.Engine.Bookmarks	INFO	Posting 100 records of 59653 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797300257	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797300258	Sync.Collection	DEBUG	POST Length: 59653
+1655797300386	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797300439	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56873 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797300439	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797300439	Sync.Collection	DEBUG	POST Length: 56873
+1655797300554	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797300601	Sync.Engine.Bookmarks	INFO	Posting 100 records of 59137 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797300601	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797300601	Sync.Collection	DEBUG	POST Length: 59137
+1655797300716	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797300771	Sync.Engine.Bookmarks	INFO	Posting 100 records of 62477 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797300771	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797300771	Sync.Collection	DEBUG	POST Length: 62477
+1655797300912	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797300968	Sync.Engine.Bookmarks	INFO	Posting 100 records of 64861 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797300968	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797300968	Sync.Collection	DEBUG	POST Length: 64861
+1655797301116	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797301176	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56933 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797301176	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797301176	Sync.Collection	DEBUG	POST Length: 56933
+1655797301279	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797301328	Sync.Engine.Bookmarks	INFO	Posting 100 records of 58681 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797301328	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797301328	Sync.Collection	DEBUG	POST Length: 58681
+1655797301449	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797301509	Sync.Engine.Bookmarks	INFO	Posting 100 records of 57701 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797301509	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797301509	Sync.Collection	DEBUG	POST Length: 57701
+1655797301631	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797301682	Sync.Engine.Bookmarks	INFO	Posting 100 records of 61397 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797301682	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797301682	Sync.Collection	DEBUG	POST Length: 61397
+1655797301809	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797301858	Sync.Engine.Bookmarks	INFO	Posting 100 records of 65633 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797301858	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797301859	Sync.Collection	DEBUG	POST Length: 65633
+1655797302007	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797302056	Sync.Engine.Bookmarks	INFO	Posting 100 records of 59797 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797302056	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797302056	Sync.Collection	DEBUG	POST Length: 59797
+1655797302186	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797302239	Sync.Engine.Bookmarks	INFO	Posting 100 records of 60465 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797302239	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797302239	Sync.Collection	DEBUG	POST Length: 60465
+1655797302352	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797302400	Sync.Engine.Bookmarks	INFO	Posting 100 records of 61033 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797302400	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797302401	Sync.Collection	DEBUG	POST Length: 61033
+1655797302547	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490
+1655797302579	Sync.Engine.Bookmarks	INFO	Posting 64 records of 38641 bytes with batch=c05b70af33e344a98b6c5111b47b3490
+1655797302579	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797302579	Sync.Collection	DEBUG	POST Length: 38641
+1655797303512	Sync.Collection	DEBUG	POST success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=c05b70af33e344a98b6c5111b47b3490&commit=true
+1655797304057	Sync.Engine.Bookmarks	INFO	Posting 100 records of 380401 bytes with batch=true
+1655797304057	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797304057	Sync.Collection	DEBUG	POST Length: 380401
+1655797304336	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=true
+1655797304384	Sync.Engine.Bookmarks	INFO	Posting 100 records of 66177 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797304384	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797304384	Sync.Collection	DEBUG	POST Length: 66177
+1655797304511	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797304565	Sync.Engine.Bookmarks	INFO	Posting 100 records of 61673 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797304566	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797304566	Sync.Collection	DEBUG	POST Length: 61673
+1655797304675	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797304721	Sync.Engine.Bookmarks	INFO	Posting 100 records of 61817 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797304721	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797304722	Sync.Collection	DEBUG	POST Length: 61817
+1655797304837	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797304885	Sync.Engine.Bookmarks	INFO	Posting 100 records of 60937 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797304885	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797304885	Sync.Collection	DEBUG	POST Length: 60937
+1655797305005	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797305061	Sync.Engine.Bookmarks	INFO	Posting 100 records of 63229 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797305061	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797305061	Sync.Collection	DEBUG	POST Length: 63229
+1655797305201	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797305258	Sync.Engine.Bookmarks	INFO	Posting 100 records of 61353 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797305258	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797305258	Sync.Collection	DEBUG	POST Length: 61353
+1655797305399	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797305450	Sync.Engine.Bookmarks	INFO	Posting 100 records of 63037 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797305450	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797305450	Sync.Collection	DEBUG	POST Length: 63037
+1655797305875	FirefoxAccounts	INFO	Polling device commands.
+1655797305876	Sync.Service	DEBUG	User-Agent: Firefox/102.0 (Intel Mac OS X 10.15) FxSync/1.104.0.20220616185542.desktop
+1655797305876	Sync.Service	INFO	Starting sync at 2022-06-21 00:41:45 in browser session q_rgIL4uisEb
+1655797305876	Sync.Service	DEBUG	Exception calling anonymous function: LockException: Could not acquire lock. Label: "service.js: sync".(resource://services-sync/util.js:55:5) JS Stack trace: LockException@util.js:55:5
+throwLockException@util.js:139:11
+WrappedLock@util.js:153:15
+_lockedSync@service.js:1369:6
+sync/<@service.js:1333:18
+WrappedCatch@util.js:124:27
+sync@service.js:1334:7
+1655797305876	Sync.Service	INFO	Cannot start sync: already syncing?
+1655797305877	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797305877	Services.Common.RESTRequest	DEBUG	GET request to https://api.accounts.firefox.com/v1/account/device/commands?index=0
+1655797305939	Sync.Engine.Bookmarks	INFO	Posting 100 records of 64917 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797305939	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797305939	Sync.Collection	DEBUG	POST Length: 64917
+1655797305972	Services.Common.RESTRequest	DEBUG	GET https://api.accounts.firefox.com/v1/account/device/commands?index=0 200
+1655797305973	Hawk	DEBUG	(Response) /account/device/commands?index=0: code: 200 - Status text: OK
+1655797305973	Hawk	DEBUG	Clock offset vs https://api.accounts.firefox.com/v1: -973
+1655797306088	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797306138	Sync.Engine.Bookmarks	INFO	Posting 100 records of 71041 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797306139	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797306139	Sync.Collection	DEBUG	POST Length: 71041
+1655797306258	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797306307	Sync.Engine.Bookmarks	INFO	Posting 100 records of 67613 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797306307	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797306307	Sync.Collection	DEBUG	POST Length: 67613
+1655797306454	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797306515	Sync.Engine.Bookmarks	INFO	Posting 100 records of 139021 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797306515	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797306516	Sync.Collection	DEBUG	POST Length: 139021
+1655797306656	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797306704	Sync.Engine.Bookmarks	INFO	Posting 100 records of 58881 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797306704	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797306704	Sync.Collection	DEBUG	POST Length: 58881
+1655797306817	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797306869	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55381 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797306870	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797306870	Sync.Collection	DEBUG	POST Length: 55381
+1655797306988	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797307041	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55857 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797307041	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797307041	Sync.Collection	DEBUG	POST Length: 55857
+1655797307144	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797307197	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56209 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797307197	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797307198	Sync.Collection	DEBUG	POST Length: 56209
+1655797307319	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b
+1655797307352	Sync.Engine.Bookmarks	INFO	Posting 64 records of 36013 bytes with batch=fa77df15fb24440986d6834517604a5b
+1655797307352	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797307352	Sync.Collection	DEBUG	POST Length: 36013
+1655797308048	Sync.Collection	DEBUG	POST success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=fa77df15fb24440986d6834517604a5b&commit=true
+1655797309229	Sync.Engine.Bookmarks	INFO	Posting 100 records of 58785 bytes with batch=true
+1655797309230	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797309230	Sync.Collection	DEBUG	POST Length: 58785
+1655797309375	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=true
+1655797309451	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56741 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797309452	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797309452	Sync.Collection	DEBUG	POST Length: 56741
+1655797309584	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797309644	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55537 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797309644	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797309644	Sync.Collection	DEBUG	POST Length: 55537
+1655797309751	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797309863	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54781 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797309863	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797309864	Sync.Collection	DEBUG	POST Length: 54781
+1655797309966	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797310018	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54081 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797310018	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797310019	Sync.Collection	DEBUG	POST Length: 54081
+1655797310145	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797310204	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55093 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797310204	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797310207	Sync.Collection	DEBUG	POST Length: 55093
+1655797310344	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797310400	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54969 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797310400	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797310400	Sync.Collection	DEBUG	POST Length: 54969
+1655797310521	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797310568	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55733 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797310568	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797310569	Sync.Collection	DEBUG	POST Length: 55733
+1655797310681	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797310728	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54557 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797310728	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797310728	Sync.Collection	DEBUG	POST Length: 54557
+1655797310861	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797310912	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56797 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797310912	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797310912	Sync.Collection	DEBUG	POST Length: 56797
+1655797311034	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797311085	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55713 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797311085	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797311085	Sync.Collection	DEBUG	POST Length: 55713
+1655797311190	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797311245	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55061 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797311245	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797311245	Sync.Collection	DEBUG	POST Length: 55061
+1655797311350	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797311401	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55161 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797311401	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797311401	Sync.Collection	DEBUG	POST Length: 55161
+1655797311512	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797311561	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56325 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797311561	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797311562	Sync.Collection	DEBUG	POST Length: 56325
+1655797312033	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797312453	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55781 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797312453	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797312454	Sync.Collection	DEBUG	POST Length: 55781
+1655797312551	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797312605	Sync.Engine.Bookmarks	INFO	Posting 100 records of 57809 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797312605	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797312605	Sync.Collection	DEBUG	POST Length: 57809
+1655797312714	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25
+1655797312748	Sync.Engine.Bookmarks	INFO	Posting 64 records of 35741 bytes with batch=35797663cac44c388348b1689afb9d25
+1655797312748	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797312748	Sync.Collection	DEBUG	POST Length: 35741
+1655797313578	Sync.Collection	DEBUG	POST success 200 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=35797663cac44c388348b1689afb9d25&commit=true
+1655797314085	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56853 bytes with batch=true
+1655797314085	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797314087	Sync.Collection	DEBUG	POST Length: 56853
+1655797314206	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=true
+1655797314255	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56401 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797314255	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797314256	Sync.Collection	DEBUG	POST Length: 56401
+1655797314358	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797314400	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55673 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797314400	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797314400	Sync.Collection	DEBUG	POST Length: 55673
+1655797314501	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797314545	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56217 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797314545	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797314545	Sync.Collection	DEBUG	POST Length: 56217
+1655797314666	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797314712	Sync.Engine.Bookmarks	INFO	Posting 100 records of 57153 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797314712	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797314712	Sync.Collection	DEBUG	POST Length: 57153
+1655797314832	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797314875	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56805 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797314875	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797314875	Sync.Collection	DEBUG	POST Length: 56805
+1655797314993	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797315040	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55257 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797315040	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797315040	Sync.Collection	DEBUG	POST Length: 55257
+1655797315151	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797315193	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55321 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797315193	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797315193	Sync.Collection	DEBUG	POST Length: 55321
+1655797315494	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797315548	Sync.Engine.Bookmarks	INFO	Posting 100 records of 57537 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797315548	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797315549	Sync.Collection	DEBUG	POST Length: 57537
+1655797315679	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797315729	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56037 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797315729	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797315729	Sync.Collection	DEBUG	POST Length: 56037
+1655797315835	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797315951	Sync.Engine.Bookmarks	INFO	Posting 100 records of 56413 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797315951	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797315951	Sync.Collection	DEBUG	POST Length: 56413
+1655797316070	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797316224	Sync.Engine.Bookmarks	INFO	Posting 100 records of 55761 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797316224	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797316225	Sync.Collection	DEBUG	POST Length: 55761
+1655797316346	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797316467	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54921 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797316467	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797316468	Sync.Collection	DEBUG	POST Length: 54921
+1655797316594	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797316719	Sync.Engine.Bookmarks	INFO	Posting 100 records of 54233 bytes with batch=8e0864b85958439694dedd545ddba9b1
+1655797316719	FirefoxAccounts	TRACE	not checking freshness of profile as it remains recent
+1655797316719	Sync.Collection	DEBUG	POST Length: 54233
+1655797316842	Sync.Collection	DEBUG	POST success 202 https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/151435103/storage/bookmarks?batch=8e0864b85958439694dedd545ddba9b1
+1655797317204	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1655797317369	Sync.Engine.Bookmarks.BookmarkSyncUtils	DEBUG	pushChanges: Processed change records: {"weak":3526,"skipped":5053,"updated":6273}
+1655797317369	Sync.Status	DEBUG	Status for engine bookmarks: error.engine.reason.unknown_fail
+1655797317369	Sync.Status	DEBUG	Status.service: success.status_ok => error.sync.failed_partial
+1655797317369	Sync.ErrorHandler	DEBUG	bookmarks was interrupted due to the application shutting down
+1655797317369	Sync.Synchronizer	INFO	bookmarks was interrupted by shutdown; no other engines will sync
+1655797317369	Sync.Synchronizer	INFO	Aborting sync for failure in bookmarks
+1655797317370	Sync.Doctor	INFO	Skipping check of passwords - disabled via preferences
+1655797317370	Sync.Doctor	INFO	Skipping validation: no engines qualify
+1655797317371	Sync.Synchronizer	INFO	Sync completed at 2022-06-21 00:41:57 after 39.57 secs.
+1655797317371	Sync.Declined	DEBUG	Handling remote declined: ["prefs","tabs"]
+1655797317371	Sync.Declined	DEBUG	Handling local declined: []
+1655797317371	Sync.Declined	DEBUG	Declined changed? false
+1655797317371	Sync.Service	INFO	No change to declined engines. Not reuploading meta/global.
+1655797317371	Sync.ErrorHandler	ERROR	Some engines did not sync correctly.
+1655797317372	Sync.SyncScheduler	DEBUG	Next sync in 90000 ms. (why=schedule)
